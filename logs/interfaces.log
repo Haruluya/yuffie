@@ -1,0 +1,7 @@
+/*
+日志接口规范。
+[time][operation][function name][author]---"description"
+*/
+[2022-05-09][ADD][test][haruluya]---"Add the function test for test ." 
+[2022-05-09][REMOVE][test][haruluya]---"Remove the function test ."
+[2022-05-09][UPDATE][test][haruluya]---"Make the function test testable ."
