@@ -25,18 +25,18 @@
     @version:0.0.1
     @date:2022/5/9
     @author:haruluya
-    @function:"»ùÓÚWin 32 API µÄGUI¸¨Öú¹¤¾ßÀà¡£".   
+    @function:"åŸºäºWin 32 API çš„GUIè¾…åŠ©å·¥å…·ç±»ã€‚".   
     @include:[guiTools.h]  
     @log:guiTools.log    
     @functions:{
-        message_box_printf:"ÖØ¹¹messagebox£¬Ö§³Ö¸ñÊ½»¯ÎÄ×Ö¡£",
-        play_wav_music:"²¥·ÅwavÒôÀÖÎÄ¼ş¡£" ,
-        draw_text:"ÇøÓòÄÚ»æÖÆÎÄ×Ö¡£"
+        message_box_printf:"é‡æ„messageboxï¼Œæ”¯æŒæ ¼å¼åŒ–æ–‡å­—ã€‚",
+        play_wav_music:"æ’­æ”¾wavéŸ³ä¹æ–‡ä»¶ã€‚" ,
+        draw_text:"åŒºåŸŸå†…ç»˜åˆ¶æ–‡å­—ã€‚"
     }
 */
 
 #include"guiTools.h"
-
+#include"../globalConst.h"
 
 
 
@@ -44,11 +44,11 @@
 /*
     @author:haruluya
     @date:2022/5/9
-    @function:"ÖØ¹¹messagebox£¬Ö§³Ö¸ñÊ½»¯ÎÄ×Ö¡£"
+    @function:"é‡æ„messageboxï¼Œæ”¯æŒæ ¼å¼åŒ–æ–‡å­—ã€‚"
     @input:{
-        szCaption:"ÏûÏ¢±êÌâ¡£",
-        szFormat:"ÏûÏ¢¸ñÊ½»¯×Ö·û¡£",
-        ...:"messageBoxÅäÖÃ²ÎÊı¡£"
+        szCaption:"æ¶ˆæ¯æ ‡é¢˜ã€‚",
+        szFormat:"æ¶ˆæ¯æ ¼å¼åŒ–å­—ç¬¦ã€‚",
+        ...:"messageBoxé…ç½®å‚æ•°ã€‚"
     }
     @output:{  
     }
@@ -68,9 +68,9 @@ int CDECL messageBoxPrintf(TCHAR* szCaption, TCHAR* szFormat,...)
 /*
     @author:haruluya
     @date:2022/5/9
-    @function:"²¥·ÅwavÒôÀÖÎÄ¼ş¡£"
+    @function:"æ’­æ”¾wavéŸ³ä¹æ–‡ä»¶ã€‚"
     @input:{
-        fileName:"wavÎÄ¼şÃû¡£"
+        fileName:"wavæ–‡ä»¶åã€‚"
     }
     @output:{  
     }
@@ -86,10 +86,10 @@ void playWavMusic(char* fileName)
 /*
     @author:haruluya
     @date:2022/5/9
-    @function:"ÇøÓòÄÚ»æÖÆÎÄ×Ö¡£"
+    @function:"åŒºåŸŸå†…ç»˜åˆ¶æ–‡å­—ã€‚"
     @input:{
-        hdc:"»æÖÆ´°¿ÚµÄ¾ä±ú¡£",
-        rect:"»æÖÆÇøÓò¡£"
+        hdc:"ç»˜åˆ¶çª—å£çš„å¥æŸ„ã€‚",
+        rect:"ç»˜åˆ¶åŒºåŸŸã€‚"
     }
     @output:{  
     }
@@ -108,7 +108,7 @@ void loadYuffieIcon(HWND hwnd, char* filename)
     if(hIcon)
         SendMessage(hwnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
     else
-        MessageBox(hwnd, "ÕÒ²»µ½Í¼±êÎÄ¼ş!", "Error", MB_OK | MB_ICONERROR);
+        MessageBox(hwnd, "æ‰¾ä¸åˆ°å›¾æ ‡æ–‡ä»¶!", "Error", MB_OK | MB_ICONERROR);
 }
 
 
@@ -190,7 +190,7 @@ HFONT EzCreateFont (HDC hdc, TCHAR * szFaceName, int iDeciPtHeight,
 
 void PaintRoutine (HWND hwnd, HDC hdc, int cxArea, int cyArea)
 {
-    static TCHAR szString [] = TEXT("Yuffie:ÊµÑéÊÒĞÅÏ¢»¯×ÛºÏ¹ÜÀíÏµÍ³") ;
+    static TCHAR szString [] = YUFFIE_MAIN_TITLE ;
 	HFONT        hFont ;
 	SIZE         size ;
 

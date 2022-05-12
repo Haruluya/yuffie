@@ -1,7 +1,9 @@
 #include"loginDialog.h"
 #define IDC_RECT                        1008
 #define IDC_BLACK                       1000
-
+#define IDC_WHITE                       1007
+#define IDC_ELLIPSE                     1009
+#define IDC_PAINT 1010
 int iCurrentColor  = IDC_BLACK,
     iCurrentFigure = IDC_RECT ;
 int loginDialog(HWND hwnd,HWND hInst)
@@ -63,6 +65,37 @@ int loginDialog(HWND hwnd,HWND hInst)
     return 0;
 }
 
+void PaintWindow (HWND hwnd, int iColor, int iFigure)
+{
+     static COLORREF crColor[8] = { RGB (  0,   0, 0), RGB (  0,   0, 255),
+                                    RGB (  0, 255, 0), RGB (  0, 255, 255),
+                                    RGB (255,   0, 0), RGB (255,   0, 255),
+                                    RGB (255, 255, 0), RGB (255, 255, 255) } ;
+
+     HBRUSH          hBrush ;
+     HDC             hdc ;
+     RECT            rect ;
+     
+     hdc = GetDC (hwnd) ;
+     GetClientRect (hwnd, &rect) ;
+     hBrush = CreateSolidBrush (crColor[iColor - IDC_BLACK]) ;
+     hBrush = (HBRUSH) SelectObject (hdc, hBrush) ;
+     
+     if (iFigure == IDC_RECT)
+          Rectangle (hdc, rect.left, rect.top, rect.right, rect.bottom) ;
+     else
+          Ellipse   (hdc, rect.left, rect.top, rect.right, rect.bottom) ;
+     
+     DeleteObject (SelectObject (hdc, hBrush)) ;
+     ReleaseDC (hwnd, hdc) ;
+}
+
+void PaintTheBlock (HWND hCtrl, int iColor, int iFigure)
+{
+     InvalidateRect (hCtrl, NULL, TRUE) ;
+     UpdateWindow (hCtrl) ;
+     PaintWindow (hCtrl, iColor, iFigure) ;
+}
 
 LRESULT CALLBACK loginProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -76,45 +109,28 @@ LRESULT CALLBACK loginProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam
     //     EndDialog (hwnd, TRUE);
     //     return TRUE;
     // }
-    static HWND beginButton;
-	static RECT beginButtonRect;
-	static int  beginButtonCxChar, beginButtonCyChar ;
-    static int      cxClient, cyClient ;
-	static HINSTANCE hInstance ;
+    static HWND hCtrlBlock ;
+    static int  iColor, iFigure ;
+
     switch (message)
     {
     case WM_INITDIALOG:
     {
-        static HWND hCtrlBlock ;
-        static int  iColor, iFigure ;
-        // hInstance = ((LPCREATESTRUCT) lParam)->hInstance;
-
-		// beginButtonCxChar = 100 ;
-		// beginButtonCyChar = 100;
-		// beginButton = CreateWindow( 
-		// 		TEXT("button"), 
-        //         TEXT("Enter System"),
-		// 		WS_CHILD | WS_VISIBLE | WS_BORDER | BS_FLAT,  
-		// 		10,         
-		// 		20,        
-		// 		50,        
-		// 		50,        
-		// 		hwnd,    
-		// 		(HMENU)IDI_BEGIN_BUTTON,      
-		// 		hInstance,
-		// 		NULL);
-        //   iColor  = iCurrentColor ;
-        //   iFigure = iCurrentFigure ;
+          iColor  = iCurrentColor ;
+          iFigure = iCurrentFigure ;
           
-        //   CheckRadioButton (hDlg, IDC_BLACK, IDC_WHITE,   iColor) ;
-        //   CheckRadioButton (hDlg, IDC_RECT,  IDC_ELLIPSE, iFigure) ;
-          
-        //   hCtrlBlock = GetDlgItem (hDlg, IDC_PAINT) ;
-          
-        //   SetFocus (GetDlgItem (hDlg, iColor)) ;
-          return TRUE ;
+          CheckRadioButton (hDlg, IDC_BLACK, IDC_WHITE,   iColor) ;
+          CheckRadioButton (hDlg, IDC_RECT,  IDC_ELLIPSE, iFigure) ;
+  
+        hCtrlBlock = GetDlgItem (hDlg, IDC_PAINT) ;
+        SetFocus (GetDlgItem (hDlg, iColor)) ;
+          return FALSE ;
     }
-    
+    case WM_PAINT:
+    {
+        PaintTheBlock (hCtrlBlock, iColor, iFigure) ;
+        break ;
+    }
     default:
         break;
     }    
@@ -141,3 +157,5 @@ int nCopyAnsiToWideChar (LPWORD lpWCStr, LPSTR lpAnsiIn)
 
   return MultiByteToWideChar(GetACP(), MB_PRECOMPOSED, lpAnsiIn, cchAnsi, lpWCStr, cchAnsi) + 1;
 }
+
+

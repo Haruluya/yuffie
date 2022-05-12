@@ -8,7 +8,7 @@
 #define IDM_ABOUT       202
 
 /*
-	@function:"Ö÷´°¿ÚÊÂ¼ş´¦Àíº¯Êı¡£"
+	@function:"ä¸»çª—å£äº‹ä»¶å¤„ç†å‡½æ•°ã€‚"
 */
 LRESULT CALLBACK WndProc (HWND, UINT, WPARAM, LPARAM);
 HINSTANCE hInst;
@@ -16,12 +16,12 @@ HINSTANCE hInst;
 /*
     @author:haruluya
     @date:2022/5/9
-    @model_function:"³ÌĞòÖ÷º¯Êı£¬Ö÷´°¿Ú¹¹Ôìº¯Êı¡£"
+    @model_function:"ç¨‹åºä¸»å‡½æ•°ï¼Œä¸»çª—å£æ„é€ å‡½æ•°ã€‚"
     @input:{
-        hInstance:"³ÌĞò¿ÉÖ´ĞĞÄ£¿éµÄ¾ä±ú¡£",
-        hPrevInstance:"ÀúÊ·ÒÅÁô²ÎÊı£¬Ê¼ÖÕÎªNULL¡£",
-		szCmdLine:"ÃüÁîĞĞ²ÎÊı¡£",
-		iCmdShow:"´°¿ÚÏÔÊ¾ĞÎÊ½¡£"
+        hInstance:"ç¨‹åºå¯æ‰§è¡Œæ¨¡å—çš„å¥æŸ„ã€‚",
+        hPrevInstance:"å†å²é—ç•™å‚æ•°ï¼Œå§‹ç»ˆä¸ºNULLã€‚",
+		szCmdLine:"å‘½ä»¤è¡Œå‚æ•°ã€‚",
+		iCmdShow:"çª—å£æ˜¾ç¤ºå½¢å¼ã€‚"
     }
     @output:{  
     }
@@ -32,28 +32,28 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
                     PSTR szCmdLine, int iCmdShow)
 {
 	/*
-		@value:"Ö÷´°¿ÚÀàÃû¡£"
+		@value:"ä¸»çª—å£ç±»åã€‚"
 	*/
 	static TCHAR szAppName[] = TEXT ("Yuffie") ;
 
 	/*
-		@value:"Ö÷´°¿Ú¾ä±ú¡£"
+		@value:"ä¸»çª—å£å¥æŸ„ã€‚"
 	*/
 	HWND         hwnd ;
 
 	/*
-		@value:"ÏûÏ¢¶ÓÁĞÏûÏ¢¡£"
+		@value:"æ¶ˆæ¯é˜Ÿåˆ—æ¶ˆæ¯ã€‚"
 	*/
 	MSG          msg ;
 
 	/*
-		@value:"´°¿ÚÀà¡£"
+		@value:"çª—å£ç±»ã€‚"
 	*/
 	WNDCLASS     wndclass ;
 
 	hInst = hInstance;
 
-	//´°¿ÚÀàÊôĞÔÉè¼Æ¡£
+	//çª—å£ç±»å±æ€§è®¾è®¡ã€‚
 	wndclass.style         = CS_HREDRAW | CS_VREDRAW ;
 	wndclass.lpfnWndProc   = WndProc ;
 	wndclass.cbClsExtra    = 0 ;
@@ -66,7 +66,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
     wndclass.hIcon  = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_MYICON));
 	
 	/*
-		@Check:"´°¿ÚÀà×¢²áÊ§°Ü´¦Àí¡£"
+		@Check:"çª—å£ç±»æ³¨å†Œå¤±è´¥å¤„ç†ã€‚"
 	*/
 	if (!RegisterClass (&wndclass))
 	{
@@ -75,7 +75,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		return 0 ;
 	}
 
-	// ´°¿Ú´´½¨¡£
+	// çª—å£åˆ›å»ºã€‚
 	hwnd = CreateWindow (szAppName,                
 						TEXT ("Yuffie"), 
 						WS_OVERLAPPEDWINDOW^WS_THICKFRAME,        
@@ -88,10 +88,10 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 						hInstance,                 
 						NULL) ;                    
 
-	// ´´½¨×Ü²Ëµ¥¡£
+	// åˆ›å»ºæ€»èœå•ã€‚
 	HMENU hMenu = CreateMenu();
 
-	// ´´½¨µ¯³ö²Ëµ¥Ïî¡£
+	// åˆ›å»ºå¼¹å‡ºèœå•é¡¹ã€‚
 	HMENU hSubMenu = CreatePopupMenu();
 	AppendMenu(hSubMenu, MF_STRING, ID_FILE_EXIT, "E&xit");
 	AppendMenu(hMenu, MF_STRING | MF_POPUP, (UINT)hSubMenu, "&File");
@@ -102,11 +102,11 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	SetMenu(hwnd, hMenu);
 
-	// ÏÔÊ¾¡¢¸üĞÂ´°¿Ú¡£
+	// æ˜¾ç¤ºã€æ›´æ–°çª—å£ã€‚
 	ShowWindow (hwnd, iCmdShow) ;
 	UpdateWindow (hwnd) ;
 	
-	// ÏûÏ¢¶ÓÁĞÑ­»·¡£
+	// æ¶ˆæ¯é˜Ÿåˆ—å¾ªç¯ã€‚
      while (GetMessage (&msg, NULL, 0, 0))
      {
           TranslateMessage (&msg) ;
@@ -119,17 +119,17 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,
 /*
     @author:haruluya
     @date:2022/5/9
-    @function:"Ö÷´°¿ÚÊÂ¼ş´¦Àíº¯Êı¡£"
+    @function:"ä¸»çª—å£äº‹ä»¶å¤„ç†å‡½æ•°ã€‚"
     @input:{
-        hwnd:"Ö÷´°¿Ú¾ä±ú¡£",
-        message:"ÊÂ¼şĞÅÏ¢¡£",
-		wParam:"ÊÂ¼ş°éËæ²ÎÊı¡£",
-		lParam:"ÊÂ¼ş°éËæ²ÎÊı¡£"
+        hwnd:"ä¸»çª—å£å¥æŸ„ã€‚",
+        message:"äº‹ä»¶ä¿¡æ¯ã€‚",
+		wParam:"äº‹ä»¶ä¼´éšå‚æ•°ã€‚",
+		lParam:"äº‹ä»¶ä¼´éšå‚æ•°ã€‚"
     }
     @output:{
     }
     @execute:[haruluya.WinMain] 
-    @return:"ÔËĞĞ×´Ì¬¡£"
+    @return:"è¿è¡ŒçŠ¶æ€ã€‚"
 */
 LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
@@ -139,12 +139,12 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 	HDC         hdc ;
 
 	/*
-		@value:"»æÖÆ×´Ì¬ĞÅÏ¢¡£"
+		@value:"ç»˜åˆ¶çŠ¶æ€ä¿¡æ¯ã€‚"
 	*/
 	PAINTSTRUCT ps ;
 	
 	/*
-		@value:"titleÇøÓò¡£"
+		@value:"titleåŒºåŸŸã€‚"
 	*/
 	RECT titleRect ;
 	static HFONT titleFont;
@@ -159,7 +159,7 @@ LRESULT CALLBACK WndProc (HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 
 	/*
-		@check:"ÏûÏ¢´¦Àí¡£"
+		@check:"æ¶ˆæ¯å¤„ç†ã€‚"
 	*/
 	switch (message)
 	{

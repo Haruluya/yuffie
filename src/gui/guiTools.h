@@ -25,7 +25,7 @@
     @version:0.0.1
     @date:2022/5/9
     @author:haruluya
-    @model_function:"»ùÓÚWin 32 API µÄGUI¸¨Öú¹¤¾ßÀà¡£".  
+    @model_function:"åŸºäºWin 32 API çš„GUIè¾…åŠ©å·¥å…·ç±»ã€‚".  
     @include:[windows.h,tchar.h,stdio.h]    
     @work:[guiTools.c,yuffie.c]      
     @log:guiTools.log   
@@ -46,23 +46,23 @@
 
 
 /*
-    @function:"ÖØ¹¹messagebox£¬Ö§³Ö¸ñÊ½»¯ÎÄ×Ö¡£"
+    @function:"é‡æ„messageboxï¼Œæ”¯æŒæ ¼å¼åŒ–æ–‡å­—ã€‚"
 */
 int CDECL message_box_printf(TCHAR* , TCHAR* ,...);
 
 /*
-    @function:"²¥·ÅwavÒôÀÖÎÄ¼ş¡£"
+    @function:"æ’­æ”¾wavéŸ³ä¹æ–‡ä»¶ã€‚"
 */
 void playWavMusic(char*);
 
 /*
-    @function:"ÇøÓòÄÚ»æÖÆÎÄ×Ö¡£"
+    @function:"åŒºåŸŸå†…ç»˜åˆ¶æ–‡å­—ã€‚"
 */
 void drawText(HDC,RECT );
 
 
 /*
-    @function:"¼ÓÔØ³ÌĞòicoÍ¼±ê¡£"
+    @function:"åŠ è½½ç¨‹åºicoå›¾æ ‡ã€‚"
 */
 void loadYuffieIcon(HWND,char*);
 
