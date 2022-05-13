@@ -25,63 +25,36 @@
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"登录界面窗口".
-    @include:[globalConst.h，user.h]    
-    @work:loginDialog.c       
-    @log:loginDialog.log     
-
+    @model_function:"user模块测试类".  
 */
 
-#include"globalConst.h"
+
 #include"user.h"
 
+int main(void){
 
-/*
-    @function:"定义String类."
-    @value:{
-    }
-*/
-typedef char* String;
+    // 数组切分测试。
+    char* test = "高锰酸钾 1 10";
+    char** test1 = yuffieSplit(test);
+    assert(!strcmp(test[0],"高锰酸钾"));
 
-/*
-    @value:"账号输入edit组件id。"
-*/
-#define ID_YUFFIE_USERNAME_EDIT 500
+    // 载入用户测试。
+    initUserList();
+    assert(userListLen == 5);
+    assert(userList[0].userName == "haruluya");
 
-/*
-    @value:"密码输入edit组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_EDIT 501
+    //设置当前用户测试.
+    setPresentUser("haruluya");
+    assert(presentUser.userName == "haruluya");
+    setPresentUser("haruluyaxxx");
+    assert(presentUser.id == -1);
 
-/*
-    @value:"账号输入label组件id。"
-*/
-#define ID_YUFFIE_USERNAME_LAB 502
+    //登录验证测试。
+    LoginMessage test = loginValidate("haruluya", "123456");
+    assert(test.status == OK);
+    LoginMessage test = loginValidate("haruluya", "123456xx");
+    assert(test.status == ERROR);
+    
+    return 0;
+}
 
-/*
-    @value:"密码输入label组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_LAB 503
-
-
-
-/*
-    @function:"窗口过程。"
-*/
-BOOL CALLBACK loginDlgProc(HWND, UINT,WPARAM, LPARAM);
-
-/*
-    @function:"账号输入验证"
-*/
-BOOL validateUserName(String);
-
-/*
-    @function:"密码输入label组件id。"
-*/
-BOOL validatePassword(String);
-
-
-/*
-    @function:"登录验证。"
-*/
-LoginMessage validateUser(String, String);

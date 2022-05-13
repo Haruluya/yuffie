@@ -1,0 +1,12 @@
+{
+    "C_Cpp.errorSquiggles": "Enabled",
+    "files.associations": {
+        "*.cjson": "jsonc",
+        "*.wxss": "css",
+        "*.wxs": "javascript",
+        "purchasetable.h": "c",
+        "guistruct.h": "c",
+        "stdlib.h": "c",
+        "purchasetablestruct.h": "c"
+    }
+}

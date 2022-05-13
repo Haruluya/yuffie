@@ -1,11 +1,6 @@
 #include"yuffie.h"
 
-/*
-	@function:"主窗口事件处理函数。"
-*/
 
-TCHAR     szFrameClass[] = TEXT("MdiFrame");
-TCHAR     szHelloClass[] = TEXT("MdiHelloChild");
 /*
 	@author:haruluya
 	@date:2022/5/9
@@ -21,8 +16,6 @@ TCHAR     szHelloClass[] = TEXT("MdiHelloChild");
 	@execute:[yuffie.WinMain]
 	@return:"status code."
 */
-
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	PSTR szCmdLine, int iCmdShow)
 {
@@ -46,13 +39,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	*/
 	WNDCLASS     wndclass;
 
+	/*
+		@value:"快捷键映射。"
+	*/
 	HACCEL   hAccel;
 
-
 	hInst = hInstance;
-
-
-
 
 	//窗口类属性设计。
 	wndclass.style = CS_HREDRAW | CS_VREDRAW;
@@ -65,6 +57,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	wndclass.hbrBackground = (HBRUSH)(COLOR_APPWORKSPACE + 1);
 	wndclass.lpszMenuName = NULL;
 	wndclass.lpszClassName = szFrameClass;
+
 	/*
 		@Check:"窗口类注册失败处理。"
 	*/
@@ -75,6 +68,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		return 0;
 	}
 
+	//MDI-supplier窗口样式设计。
 	wndclass.style = CS_HREDRAW | CS_VREDRAW;
 	wndclass.lpfnWndProc = HelloWndProc;
 	wndclass.cbClsExtra = 0;
@@ -86,7 +80,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	wndclass.lpszMenuName = NULL;
 	wndclass.lpszClassName = szHelloClass;
 
-
+	/*
+		@Check:"窗口类注册失败处理。"
+	*/
 	if (!RegisterClass(&wndclass))
 	{
 		MessageBox(NULL, TEXT("This supplierTemplate register failed!"),
@@ -94,6 +90,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		return 0;
 	}
 
+	//获取菜单句柄。
 	hMenuInit = LoadMenu(hInstance, TEXT("MdiMenuInit"));
 	hMenuHello = LoadMenu(hInstance, TEXT("MdiMenuHello"));
 	hMenuRect = LoadMenu(hInstance, TEXT("MdiMenuRect"));
@@ -102,7 +99,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	hMenuHelloWindow = GetSubMenu(hMenuHello, HELLO_MENU_POS);
 	hMenuRectWindow = GetSubMenu(hMenuRect, RECT_MENU_POS);
 
-
+	//快捷键映射。
 	hAccel = LoadAccelerators(hInstance, szAppName);
 
 	// 窗口创建。
@@ -117,9 +114,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		hMenuInit,
 		hInstance,
 		NULL);
-
-
-
 	hwndClient = GetWindow(hwndFrame, GW_CHILD);
 
 	// 显示、更新窗口。
@@ -129,6 +123,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// 消息队列循环。
 	while (GetMessage(&msg, NULL, 0, 0))
 	{
+		/*
+			@check:消息队列处理。
+		*/
 		if (!TranslateMDISysAccel(hwndClient, &msg) &&
 			!TranslateAccelerator(hwndFrame, hAccel, &msg))
 		{
@@ -136,7 +133,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 			DispatchMessage(&msg);
 		}
 	}
-	// Clean up by deleting unattached menus
+
+	//清除资源。
 	DestroyMenu(hMenuHello);
 	DestroyMenu(hMenuRect);
 
@@ -156,7 +154,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	}
 	@output:{
 	}
-	@execute:[haruluya.WinMain]
+	@execute:[yuffie.WinMain]
 	@return:"运行状态。"
 */
 LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
@@ -175,6 +173,10 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		@value:"title区域。"
 	*/
 	RECT titleRect;
+
+	/*
+		@value:"title字体。"
+	*/
 	static HFONT titleFont;
 
 	/*
@@ -182,9 +184,24 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 	*/
 	static HWND beginButton;
 
+	/*
+		@value:"MDI窗口句柄。"
+	*/
 	static HWND        hwndClient;
+
+	/*
+		@value:"MDI窗口配置。"
+	*/
 	CLIENTCREATESTRUCT clientcreate;
+
+	/*
+		@value:"当前子窗口句柄。"
+	*/
 	HWND               hwndChild;
+
+	/*
+		@value:"MDI窗口样式。"
+	*/
 	MDICREATESTRUCT    mdicreate;
 	
 
@@ -196,6 +213,21 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 	case WM_CREATE:
 	{
+
+		/*
+			@check:"导入user表是否成功。"
+		*/
+		if (!initUserList()) {
+			MessageBox(hwnd, TEXT("导入user表失败！"), TEXT("ERROR"), MB_ICONINFORMATION);
+		}
+
+		/*
+			@check:"导入purchaseTable表是否成功。"
+		*/
+		if (!initPurchaseList()) {
+			MessageBox(hwnd, TEXT("导入purchaseTable表失败！"), TEXT("ERROR"), MB_ICONINFORMATION);
+		}
+
 		//创建进入系统按钮。
 		beginButton = createDefaultButton(
 			TEXT("button"),
@@ -212,6 +244,7 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		clientcreate.hWindowMenu = hMenuInitWindow;
 		clientcreate.idFirstChild = IDM_FIRSTCHILD;
 
+		//创建MDI窗口。
 		hwndClient = CreateWindow(TEXT("MDICLIENT"), NULL,
 			WS_CHILD | WS_CLIPCHILDREN | WS_VISIBLE | WM_MDITILE,
 			0, 0, 0, 0, hwnd, (HMENU)1, hInst,
@@ -219,10 +252,8 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		return 0;
 	}
 
-	
-
-
 	case WM_PAINT:
+		//绘制标题。
 		hdc = BeginPaint(hwnd, &ps);
 		PaintRoutine(hwnd, hdc, YUFFIE_CX_CLIENT, YUFFIE_CY_CLIENT);
 		EndPaint(hwnd, &ps);
@@ -231,14 +262,22 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 	case WM_COMMAND:
 	{
+		
+		/*
+			@check:"command消息队列事件处理。"
+		*/
 		switch (LOWORD(wParam))
 		{
+
 		case ID_YUFFIE_BEGIN_BUTTON:
+
+			//显示登录dialog。
 			DialogBox(hInst, MAKEINTRESOURCE(IDD_LOGIN_DIALOG), hwnd, loginDlgProc);
 			break;
 		case IDM_FILE_NEWHELLO:
 		case IDD_LOGIN_DIALOG:
 
+			//显示MID-supplier窗口。
 			mdicreate.szClass = szHelloClass;
 			mdicreate.szTitle = TEXT("Hello");
 			mdicreate.hOwner = hInst;
@@ -255,8 +294,9 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			SendMessage(hwndClient, WM_MDITILE, 0, 0);
 			return 0;
 
-		case IDM_FILE_CLOSE:          // Close the active window
+		case IDM_FILE_CLOSE:          
 
+			//窗口关闭。
 			hwndChild = (HWND)SendMessage(hwndClient,
 				WM_MDIGETACTIVE, 0, 0);
 
@@ -265,47 +305,56 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 					(WPARAM)hwndChild, 0);
 			return 0;
 
-		case IDM_APP_EXIT:            // Exit the program
+		case IDM_APP_EXIT:            
 
+			//程序关闭。
 			SendMessage(hwnd, WM_CLOSE, 0, 0);
 			return 0;
 
-			// messages for arranging windows
-
 		case IDM_WINDOW_TILE:
+
+			//窗口排列。
 			SendMessage(hwndClient, WM_MDITILE, 0, 0);
 			return 0;
 
 		case IDM_WINDOW_CASCADE:
+
+			//窗口级联。
 			SendMessage(hwndClient, WM_MDICASCADE, 0, 0);
 			return 0;
 
 		case IDM_WINDOW_ARRANGE:
+
+			//窗口最小化。
 			SendMessage(hwndClient, WM_MDIICONARRANGE, 0, 0);
 			return 0;
 
-		case IDM_WINDOW_CLOSEALL:     // Attempt to close all children
+		case IDM_WINDOW_CLOSEALL:     
 
+			//子窗口全部关闭。
 			EnumChildWindows(hwndClient, CloseEnumProc, 0);
 			return 0;
 
-		default:             // Pass to active child...
+		default:             
 
+			//获取活跃子窗口。
 			hwndChild = (HWND)SendMessage(hwndClient,
 				WM_MDIGETACTIVE, 0, 0);
 
 			if (IsWindow(hwndChild))
 				SendMessage(hwndChild, WM_COMMAND, wParam, lParam);
 
-			break;        // ...and then to DefFrameProc
+			break;       
 		}
 		return 0;
 	}
 
+	//窗口销毁。
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
 	}
+
 	return DefFrameProc(hwnd, hwndClient, message, wParam, lParam);
 }
 

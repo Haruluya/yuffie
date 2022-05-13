@@ -25,63 +25,49 @@
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"登录界面窗口".
-    @include:[globalConst.h，user.h]    
-    @work:loginDialog.c       
-    @log:loginDialog.log     
-
+    @model_function:"订购表数据结构定义".
+    @include:[global.h]   
+    @work:purchaseTable.c      
+    @log:NONE    
 */
 
-#include"globalConst.h"
-#include"user.h"
+#include"global.h"
+
 
 
 /*
-    @function:"定义String类."
+    @function:"订购项的抽象."
     @value:{
+        inventoryName:"药剂名称",
+        inventoryId:"药剂id",
+        inventoryNum:"药剂数量",
+        inventoryPrice:"报价"
     }
 */
-typedef char* String;
-
-/*
-    @value:"账号输入edit组件id。"
-*/
-#define ID_YUFFIE_USERNAME_EDIT 500
-
-/*
-    @value:"密码输入edit组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_EDIT 501
-
-/*
-    @value:"账号输入label组件id。"
-*/
-#define ID_YUFFIE_USERNAME_LAB 502
-
-/*
-    @value:"密码输入label组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_LAB 503
-
+typedef struct PurchaseItem {
+    String inventoryName;
+    int inventoryId;
+    int inventoryNum;
+    int inventoryPrice;
+}PurchaseItem;
 
 
 /*
-    @function:"窗口过程。"
+    @value:订购表每列最大长度。
 */
-BOOL CALLBACK loginDlgProc(HWND, UINT,WPARAM, LPARAM);
+#define INFO_MAXSIZE 50
+/*
+    @value:"订购表最大元组数。"
+*/
+#define PURCHASE_LIST_MAX_SIZE 199
+/*
+    @function:"订购表."
+    @range:[0,PURCHASE_LIST_MAX_SIZE]
+*/
+PurchaseItem purchaseList[PURCHASE_LIST_MAX_SIZE];
 
 /*
-    @function:"账号输入验证"
+    @function:"订购表长度"
+    @range:[0,PURCHASE_LIST_MAX_SIZE]
 */
-BOOL validateUserName(String);
-
-/*
-    @function:"密码输入label组件id。"
-*/
-BOOL validatePassword(String);
-
-
-/*
-    @function:"登录验证。"
-*/
-LoginMessage validateUser(String, String);
+int purchaseListLen;

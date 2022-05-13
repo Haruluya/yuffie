@@ -23,65 +23,35 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
+    @date:2022/5/9
     @author:haruluya
-    @model_function:"登录界面窗口".
-    @include:[globalConst.h，user.h]    
-    @work:loginDialog.c       
-    @log:loginDialog.log     
+    @model_function:"对订购相关操作函数和全局变量。".
+    @include:[purchaseTableStruct.h,user.h]   
+    @work:[purchaseTable.c,yuffie.h]       
+    @log:purchaseTable.log     
 
 */
 
-#include"globalConst.h"
+#include"purchaseTableStruct.h"
 #include"user.h"
 
 
-/*
-    @function:"定义String类."
-    @value:{
-    }
-*/
-typedef char* String;
-
-/*
-    @value:"账号输入edit组件id。"
-*/
-#define ID_YUFFIE_USERNAME_EDIT 500
-
-/*
-    @value:"密码输入edit组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_EDIT 501
-
-/*
-    @value:"账号输入label组件id。"
-*/
-#define ID_YUFFIE_USERNAME_LAB 502
-
-/*
-    @value:"密码输入label组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_LAB 503
-
 
 
 /*
-    @function:"窗口过程。"
+    @function:"通过订购表id获取订购项"
 */
-BOOL CALLBACK loginDlgProc(HWND, UINT,WPARAM, LPARAM);
+PurchaseItem getPurchaseItemById(int id);
 
 /*
-    @function:"账号输入验证"
+    @function:"载入订购表数据。"
 */
-BOOL validateUserName(String);
-
-/*
-    @function:"密码输入label组件id。"
-*/
-BOOL validatePassword(String);
+Status initPurchaseList();
 
 
 /*
-    @function:"登录验证。"
+    @function:"完成出价创建出价单。"
 */
-LoginMessage validateUser(String, String);
+Status createOfferApply();
+
+

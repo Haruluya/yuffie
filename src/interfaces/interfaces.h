@@ -5,10 +5,6 @@
             常量：YUFFIE_MAX_INT   YUFFIE_ARRAY_LENGTH  //宏定义避免与win32 api重合以YUFFIE开头。 
             函数：addItemToList()  
             头文件：student.h   
-            语句大括号：if
-                        {
-
-                        }
 
 */
 

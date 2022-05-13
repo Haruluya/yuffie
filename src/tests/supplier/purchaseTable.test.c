@@ -25,63 +25,24 @@
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"登录界面窗口".
-    @include:[globalConst.h，user.h]    
-    @work:loginDialog.c       
-    @log:loginDialog.log     
-
+    @model_function:"purchaseTable模块测试类".  
 */
 
-#include"globalConst.h"
-#include"user.h"
+#include"purchaseTable.h"
+int main(void){
+    // 通过id获取订购项测试。
+    PurchaseItem test;
+    test = getPurchaseItemById(1);
+    assert(test.inventoryId == 1);
 
+    // 载入订购表数据测试。
+    initPurchaseList();
+    assert(purchaseListLen == 8);
+    assert(!strcmp(purchaseList[0].inventoryName,"高猛酸钾"));
 
-/*
-    @function:"定义String类."
-    @value:{
-    }
-*/
-typedef char* String;
-
-/*
-    @value:"账号输入edit组件id。"
-*/
-#define ID_YUFFIE_USERNAME_EDIT 500
-
-/*
-    @value:"密码输入edit组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_EDIT 501
-
-/*
-    @value:"账号输入label组件id。"
-*/
-#define ID_YUFFIE_USERNAME_LAB 502
-
-/*
-    @value:"密码输入label组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_LAB 503
-
-
-
-/*
-    @function:"窗口过程。"
-*/
-BOOL CALLBACK loginDlgProc(HWND, UINT,WPARAM, LPARAM);
-
-/*
-    @function:"账号输入验证"
-*/
-BOOL validateUserName(String);
-
-/*
-    @function:"密码输入label组件id。"
-*/
-BOOL validatePassword(String);
-
-
-/*
-    @function:"登录验证。"
-*/
-LoginMessage validateUser(String, String);
+    //创建出价表测试。
+    createOfferApply();
+    // 观察txt文件变化情况。
+    
+    return 0;
+}

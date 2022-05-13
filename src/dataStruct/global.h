@@ -25,63 +25,40 @@
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"登录界面窗口".
-    @include:[globalConst.h，user.h]    
-    @work:loginDialog.c       
-    @log:loginDialog.log     
+    @model_function:"数据结构全局静态类。"
+    @include:[a.h,b.h,c.h]    
+    @work:all in dataStruct file       
+    @log:NONE   
 
 */
 
-#include"globalConst.h"
-#include"user.h"
-
+#pragma once
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
 
 /*
-    @function:"定义String类."
-    @value:{
-    }
+    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
 */
-typedef char* String;
+typedef int Status;
+#define TRUE         1
+#define OK           1
+#define ERROR        0
+#define INFASIBLE   -1
+#define OVERFLOW    -2
+#define NOT_FOUND   -3
 
 /*
-    @value:"账号输入edit组件id。"
+    @function:"全局缓存区."
+    @range:[0,255]
 */
-#define ID_YUFFIE_USERNAME_EDIT 500
+char BUFF[255];
 
 /*
-    @value:"密码输入edit组件id。"
+    @function:"逻辑类String定义。"
 */
-#define ID_YUFFIE_PASSWORD_EDIT 501
-
-/*
-    @value:"账号输入label组件id。"
-*/
-#define ID_YUFFIE_USERNAME_LAB 502
-
-/*
-    @value:"密码输入label组件id。"
-*/
-#define ID_YUFFIE_PASSWORD_LAB 503
+typedef char* String ;
 
 
 
-/*
-    @function:"窗口过程。"
-*/
-BOOL CALLBACK loginDlgProc(HWND, UINT,WPARAM, LPARAM);
 
-/*
-    @function:"账号输入验证"
-*/
-BOOL validateUserName(String);
-
-/*
-    @function:"密码输入label组件id。"
-*/
-BOOL validatePassword(String);
-
-
-/*
-    @function:"登录验证。"
-*/
-LoginMessage validateUser(String, String);
