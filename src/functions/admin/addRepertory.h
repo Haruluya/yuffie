@@ -23,50 +23,49 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
-    @author:haruluya
-    @model_function:"数据结构全局静态类。"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
-    @log:NONE
+    @date:2022/5/16
+    @author:Estrella
+    @model_function:"对试剂入库相关操作函数和全局变量。".
+    @include:[repertoryStruct.h,repertoryManageStruct.h]
+    @log:purchaseTable.log
 
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include "repertoryStruct.h"
+#include "repertoryManageStruct.h"
+#include "user.h"
 
 /*
-    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
+    @function:"要入库的试剂列表"
 */
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
+ReagentItem addList[INVENTORY_LIST_MAX_SIZE];
 
 /*
-    @function:"全局缓存区."
-    @range:[0,255]
+    @function:"要入库的试剂列表"
 */
-char BUFF[255];
+int addListLen;
 
 /*
-    @function:"逻辑类String定义。"
+    @function:"初始化载入主仓库的试剂"
 */
-typedef char* String;
+Status initInventory();
 
-typedef struct PurchaseItem {
-    String inventoryName;
-    int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
+/*
+    @function:"初始化载入采购的试剂"
+*/
+Status initAddInventory();
 
+/*
+    @function:"入库操作。"
+*/
+Status addMainInventory();
 
+/*
+    @function:"入库记录。"
+*/
+Status addMainRepertoryManage();
 
-
+/*
+    @function:"更新主库存。"
+*/
+Status createMainInventory();

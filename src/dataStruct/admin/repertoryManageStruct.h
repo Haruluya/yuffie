@@ -23,50 +23,59 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
-    @author:haruluya
-    @model_function:"数据结构全局静态类。"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
+    @date:2022/5/14
+    @author:deng
+    @model_function:"实验室库存数据结构定义".
+    @include:[global.h]
+    @work:laborInventory.c
     @log:NONE
-
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include "global.h"
 
 /*
-    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
+    @function:"药品种类的抽象."
+    @value:{
+
+    }
 */
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
+typedef enum mange
+{
+    ADD,
+    SUB,
+} mange;
 
 /*
-    @function:"全局缓存区."
-    @range:[0,255]
+    @function:"总库存中药品的抽象."
+    @value:{
+        reagentName:"药剂名称",
+        reagentId:"药剂id",
+        reagentNum:"药剂数量",
+    }
 */
-char BUFF[255];
+typedef struct manageItem
+{
+    String reagentName;
+    String time;
+    int reagentId;
+    int reagentChangeNum;
+    mange mange;
+} manageItem;
 
 /*
-    @function:"逻辑类String定义。"
+    @value:总库存表最大元组数。
 */
-typedef char* String;
-
-typedef struct PurchaseItem {
-    String inventoryName;
-    int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
+#define INVENTORY_LIST_MAX_SIZE 199
 
 
+/*
+    @function:"总库存试剂表."
+    @range:[0,INVENTORY_LIST_MAX_SIZE]
+*/
+manageItem manageInventoryList[INVENTORY_LIST_MAX_SIZE];
 
-
+/*
+    @value:"总库存表长度"
+    @range:[0,INVENTORY_LIST_MAX_SIZE]
+*/
+int manageInventoryLen;

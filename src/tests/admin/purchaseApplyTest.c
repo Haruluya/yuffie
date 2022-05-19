@@ -2,7 +2,7 @@
     @license:
     MIT License
 
-    Copyright (c) 2022 Haruluya
+    Copyright (c) 2022 Estrella
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -20,53 +20,23 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
-    @date:2022/5/13
-    @author:haruluya
-    @model_function:"Êı¾İ½á¹¹È«¾Ö¾²Ì¬Àà¡£"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
-    @log:NONE
-
+    @date:2022/5/15
+    @author:Estrella
+    @model_function:"purchaseApplyTableæ¨¡å—æµ‹è¯•ç±»".
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include "purchaseApplyTable.h"
 
-/*
-    @function:"º¯ÊıÖ´ĞĞ×´Ì¬·â×°£¬ËùÓĞ·µ»ØvoidµÄº¯ÊıÓ¦¸Ã·µ»ØStatus²¢¼ì²éÖ´ĞĞÇé¿ö¡£"
-*/
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
+int main(void)
+{
+    // è½½å…¥è®¢è´­è¡¨æ•°æ®æµ‹è¯•ã€‚
+    initPurchaseList();
 
-/*
-    @function:"È«¾Ö»º´æÇø."
-    @range:[0,255]
-*/
-char BUFF[255];
+    // åˆ›å»ºå‡ºä»·è¡¨æµ‹è¯•ï¼Œè§‚å¯Ÿtxtæ–‡ä»¶å˜åŒ–æƒ…å†µã€‚
+    createApply();
 
-/*
-    @function:"Âß¼­ÀàString¶¨Òå¡£"
-*/
-typedef char* String;
-
-typedef struct PurchaseItem {
-    String inventoryName;
-    int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
-
-
-
-
+    return 0;
+}

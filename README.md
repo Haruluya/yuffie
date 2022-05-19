@@ -2,6 +2,8 @@
 
 ## About Project
 
+纯win32 api SDK，非mfc。
+
 ### Target
 
 Just a homework for curriculum design.
@@ -22,4 +24,5 @@ Just a homework for curriculum design.
 | -------------------------------------- | --------------------------------------- | --------------------------------------- |
 | ✅Win32APi                              | window98                                |                                         |
 
-鉴于兼容性问题，其中api全来自于《Windows程序设计第五版珍藏版》.。
+鉴于兼容性问题，其中api全来自于《Windows程序设计第五版珍藏版》。
+

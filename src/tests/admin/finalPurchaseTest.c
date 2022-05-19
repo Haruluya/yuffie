@@ -2,7 +2,7 @@
     @license:
     MIT License
 
-    Copyright (c) 2022 Haruluya
+    Copyright (c) 2022 Estrella
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -20,53 +20,35 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MIT֤��������Ϊ�̶����֡�
+    SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
-    @author:haruluya
-    @model_function:"���ݽṹȫ�־�̬�ࡣ"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
-    @log:NONE
-
+    @date:2022/5/16
+    @author:Estrella
+    @model_function:"finalPurchase模块测试类".
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include "finalPurchase.h"
 
-/*
-    @function:"����ִ��״̬��װ�����з���void�ĺ���Ӧ�÷���Status�����ִ�������"
-*/
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
+int main(void)
+{
+    // 载入最终订购表数据
+    initFinalPurchaseList();
 
-/*
-    @function:"ȫ�ֻ�����."
-    @range:[0,255]
-*/
-char BUFF[255];
+    // 获取所有的供应商报价文件。
+    initApply();
 
-/*
-    @function:"�߼���String���塣"
-*/
-typedef char* String;
+    // 载入每个药品对应的所有供应商报价数据。
+    initPrice();
 
-typedef struct PurchaseItem {
-    String inventoryName;
-    int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
+    // 对每个药品对应的所有供应商报价数据选择报价最少的。
+    selectPrice();
 
+    // 载入每个药品最终选择的报价和供应商数据。
+    finalPrice();
 
+    // 完成比价并创建最终的购买表。
+    createFinalPrice();
 
-
+    return 0;
+}

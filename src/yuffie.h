@@ -1,3 +1,9 @@
+/*
+¢Ú.hÍ·ÎÄ¼ş½Ó¿Ú¹æ·¶¡£
+*/
+// #include"a.h";
+// #include"b.h";
+// #include"c.h";
 
 /*
     @license:
@@ -21,56 +27,58 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
+    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
 
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"GUIç•Œé¢å…¨å±€ä½¿ç”¨çš„é™æ€å€¼ç±»ã€‚"
-    @include:[Windows.h,user.h,purchaseTable.h,resource.h]    
-    @work:interface.c       
-    @log:interfaces.log    
+    @model_function:"win32Ö÷´°¿ÚÍ·ÎÄ¼ş".
+    @include:[Windows.h,guiTools.h,id.h,resource.h,loginDialog.h,supplierTemplate.h,user.h]    
+    @work:[yuffie.c,all clas with gui]       
+    @log:yuffie.log     
+
 
 */
 #pragma once
+
 #include<Windows.h>
-#include"user.h"
-#include"purchaseTable.h"
-#include"resource.h"
+#include"guiTools.h"
+#include "Resource.h"
+#include"id.h"
+#include"globalConst.h"
+
+
+
+
+
+/*
+    @function:"Ö÷´°¿ÚÀàÃû."
+    @range:Const
+*/
+TCHAR     szFrameClass[] = TEXT("MdiFrame");
 
 /*
-    @value:çª—å£åæ ‡ã€å®½é«˜ã€‚
+    @function:"Supplier´°¿ÚÀàÃû."
+    @range:Const
 */
-#define YUFFIE_WINDOW_X 400
-#define YUFFIE_WINDOW_Y 100
-#define YUFFIE_WINDOW_NWIDTH 800
-#define YUFFIE_WINDOW_NHEIGHT 600
-#define YUFFIE_MAIN_TITLE TEXT("Yuffie:å®éªŒå®¤ä¿¡æ¯åŒ–ç»¼åˆç®¡ç†ç³»ç»Ÿ")
+TCHAR     szSupplierClass[] = TEXT("MdiSupplierChild");
 
 /*
-    @value:æŒ‰é’®åæ ‡ã€å®½é«˜ã€‚
+    @function:"FrameWinow´°¿ÚÀàÃû."
+    @range:Const
 */
-#define YUFFIE_BEGIN_BUTTON_X 300
-#define YUFFIE_BEGIN_BUTTON_Y 350
-#define YUFFIE_BEGIN_BUTTON_WIDTH 200
-#define YUFFIE_BEGIN_BUTTON_HEIGHT 50
-#define YUFFIE_CX_CLIENT 750
-#define YUFFIE_CY_CLIENT 350
+TCHAR   szHallClass[] = TEXT("MdiFrameWinow");
+
+TCHAR   szAdminClass[] = TEXT("MdiAdminChild");
+TCHAR   szTeacherClass[] = TEXT("MdiTeacherChild");
 
 /*
-    @value:èœå•å¸ƒå±€ä½ç½®ã€‚
+    @functionL"³ÌĞòÖ÷º¯Êı¡£"
 */
-#define INIT_MENU_POS    0
-#define HELLO_MENU_POS   2
-#define RECT_MENU_POS    1
-#define IDM_FIRSTCHILD   50000
+int WINAPI WinMain(HINSTANCE, HINSTANCE,PSTR, int);
 
 
-
-
-HMENU     hMenuInit, hMenuHello, hMenuRect;
-HMENU     hMenuInitWindow, hMenuHelloWindow, hMenuRectWindow;
-
-HINSTANCE hInst;
-HWND     hwndFrame, hwndClient;
+/*
+	@function:"Ö÷´°¿ÚÊÂ¼ş´¦Àíº¯Êı¡£"
+*/
 LRESULT CALLBACK FrameWndProc(HWND, UINT, WPARAM, LPARAM);

@@ -23,50 +23,44 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
+    @date:2022/5/9
     @author:haruluya
-    @model_function:"数据结构全局静态类。"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
-    @log:NONE
+    @model_function:"对订购相关操作函数和全局变量。".
+    @include:[purchaseTableStruct.h,user.h]
+    @work:[purchaseTable.c,yuffie.h]
+    @log:purchaseTable.log
 
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include"finalPurchaseStruct.h"
+#include"user.h"
+
 
 /*
-    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
+    @function:"载入最终订购表数据。"
 */
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
+Status initFinalPurchaseList();
 
 /*
-    @function:"全局缓存区."
-    @range:[0,255]
+    @function:"获取所有的供应商报价文件"
 */
-char BUFF[255];
+Status initOfferApply();
+/*
+    @function:"载入每个药品对应的所有供应商报价数据。"
+*/
+Status initPrice();
 
 /*
-    @function:"逻辑类String定义。"
+    @function:"对每个药品对应的所有供应商报价数据选择报价最少的。"
 */
-typedef char* String;
+Status selectPrice();
 
-typedef struct PurchaseItem {
-    String inventoryName;
-    int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
+/*
+    @function:"载入每个药品最终选择的报价和供应商数据。"
+*/
+Status finalPrice();
 
-
-
-
+/*
+    @function:"完成比价并创建最终的购买表。"
+*/
+Status createFinalPrice();

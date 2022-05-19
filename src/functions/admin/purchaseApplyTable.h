@@ -1,11 +1,4 @@
 /*
-②.h头文件接口规范。
-*/
-// #include"a.h";
-// #include"b.h";
-// #include"c.h";
-
-/*
     @license:
     MIT License
 
@@ -30,46 +23,24 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
-    @author:haruluya
-    @model_function:"win32主窗口头文件".
-    @include:[Windows.h,guiTools.h,id.h,resource.h,loginDialog.h,supplierTemplate.h,user.h]    
-    @work:[yuffie.c,all clas with gui]       
-    @log:yuffie.log     
+    @date:2022/5/15
+    @author:Estrella
+    @model_function:"对药剂申请相关操作函数和全局变量。".
+    @include:[purchaseApplyTableStruct.h,user.h]
+    @work:[purchaseApplyTable.c,yuffie.c]
+    @log:purchaseApplyTable.log
 
 */
-#pragma once
-#include<Windows.h>
-#include"guiTools.h"
-#include "resource.h"
-#include"id.h"
-#include"loginDialog.h"
-#include"supplierTemplate.h"
-#include"user.h"
 
-
-#define ID_YUFFIE_BEGIN_BUTTON 200
+#include "purchaseApplyTableStruct.h"
+#include "user.h"
 
 /*
-    @function:"主窗口类名."
-    @range:Const
+    @function:"初始化采购申请List"
 */
-TCHAR     szFrameClass[] = TEXT("MdiFrame");
+Status initPurchaseList();
 
 /*
-    @function:"Supplier窗口类名."
-    @range:Const
+    @function:"填写采购申请表，并提交给admin。"
 */
-TCHAR     szHelloClass[] = TEXT("MdiHelloChild");
-
-
-/*
-    @functionL"程序主函数。"
-*/
-int WINAPI WinMain(HINSTANCE, HINSTANCE,PSTR, int);
-
-
-/*
-	@function:"主窗口事件处理函数。"
-*/
-LRESULT CALLBACK FrameWndProc(HWND, UINT, WPARAM, LPARAM);
+Status createApply();

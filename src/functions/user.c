@@ -25,31 +25,32 @@
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"ç”¨æˆ·è¡¨æ“ä½œå‡½æ•°".
+    @model_function:"ÓÃ»§±í²Ù×÷º¯Êı".
     @include:user.h    
     @log:user.log     
     @functions:{
-        yuffieSplit:"è‡ªå®šä¹‰çš„å­—ç¬¦ä¸²åˆ‡åˆ†å‡½æ•°(ä»¥ç©ºæ ¼)",
-        initUserList:"è½½å…¥ç”¨æˆ·è¡¨" ,
-        setPresentUser:"è®¾ç½®å½“å‰ç”¨æˆ·",
-        loginValidate:"ç™»å½•éªŒè¯"
+        yuffieSplit:"×Ô¶¨ÒåµÄ×Ö·û´®ÇĞ·Öº¯Êı(ÒÔ¿Õ¸ñ)",
+        initUserList:"ÔØÈëÓÃ»§±í" ,
+        setPresentUser:"ÉèÖÃµ±Ç°ÓÃ»§",
+        loginValidate:"µÇÂ¼ÑéÖ¤"
     }
 */
 #pragma once
 #include"user.h"
+#pragma warning(disable : 4996)
 
 
 /*
     @author:haruluya
     @date:2022/5/13
-    @function:"è‡ªå®šä¹‰çš„å­—ç¬¦ä¸²åˆ‡åˆ†å‡½æ•°(ä»¥ç©ºæ ¼)"
+    @function:"×Ô¶¨ÒåµÄ×Ö·û´®ÇĞ·Öº¯Êı(ÒÔ¿Õ¸ñ)"
     @input:{
-        buff:"ç¼“å­˜åŒº".
+        buff:"»º´æÇø".
     }
     @output:{
     }
     @execute:[loginDialog.loginDialogProc] 
-    @return:"åˆ‡åˆ†åçš„å­—ç¬¦ä¸²æ•°ç»„"
+    @return:"ÇĞ·ÖºóµÄ×Ö·û´®Êı×é"
 */
 String* yuffieSplit(String buff) {
     String info = strtok(buff, " ");
@@ -66,19 +67,19 @@ String* yuffieSplit(String buff) {
 /*
     @author:haruluya
     @date:2022/5/13
-    @function:"è½½å…¥ç”¨æˆ·æ•°æ®"
+    @function:"ÔØÈëÓÃ»§Êı¾İ"
     @input:{
     }
     @output:{
     }
     @execute:[yuffie.WinMain]
-    @return:"æ‰§è¡ŒçŠ¶æ€"
+    @return:"Ö´ĞĞ×´Ì¬"
 */
 Status initUserList() {
     FILE* fp;
 
     /*
-        @value:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†".
+        @value:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí".
     */
     if (!(fp = fopen("user.txt", "r"))) {
         return ERROR;
@@ -86,9 +87,12 @@ Status initUserList() {
 
     while (!feof(fp)) {
         fgets(BUFF, sizeof(BUFF), fp);
+        if (!strcmp(BUFF, "\0")) {
+            break;
+        }
         String* userInfo = yuffieSplit(BUFF);
 
-        //åˆå§‹åŒ–useré¡¹.
+        //³õÊ¼»¯userÏî.
         User user;
         user.userName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         user.password = (String)malloc(sizeof(char) * INFO_MAXSIZE);
@@ -97,9 +101,9 @@ Status initUserList() {
         user.identity = atoi(userInfo[2]);
         user.id = atoi(userInfo[3]);
 
-        //æ’å…¥listã€‚
+        //²åÈëlist¡£
         userList[userListLen++] = user;
-
+        BUFF[0] = '\0';
     }
     fclose(fp);
     return OK;
@@ -109,18 +113,18 @@ Status initUserList() {
 /*
     @author:haruluya
     @date:2022/5/13
-    @function:"è®¾ç½®å½“å‰ç”¨æˆ·"
+    @function:"ÉèÖÃµ±Ç°ÓÃ»§"
     @input:{
     }
     @output:{
     }
     @execute:[yuffie.WinMain]
-    @return:"æ‰§è¡ŒçŠ¶æ€"
+    @return:"Ö´ĞĞ×´Ì¬"
 */
 Status setPresentUser(String userName) {
 
     /*
-        @check:"ä¼ å…¥æ˜¯å¦é”™è¯¯"ã€‚
+        @check:"´«ÈëÊÇ·ñ´íÎó"¡£
     */
     if (!userName) {
         return INFASIBLE;
@@ -128,7 +132,7 @@ Status setPresentUser(String userName) {
     for (int i = 0; i < userListLen; i++) {
 
         /*
-            @check:"usernamæ‰¾åˆ°è¿”å›"ã€‚
+            @check:"usernamÕÒµ½·µ»Ø"¡£
         */
         if (strcmp(userList[i].userName, userName) == 0) {
             presentUser = userList[i];
@@ -143,39 +147,39 @@ Status setPresentUser(String userName) {
 /*
     @author:haruluya
     @date:2022/5/13
-    @function:"ç™»å½•éªŒè¯"
+    @function:"µÇÂ¼ÑéÖ¤"
     @input:{
-        userName:"ç”¨æˆ·å"ï¼Œ
-        password:"ç”¨æˆ·å¯†ç "
+        userName:"ÓÃ»§Ãû"£¬
+        password:"ÓÃ»§ÃÜÂë"
     }
     @output:{
     }
     @execute:[yuffie.WinMain]
-    @return:"ç™»å½•çŠ¶æ€"
+    @return:"µÇÂ¼×´Ì¬"
 */
 LoginMessage loginValidate(String userName, String password) {
     LoginMessage message;
 
     /*
-        @check:"usernameè¾“å…¥ä¸ºç©º"ã€‚
+        @check:"usernameÊäÈëÎª¿Õ"¡£
     */
     if (!userName) {
         message.status = INFASIBLE; message.message = "Input error!";
         return message;
     }
 
-    //ç”¨æˆ·ä¸å­˜åœ¨ã€‚
+    //ÓÃ»§²»´æÔÚ¡£
     message.status = NOT_FOUND; message.message = "User not found!";
 
     for (int i = 0; i < userListLen; i++) {
 
         /*
-            @check:"ç”¨æˆ·å­˜åœ¨"ã€‚
+            @check:"ÓÃ»§´æÔÚ"¡£
         */
         if (strcmp(userList[i].userName, userName) == 0) {
 
             /*
-                @check:"ç”¨æˆ·å¯†ç æ­£ç¡®"ã€‚
+                @check:"ÓÃ»§ÃÜÂëÕıÈ·"¡£
             */
             if (strcmp(userList[i].password, password) == 0) {
                 message.status = OK; message.message = "Login success!";
@@ -189,3 +193,96 @@ LoginMessage loginValidate(String userName, String password) {
     return message;
 }
 
+
+String getIdentity(IDENTITY identity) {
+    switch (identity)
+    {
+    case ADMIN:return "admin";
+    case TEACHER:return "teacher";
+    case SUPPLIER:return "supplier";
+    default:
+        return INFASIBLE;
+    }
+}
+
+
+
+/*
+    @author:haruluya
+    @date:2022/5/13
+    @function:"Ìí¼ÓĞÂÓÃ»§"
+    @input:{
+        User:"ÓÃ»§½á¹¹Ìå"
+    }
+    @output:{
+    }
+    @return:"Ìí¼Ó×´Ì¬"
+*/
+Status addUser(User u)
+{
+    //²åÈëlist¡£
+    userList[userListLen++] = u;
+    printUser();
+    return OK;
+}
+
+
+Status printUser() {
+    FILE* fp;
+
+    /*
+        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+    */
+    if (!(fp = fopen("user.txt", "w")))
+    {
+        return ERROR;
+    }
+
+    for (int i = 0; i < userListLen; i++)
+    {
+
+        fprintf(fp,
+            "%s %s %d %d\n",
+            userList[i].userName,
+            userList[i].password,
+            userList[i].identity,
+            userList[i].id);
+    }
+    fclose(fp);
+    return OK;
+}
+
+/*
+    @author:haruluya
+    @date:2022/5/13
+    @function:"É¾³ıÖ¸¶¨ÓÃ»§ĞÂÓÃ»§"
+    @input:{
+        id:"ÓÃ»§±àºÅ"
+    }
+    @output:{
+    }
+    @return:"É¾³ı×´Ì¬"
+*/
+Status deleteUser(int id)
+{
+    for (int i = 0; i < userListLen; i++)
+    {
+        if (userList[i].id == id)
+        {
+            for (int j = userListLen - 1; j > i; j--)
+            {
+                userList[j - 1].userName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
+                userList[j - 1].password = (String)malloc(sizeof(char) * INFO_MAXSIZE);
+                strcpy(userList[j - 1].userName, userList[i].userName);
+                strcpy(userList[j - 1].password, userList[i].password);
+                userList[j - 1].id = userList[i].id;
+                userList[j - 1].identity = userList[i].identity;
+            }
+            userListLen--;
+            userList[userListLen - 1];
+        }
+    }
+    printUser();
+
+    return OK;
+}

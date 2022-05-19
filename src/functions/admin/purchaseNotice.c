@@ -23,50 +23,42 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
+    @date:2022/5/9
     @author:haruluya
-    @model_function:"数据结构全局静态类。"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
-    @log:NONE
+    @model_function:"对订购相关操作函数和全局变量。".
+    @include:[purchaseTableStruct.h,user.h]
+    @work:[purchaseTable.c,yuffie.h]
+    @log:purchaseTable.log
 
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include "purchaseNotice.h"
 
 /*
-    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
+    @author:haruluya
+    @date:2022/5/13
+    @function:"生成采购通知"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[yuffie.WinMain]
+    @return:"执行状态"
 */
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
+Status createPurchaseNotice(String notice)
+{
+    FILE* fp;
 
-/*
-    @function:"全局缓存区."
-    @range:[0,255]
-*/
-char BUFF[255];
+    /*
+        @check:"文件打开错误处理."
+    */
+    if (!(fp = fopen("purchaseNotice.txt", "w")))
+    {
+        return ERROR;
+    }
 
-/*
-    @function:"逻辑类String定义。"
-*/
-typedef char* String;
-
-typedef struct PurchaseItem {
-    String inventoryName;
-    int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
-
-
-
-
+    // 将采购通知写入文件
+    fputs(notice, fp);
+    fclose(fp);
+    return OK;
+}

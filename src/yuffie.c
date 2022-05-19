@@ -1,7 +1,4 @@
-#include"yuffie.h"
-
-
-/*
+﻿/*
 	@author:haruluya
 	@date:2022/5/9
 	@model_function:"程序主函数，主窗口构造函数。"
@@ -16,6 +13,14 @@
 	@execute:[yuffie.WinMain]
 	@return:"status code."
 */
+#include"yuffie.h"
+
+#pragma comment(linker,"\"/manifestdependency:type='win32' "\
+						"name='Microsoft.Windows.Common-Controls' "\
+						"version='6.0.0.0' processorArchitecture='*' "\
+						"publicKeyToken='6595b64144ccf1df' language='*'\"")
+
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	PSTR szCmdLine, int iCmdShow)
 {
@@ -70,7 +75,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 
 	//MDI-supplier窗口样式设计。
 	wndclass.style = CS_HREDRAW | CS_VREDRAW;
-	wndclass.lpfnWndProc = HelloWndProc;
+	wndclass.lpfnWndProc = SupplierWndProc;
 	wndclass.cbClsExtra = 0;
 	wndclass.cbWndExtra = sizeof(HANDLE);
 	wndclass.hInstance = hInstance;
@@ -78,7 +83,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
 	wndclass.lpszMenuName = NULL;
-	wndclass.lpszClassName = szHelloClass;
+	wndclass.lpszClassName = szSupplierClass;
 
 	/*
 		@Check:"窗口类注册失败处理。"
@@ -90,13 +95,81 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 		return 0;
 	}
 
+
+	//MDI-frame窗口样式设计。
+	wndclass.style = CS_HREDRAW | CS_VREDRAW;
+	wndclass.lpfnWndProc = HallWndProc;
+	wndclass.cbClsExtra = 0;
+	wndclass.cbWndExtra = sizeof(HANDLE);
+	wndclass.hInstance = hInstance;
+	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	wndclass.lpszMenuName = NULL;
+	wndclass.lpszClassName = szHallClass;
+
+	/*
+	@Check:"窗口类注册失败处理。"
+	*/
+	if (!RegisterClass(&wndclass))
+	{
+		MessageBox(NULL, TEXT("This hallWindow register failed!"),
+			szAppName, MB_ICONERROR);
+		return 0;
+	}
+
+	//MDI-admin窗口样式设计。
+	wndclass.style = CS_HREDRAW | CS_VREDRAW;
+	wndclass.lpfnWndProc = AdminWndProc;
+	wndclass.cbClsExtra = 0;
+	wndclass.cbWndExtra = sizeof(HANDLE);
+	wndclass.hInstance = hInstance;
+	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	wndclass.lpszMenuName = NULL;
+	wndclass.lpszClassName = szAdminClass;
+
+	/*
+	@Check:"窗口类注册失败处理。"
+	*/
+	if (!RegisterClass(&wndclass))
+	{
+		MessageBox(NULL, TEXT("This hallWindow register failed!"),
+			szAppName, MB_ICONERROR);
+		return 0;
+	}
+
+
+	//MDI-teacher窗口样式设计。
+	wndclass.style = CS_HREDRAW | CS_VREDRAW;
+	wndclass.lpfnWndProc = TeacherWndProc;
+	wndclass.cbClsExtra = 0;
+	wndclass.cbWndExtra = sizeof(HANDLE);
+	wndclass.hInstance = hInstance;
+	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+	wndclass.lpszMenuName = NULL;
+	wndclass.lpszClassName = szTeacherClass;
+
+	/*
+	@Check:"窗口类注册失败处理。"
+	*/
+	if (!RegisterClass(&wndclass))
+	{
+		MessageBox(NULL, TEXT("This hallWindow register failed!"),
+			szAppName, MB_ICONERROR);
+		return 0;
+	}
+
 	//获取菜单句柄。
 	hMenuInit = LoadMenu(hInstance, TEXT("MdiMenuInit"));
-	hMenuHello = LoadMenu(hInstance, TEXT("MdiMenuHello"));
+	hMenuSupplier = LoadMenu(hInstance, TEXT("MdiMenuSupplier"));
 	hMenuRect = LoadMenu(hInstance, TEXT("MdiMenuRect"));
 
 	hMenuInitWindow = GetSubMenu(hMenuInit, INIT_MENU_POS);
-	hMenuHelloWindow = GetSubMenu(hMenuHello, HELLO_MENU_POS);
+	hMenuSupplierWindow = GetSubMenu(hMenuSupplier, HELLO_MENU_POS);
 	hMenuRectWindow = GetSubMenu(hMenuRect, RECT_MENU_POS);
 
 	//快捷键映射。
@@ -105,7 +178,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	// 窗口创建。
 	hwndFrame = CreateWindow(szFrameClass,
 		TEXT("Yuffie"),
-		WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME | WS_CLIPCHILDREN,
+		WS_OVERLAPPEDWINDOW ^ WS_THICKFRAME^ WS_MAXIMIZEBOX | WS_CLIPCHILDREN,
 		YUFFIE_WINDOW_X,
 		YUFFIE_WINDOW_Y,
 		YUFFIE_WINDOW_NWIDTH,
@@ -135,7 +208,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	}
 
 	//清除资源。
-	DestroyMenu(hMenuHello);
+	DestroyMenu(hMenuSupplier);
 	DestroyMenu(hMenuRect);
 
 	return msg.wParam;
@@ -160,29 +233,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	/*
-		@value:""
-	*/
+			@value:""
+		*/
 	HDC         hdc;
 
 	/*
 		@value:"绘制状态信息。"
 	*/
 	PAINTSTRUCT ps;
-
-	/*
-		@value:"title区域。"
-	*/
-	RECT titleRect;
-
-	/*
-		@value:"title字体。"
-	*/
-	static HFONT titleFont;
-
-	/*
-	@value:"进入系统按钮。"
-	*/
-	static HWND beginButton;
 
 	/*
 		@value:"MDI窗口句柄。"
@@ -203,7 +261,7 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		@value:"MDI窗口样式。"
 	*/
 	MDICREATESTRUCT    mdicreate;
-	
+
 
 	/*
 		@check:"消息处理。"
@@ -213,14 +271,13 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 
 	case WM_CREATE:
 	{
-
+		BUFF[0] = '\0';
 		/*
 			@check:"导入user表是否成功。"
 		*/
 		if (!initUserList()) {
 			MessageBox(hwnd, TEXT("导入user表失败！"), TEXT("ERROR"), MB_ICONINFORMATION);
 		}
-
 		/*
 			@check:"导入purchaseTable表是否成功。"
 		*/
@@ -228,18 +285,23 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			MessageBox(hwnd, TEXT("导入purchaseTable表失败！"), TEXT("ERROR"), MB_ICONINFORMATION);
 		}
 
-		//创建进入系统按钮。
-		beginButton = createDefaultButton(
-			TEXT("button"),
-			TEXT("Enter System"),
-			YUFFIE_BEGIN_BUTTON_X,
-			YUFFIE_BEGIN_BUTTON_Y,
-			YUFFIE_BEGIN_BUTTON_WIDTH,
-			YUFFIE_BEGIN_BUTTON_HEIGHT,
-			hwnd,
-			(HMENU)ID_YUFFIE_BEGIN_BUTTON,
-			hInst
-		);
+		initPurchasePlanStatus();
+		initList();
+		initApply();
+		createPurchaseApply();
+		sortList();
+		//deleteSameList();
+		initPurchaseTable();
+		createGPurchaseTable();
+		createSPurchaseTable();
+
+		initFinalPurchaseList();
+		initOfferApply();
+		initPrice();
+
+
+		initAddInventory();
+		initInventory();
 
 		clientcreate.hWindowMenu = hMenuInitWindow;
 		clientcreate.idFirstChild = IDM_FIRSTCHILD;
@@ -249,16 +311,21 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			WS_CHILD | WS_CLIPCHILDREN | WS_VISIBLE | WM_MDITILE,
 			0, 0, 0, 0, hwnd, (HMENU)1, hInst,
 			(PSTR)&clientcreate);
+
+
+		SendMessage(hwnd, WM_COMMAND, CM_YUFFIE_CREATE_HALL, 0);
+		SendMessage(hwndClient, WM_MDITILE, 0, 0);
+
+
 		return 0;
 	}
 
 	case WM_PAINT:
-		//绘制标题。
+	{
 		hdc = BeginPaint(hwnd, &ps);
-		PaintRoutine(hwnd, hdc, YUFFIE_CX_CLIENT, YUFFIE_CY_CLIENT);
 		EndPaint(hwnd, &ps);
+	}
 		return 0;
-
 
 	case WM_COMMAND:
 	{
@@ -268,18 +335,12 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		*/
 		switch (LOWORD(wParam))
 		{
-
-		case ID_YUFFIE_BEGIN_BUTTON:
-
-			//显示登录dialog。
-			DialogBox(hInst, MAKEINTRESOURCE(IDD_LOGIN_DIALOG), hwnd, loginDlgProc);
-			break;
-		case IDM_FILE_NEWHELLO:
-		case IDD_LOGIN_DIALOG:
-
-			//显示MID-supplier窗口。
-			mdicreate.szClass = szHelloClass;
-			mdicreate.szTitle = TEXT("Hello");
+		
+		case CM_YUFFIE_CREATE_HALL:
+		{
+			//显示MID-hall窗口。
+			mdicreate.szClass = szHallClass;
+			mdicreate.szTitle = TEXT("Hall");
 			mdicreate.hOwner = hInst;
 			mdicreate.x = CW_USEDEFAULT;
 			mdicreate.y = CW_USEDEFAULT;
@@ -288,12 +349,76 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			mdicreate.style = 0;
 			mdicreate.lParam = 0;
 
-			hwndChild = (HWND)SendMessage(hwndClient,
+			hwndHall = (HWND)SendMessage(hwndClient,
 				WM_MDICREATE, 0,
 				(LPARAM)(LPMDICREATESTRUCT)&mdicreate);
 			SendMessage(hwndClient, WM_MDITILE, 0, 0);
+			PostMessage(hwndHall, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
 			return 0;
+		}
 
+		case CM_YUFFIE_CREATE_TEACHER:
+		{
+			//显示MID-hall窗口。
+			mdicreate.szClass = szTeacherClass;
+			mdicreate.szTitle = TEXT("Teacher");
+			mdicreate.hOwner = hInst;
+			mdicreate.x = CW_USEDEFAULT;
+			mdicreate.y = CW_USEDEFAULT;
+			mdicreate.cx = CW_USEDEFAULT;
+			mdicreate.cy = CW_USEDEFAULT;
+			mdicreate.style = 0;
+			mdicreate.lParam = 0;
+
+			hwndHall = (HWND)SendMessage(hwndClient,
+				WM_MDICREATE, 0,
+				(LPARAM)(LPMDICREATESTRUCT)&mdicreate);
+			SendMessage(hwndClient, WM_MDITILE, 0, 0);
+			PostMessage(hwndHall, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+			return 0;
+		}
+		case IDM_FILE_NEWHELLO:
+		case CM_YUFFIE_CREATE_ADMIN:
+		{
+			//显示MID-hall窗口。
+			mdicreate.szClass = szAdminClass;
+			mdicreate.szTitle = TEXT("Admin");
+			mdicreate.hOwner = hInst;
+			mdicreate.x = CW_USEDEFAULT;
+			mdicreate.y = CW_USEDEFAULT;
+			mdicreate.cx = CW_USEDEFAULT;
+			mdicreate.cy = CW_USEDEFAULT;
+			mdicreate.style = 0;
+			mdicreate.lParam = 0;
+
+			hwndAdmin = (HWND)SendMessage(hwndClient,
+				WM_MDICREATE, 0,
+				(LPARAM)(LPMDICREATESTRUCT)&mdicreate);
+			SendMessage(hwndClient, WM_MDITILE, 0, 0);
+			PostMessage(hwndAdmin, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+			return 0;
+		}
+
+
+		case CM_YUFFIE_CREATE_SUPPLIER:
+			PostMessage(hwndHall, WM_CLOSE,CM_YUFFI_QUIT, 0);
+			//显示MID-supplier窗口。
+			mdicreate.szClass = szSupplierClass;
+			mdicreate.szTitle = TEXT("Supplier");
+			mdicreate.hOwner = hInst;
+			mdicreate.x = CW_USEDEFAULT;
+			mdicreate.y = CW_USEDEFAULT;
+			mdicreate.cx = CW_USEDEFAULT;
+			mdicreate.cy = CW_USEDEFAULT;
+			mdicreate.style = 0;
+			mdicreate.lParam = 0;
+
+			hwndSupplier = (HWND)SendMessage(hwndClient,
+				WM_MDICREATE, 0,
+				(LPARAM)(LPMDICREATESTRUCT)&mdicreate);
+			SendMessage(hwndClient, WM_MDITILE, 0, 0);
+			PostMessage(hwndSupplier, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
+			return 0;
 		case IDM_FILE_CLOSE:          
 
 			//窗口关闭。

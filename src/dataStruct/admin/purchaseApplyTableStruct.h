@@ -20,53 +20,62 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
-    @date:2022/5/13
-    @author:haruluya
-    @model_function:"Êı¾İ½á¹¹È«¾Ö¾²Ì¬Àà¡£"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
+    @date:2022/5/15
+    @author:Estrella
+    @model_function:"é‡‡è´­ç”³è¯·è¡¨æ•°æ®ç»“æ„å®šä¹‰".
+    @include:[global.h]
+    @work:purchaseTable.c
     @log:NONE
-
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include "global.h"
 
 /*
-    @function:"º¯ÊıÖ´ĞĞ×´Ì¬·â×°£¬ËùÓĞ·µ»ØvoidµÄº¯ÊıÓ¦¸Ã·µ»ØStatus²¢¼ì²éÖ´ĞĞÇé¿ö¡£"
+    @function:"è¯å“ç§ç±»çš„æŠ½è±¡."
+    @value:{
+
+    }
 */
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
+typedef enum inventoryClass
+{
+    GENERAL,
+    SPECIAL,
+} inventoryClass;
 
 /*
-    @function:"È«¾Ö»º´æÇø."
-    @range:[0,255]
+    @function:"é‡‡è´­ç”³è¯·é¡¹çš„æŠ½è±¡."
+    @value:{
+        inventoryName:"è¯å‰‚åç§°",
+        inventoryId:"è¯å‰‚id",
+        inventoryClass:"è¯å‰‚ç±»åˆ«"ï¼Œ
+    }
 */
-char BUFF[255];
-
-/*
-    @function:"Âß¼­ÀàString¶¨Òå¡£"
-*/
-typedef char* String;
-
-typedef struct PurchaseItem {
+typedef struct purchaseApplyItem
+{
     String inventoryName;
+    inventoryClass inventoryClass;
     int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
+} purchaseApplyItem;
 
+/*
+    @value:é‡‡è´­ç”³è¯·è¡¨æ¯åˆ—æœ€å¤§é•¿åº¦ã€‚
+*/
+#define INFO_MAXSIZE 50
+/*
+    @value:"é‡‡è´­ç”³è¯·è¡¨æœ€å¤§å…ƒç»„æ•°ã€‚"
+*/
+#define PURCHASE_APPLY_LIST_MAX_SIZE 199
+/*
+    @function:"é‡‡è´­ç”³è¯·è¡¨."
+    @range:[0,PURCHASE_LIST_MAX_SIZE]
+*/
+purchaseApplyItem purchaseApplyList[PURCHASE_APPLY_LIST_MAX_SIZE];
 
-
-
+/*
+    @function:"è®¢è´­è¡¨é•¿åº¦"
+    @range:[0,PURCHASE_LIST_MAX_SIZE]
+*/
+int purchaseApplyListLen;

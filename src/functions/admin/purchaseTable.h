@@ -23,50 +23,39 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
+    @date:2022/5/9
     @author:haruluya
-    @model_function:"数据结构全局静态类。"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
-    @log:NONE
+    @model_function:"对订购相关操作函数和全局变量。".
+    @include:[purchaseTableStruct.h,user.h]   
+    @work:[purchaseTable.c,yuffie.h]       
+    @log:purchaseTable.log     
 
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include"purchaseTableStruct.h"
+#include"user.h"
+
+
 
 /*
-    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
+    @function:"登录验证。"
 */
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
+LoginMessage loginValidate(String userName);
 
 /*
-    @function:"全局缓存区."
-    @range:[0,255]
+    @function:"通过订购表id获取订购项"
 */
-char BUFF[255];
+PurchaseItem getPurchaseItemById(int id);
 
 /*
-    @function:"逻辑类String定义。"
+    @function:"载入订购表数据。"
 */
-typedef char* String;
-
-typedef struct PurchaseItem {
-    String inventoryName;
-    int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
+Status initPurchaseList();
 
 
+/*
+    @function:"完成出价创建出价单。"
+*/
+Status createOfferApply();
 
 

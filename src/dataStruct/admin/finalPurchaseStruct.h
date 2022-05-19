@@ -2,7 +2,7 @@
     @license:
     MIT License
 
-    Copyright (c) 2022 Haruluya
+    Copyright (c) 2022 Estrella
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,50 +23,68 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
-    @author:haruluya
-    @model_function:"数据结构全局静态类。"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
+    @date:2022/5/15
+    @author:Estrella
+    @model_function:"对供应商报价审核用到的数据结构定义".
+    @include:[global.h，user.h]
+    @work:purchaseTable.c
     @log:NONE
-
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include "global.h"
 
 /*
-    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
+    @function:"订购项的抽象."
+    @value:{
+        inventoryName:"药剂名称",
+        inventoryId:"药剂id",
+        inventoryNum:"药剂数量",
+        inventoryPrice:"报价",
+        userID:"供应商",
+    }
 */
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
-
-/*
-    @function:"全局缓存区."
-    @range:[0,255]
-*/
-char BUFF[255];
-
-/*
-    @function:"逻辑类String定义。"
-*/
-typedef char* String;
-
-typedef struct PurchaseItem {
+typedef struct finalPurchaseItem
+{
     String inventoryName;
     int inventoryId;
     int inventoryNum;
     int inventoryPrice;
-}PurchaseItem;
+    int userID;
+} finalPurchaseItem;
 
+/*
+    @function:"保存所有的报价文件名"
+*/
+String priceFileName[50];
 
+/*
+    @function:"保存所有的报价文件个数"
+*/
+int priceFileLen;
 
+/*
+    @value:采购申请表每列最大长度。
+*/
+#define INFO_MAXSIZE 50
 
+/*
+    @value:"采购申请表最大元组数。"
+*/
+#define PURCHASE_APPLY_LIST_MAX_SIZE 199
+
+/*
+    @function:"采购公告(采购申请审核过后)."
+    @range:[0,PURCHASE_LIST_MAX_SIZE]
+*/
+finalPurchaseItem finalPurchaseTable[PURCHASE_APPLY_LIST_MAX_SIZE];
+
+/*
+    @function:"采购表长度"
+    @range:[0,PURCHASE_LIST_MAX_SIZE/2]
+*/
+int finalPurchaseLen;
+
+/*
+    @value:"每个药品对应的所有供应商报价的二维数组结构。"
+*/
+int price[INFO_MAXSIZE][INFO_MAXSIZE];

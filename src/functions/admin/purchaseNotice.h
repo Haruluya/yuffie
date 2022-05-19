@@ -23,50 +23,19 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/13
+    @date:2022/5/9
     @author:haruluya
-    @model_function:"数据结构全局静态类。"
-    @include:[a.h,b.h,c.h]
-    @work:all in dataStruct file
-    @log:NONE
+    @model_function:"对采购申请相关操作函数和全局变量。".
+    @include:[purchaseApplyTableStruct.h,user.h]
+    @work:[purchaseApplyTable.c,yuffie.c]
+    @log:purchaseApplyTable.log
 
 */
 
-#pragma once
-#include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
-#include<time.h>
+#include "global.h"
+#include "user.h"
 
 /*
-    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
+    @function:"创建采购通知"
 */
-typedef int Status;
-#define TRUE         1
-#define OK           1
-#define ERROR        0
-#define INFASIBLE   -1
-#define OVERFLOW    -2
-#define NOT_FOUND   -3
-
-/*
-    @function:"全局缓存区."
-    @range:[0,255]
-*/
-char BUFF[255];
-
-/*
-    @function:"逻辑类String定义。"
-*/
-typedef char* String;
-
-typedef struct PurchaseItem {
-    String inventoryName;
-    int inventoryId;
-    int inventoryNum;
-    int inventoryPrice;
-}PurchaseItem;
-
-
-
-
+Status createPurchaseNotice(String);
