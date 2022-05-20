@@ -25,17 +25,23 @@ BOOL CALLBACK ReviewApplyDlgProc(HWND hDlg, UINT message,
 
     case WM_INITDIALOG:
     {
-        hLabTitle = CreateWindow(TEXT("static"), TEXT("°Ô…Û∫À≤…π∫…Í«Î°Ô"),
+        hLabTitle = CreateWindow(
+            TEXT("static"), 
+            TEXT("‚òÖÂÆ°Ê†∏ÈááË¥≠Áî≥ËØ∑‚òÖ"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_REVIEW_APPLY_TITLE_LAB,
-            hInst, NULL);
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");
+            hInst, 
+            NULL
+        );
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");
 
 
 
-        hwndList = CreateWindow(TEXT("listbox"), NULL,
+        hwndList = CreateWindow(
+            TEXT("listbox"), 
+            NULL,
             WS_CHILD | WS_VISIBLE | LBS_STANDARD | LBS_SORT | WS_BORDER,
             10, 60,
             400,
@@ -44,9 +50,10 @@ BOOL CALLBACK ReviewApplyDlgProc(HWND hDlg, UINT message,
             hInst,
             NULL
         );
+
         allRRadioButton = CreateWindow(
             TEXT("Button"),
-            TEXT("À˘”–…Í«Î"),
+            TEXT("ÊâÄÊúâÁî≥ËØ∑"),
             WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON | WS_GROUP,
             450, 60, 150, 30,
             hDlg,
@@ -54,9 +61,10 @@ BOOL CALLBACK ReviewApplyDlgProc(HWND hDlg, UINT message,
             hInst,
             NULL
         );
+
         gelRRadioButton = CreateWindow(
             TEXT("Button"),
-            TEXT("∆’Õ® ‘º¡"),
+            TEXT("ÊôÆÈÄöËØïÂâÇ"),
             WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON,
             450, 90, 150, 30,
             hDlg,
@@ -64,9 +72,10 @@ BOOL CALLBACK ReviewApplyDlgProc(HWND hDlg, UINT message,
             hInst,
             NULL
         );
+
         speRRadioButton = CreateWindow(
             TEXT("Button"),
-            TEXT("Ãÿ ‚ ‘º¡"),
+            TEXT("ÁâπÊÆäËØïÂâÇ"),
             WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON,
             450, 120, 150, 30,
             hDlg,
@@ -76,7 +85,7 @@ BOOL CALLBACK ReviewApplyDlgProc(HWND hDlg, UINT message,
         );
         deleteButton = createDefaultButton(
             TEXT("button"),
-            TEXT("…æ≥˝—°÷–œÓ"),
+            TEXT("Âà†Èô§ÈÄâ‰∏≠È°π"),
             450, 160, 150, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_REVIEW_APPLY_DELETE_BUTTON,
@@ -85,7 +94,7 @@ BOOL CALLBACK ReviewApplyDlgProc(HWND hDlg, UINT message,
 
         finishButton = createDefaultButton(
             TEXT("button"),
-            TEXT("Ã·Ωª…Û∫À"),
+            TEXT("Êèê‰∫§ÂÆ°Ê†∏"),
             450, 220, 150, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_REVIEW_APPLY_FINISH_BUTTON,
@@ -122,97 +131,97 @@ BOOL CALLBACK ReviewApplyDlgProc(HWND hDlg, UINT message,
     case WM_COMMAND:
     {
         switch (LOWORD(wParam)) {
-        case ID_YUFFIE_ADMIN_ALL_RADIO_BUTTON:
-        {
-            SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
-            SendMessage(hwndList, LB_INSERTSTRING, -1, " ‘º¡√˚≥∆     ‘º¡¿‡±     ‘º¡id");
-            LinkList p;
-            p = apply->next;
-            while(p) {
-                String purchaseListInfo = (String)malloc(sizeof(char) * 100);
-                purchaseListInfo = strcpy(purchaseListInfo, p->data.inventoryName);
-                String str = (String)malloc(sizeof(char) * 100);
-                sprintf(str, "%d", p->data.inventoryClass);
-                purchaseListInfo = strcat(purchaseListInfo, "    ");
-                purchaseListInfo = strcat(purchaseListInfo, str);
-                sprintf(str, "%d", p->data.inventoryId);
-                purchaseListInfo = strcat(purchaseListInfo, "    ");
-                purchaseListInfo = strcat(purchaseListInfo, str);
-                SendMessage(hwndList, LB_INSERTSTRING, -1, purchaseListInfo);
-                p = p->next;
-            }
-            break;
-        }
-        case ID_YUFFIE_ADMIN_GEL_RADIO_BUTTON:
-        {
-            SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
-            SendMessage(hwndList, LB_INSERTSTRING, -1, " ‘º¡√˚≥∆     ‘º¡¿‡±     ‘º¡id");
-            for (int i = 0; i < gPurchaseListLen; i++) {
-                String gPurchaseListInfo = (String)malloc(sizeof(char) * 100);
-                gPurchaseListInfo = strcpy(gPurchaseListInfo, gPurchaseList[i].inventoryName);
-                String str = (String)malloc(sizeof(char) * 100);
-                sprintf(str, "%d", gPurchaseList[i].inventoryClass);
-                gPurchaseListInfo = strcat(gPurchaseListInfo, "    ");
-                gPurchaseListInfo = strcat(gPurchaseListInfo, str);
-                sprintf(str, "%d", gPurchaseList[i].inventoryId);
-                gPurchaseListInfo = strcat(gPurchaseListInfo, "    ");
-                gPurchaseListInfo = strcat(gPurchaseListInfo, str);
-                SendMessage(hwndList, LB_INSERTSTRING, -1, gPurchaseListInfo);
-            }
-            break;
-        }
-        case ID_YUFFIE_ADMIN_SPE_RADIO_BUTTON:
-        {
-            SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
-            SendMessage(hwndList, LB_INSERTSTRING, -1, " ‘º¡√˚≥∆     ‘º¡¿‡±     ‘º¡id");
-            for (int i = 0; i < sPurchaseListLen; i++) {
-                String sPurchaseListInfo = (String)malloc(sizeof(char) * 100);
-                sPurchaseListInfo = strcpy(sPurchaseListInfo, sPurchaseList[i].inventoryName);
-                String str = (String)malloc(sizeof(char) * 100);
-                sprintf(str, "%d", sPurchaseList[i].inventoryClass);
-                sPurchaseListInfo = strcat(sPurchaseListInfo, "    ");
-                sPurchaseListInfo = strcat(sPurchaseListInfo, str);
-                sprintf(str, "%d", sPurchaseList[i].inventoryId);
-                sPurchaseListInfo = strcat(sPurchaseListInfo, "    ");
-                sPurchaseListInfo = strcat(sPurchaseListInfo, str);
-                SendMessage(hwndList, LB_INSERTSTRING, -1, sPurchaseListInfo);
-            }
-            break;
-        }
-        case ID_YUFFIE_ADMIN_REVIEW_APPLY_DELETE_BUTTON:
-        {
-            if (IDOK != MessageBox(hDlg, TEXT("ƒ„»∑∂®“™…æ≥˝¥ÀœÓ£ø"),
-                TEXT("Querry"),
-                MB_ICONQUESTION | MB_OKCANCEL))
+            case ID_YUFFIE_ADMIN_ALL_RADIO_BUTTON:
+            {
+                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
+                SendMessage(hwndList, LB_INSERTSTRING, -1, "ËØïÂâÇÂêçÁß∞    ËØïÂâÇÁ±ªÂà´    ËØïÂâÇid");
+                LinkList p;
+                p = apply->next;
+                while(p) {
+                    String purchaseListInfo = (String)malloc(sizeof(char) * 100);
+                    purchaseListInfo = strcpy(purchaseListInfo, p->data.inventoryName);
+                    String str = (String)malloc(sizeof(char) * 100);
+                    sprintf(str, "%d", p->data.inventoryClass);
+                    purchaseListInfo = strcat(purchaseListInfo, "    ");
+                    purchaseListInfo = strcat(purchaseListInfo, str);
+                    sprintf(str, "%d", p->data.inventoryId);
+                    purchaseListInfo = strcat(purchaseListInfo, "    ");
+                    purchaseListInfo = strcat(purchaseListInfo, str);
+                    SendMessage(hwndList, LB_INSERTSTRING, -1, purchaseListInfo);
+                    p = p->next;
+                }
                 break;
-            if ((selectIndex = SendMessage(hwndList, LB_GETCURSEL, 0, 0)) != LB_ERR) {
-                SendMessage(hwndList, LB_DELETESTRING, selectIndex, 0);
-                if (SendMessage(allRRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
-                    deletePurchaseTable(purchaseTable[selectIndex-1].inventoryId);
-                }
-                else if (SendMessage(gelRRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
-                    deleteGPurchaseTable(gPurchaseList[selectIndex - 1].inventoryId);
-                }
-                else if (SendMessage(gelRRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
-                    deleteSPurchaseTable(sPurchaseList[selectIndex - 1].inventoryId);
-                }
             }
-            else {
-                MessageBox(hDlg, TEXT("«Î—°‘Ò“ª∏ˆ‘™Àÿ£°"), TEXT("ERROR"), MB_ICONINFORMATION);
-            }
-            break;
-        }
-        case ID_YUFFIE_ADMIN_REVIEW_APPLY_FINISH_BUTTON:
-        {
-            if (IDOK != MessageBox(hDlg, TEXT("ƒ„»∑∂®“™Ã·Ωª…Û∫À£ø"),
-                TEXT("Querry"),
-                MB_ICONQUESTION | MB_OKCANCEL))
+            case ID_YUFFIE_ADMIN_GEL_RADIO_BUTTON:
+            {
+                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
+                SendMessage(hwndList, LB_INSERTSTRING, -1, "ËØïÂâÇÂêçÁß∞    ËØïÂâÇÁ±ªÂà´    ËØïÂâÇid");
+                for (int i = 0; i < gPurchaseListLen; i++) {
+                    String gPurchaseListInfo = (String)malloc(sizeof(char) * 100);
+                    gPurchaseListInfo = strcpy(gPurchaseListInfo, gPurchaseList[i].inventoryName);
+                    String str = (String)malloc(sizeof(char) * 100);
+                    sprintf(str, "%d", gPurchaseList[i].inventoryClass);
+                    gPurchaseListInfo = strcat(gPurchaseListInfo, "    ");
+                    gPurchaseListInfo = strcat(gPurchaseListInfo, str);
+                    sprintf(str, "%d", gPurchaseList[i].inventoryId);
+                    gPurchaseListInfo = strcat(gPurchaseListInfo, "    ");
+                    gPurchaseListInfo = strcat(gPurchaseListInfo, str);
+                    SendMessage(hwndList, LB_INSERTSTRING, -1, gPurchaseListInfo);
+                }
                 break;
-            createPurchaseTable();
-            MessageBox(hDlg, TEXT("Ã·Ωª…Û∫À≥…π¶£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
-            setPurchasePlanStatus(REVIEWOFFER);
-            EndDialog(hDlg,0);
-        }
+            }
+            case ID_YUFFIE_ADMIN_SPE_RADIO_BUTTON:
+            {
+                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
+                SendMessage(hwndList, LB_INSERTSTRING, -1, "ËØïÂâÇÂêçÁß∞    ËØïÂâÇÁ±ªÂà´    ËØïÂâÇid");
+                for (int i = 0; i < sPurchaseListLen; i++) {
+                    String sPurchaseListInfo = (String)malloc(sizeof(char) * 100);
+                    sPurchaseListInfo = strcpy(sPurchaseListInfo, sPurchaseList[i].inventoryName);
+                    String str = (String)malloc(sizeof(char) * 100);
+                    sprintf(str, "%d", sPurchaseList[i].inventoryClass);
+                    sPurchaseListInfo = strcat(sPurchaseListInfo, "    ");
+                    sPurchaseListInfo = strcat(sPurchaseListInfo, str);
+                    sprintf(str, "%d", sPurchaseList[i].inventoryId);
+                    sPurchaseListInfo = strcat(sPurchaseListInfo, "    ");
+                    sPurchaseListInfo = strcat(sPurchaseListInfo, str);
+                    SendMessage(hwndList, LB_INSERTSTRING, -1, sPurchaseListInfo);
+                }
+                break;
+            }
+            case ID_YUFFIE_ADMIN_REVIEW_APPLY_DELETE_BUTTON:
+            {
+                if (IDOK != MessageBox(hDlg, TEXT("‰Ω†Á°ÆÂÆöË¶ÅÂà†Èô§Ê≠§È°πÔºü"),
+                    TEXT("Querry"),
+                    MB_ICONQUESTION | MB_OKCANCEL))
+                    break;
+                if ((selectIndex = SendMessage(hwndList, LB_GETCURSEL, 0, 0)) != LB_ERR) {
+                    SendMessage(hwndList, LB_DELETESTRING, selectIndex, 0);
+                    if (SendMessage(allRRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
+                        deletePurchaseTable(purchaseTable[selectIndex-1].inventoryId);
+                    }
+                    else if (SendMessage(gelRRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
+                        deleteGPurchaseTable(gPurchaseList[selectIndex - 1].inventoryId);
+                    }
+                    else if (SendMessage(gelRRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
+                        deleteSPurchaseTable(sPurchaseList[selectIndex - 1].inventoryId);
+                    }
+                }
+                else {
+                    MessageBox(hDlg, TEXT("ËØ∑ÈÄâÊã©‰∏Ä‰∏™ÂÖÉÁ¥†ÔºÅ"), TEXT("ERROR"), MB_ICONINFORMATION);
+                }
+                break;
+            }
+            case ID_YUFFIE_ADMIN_REVIEW_APPLY_FINISH_BUTTON:
+            {
+                if (IDOK != MessageBox(hDlg, TEXT("‰Ω†Á°ÆÂÆöË¶ÅÊèê‰∫§ÂÆ°Ê†∏Ôºü"),
+                    TEXT("Querry"),
+                    MB_ICONQUESTION | MB_OKCANCEL))
+                    break;
+                createPurchaseTable();
+                MessageBox(hDlg, TEXT("Êèê‰∫§ÂÆ°Ê†∏ÊàêÂäüÔºÅ"), TEXT("SUCCESS"), MB_ICONINFORMATION);
+                setPurchasePlanStatus(REVIEWOFFER);
+                EndDialog(hDlg,0);
+            }
         }
         break;
     }

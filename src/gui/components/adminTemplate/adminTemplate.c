@@ -27,16 +27,21 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
     {
  
         initFinalPurchaseList();
-        hLabWecome = CreateWindow(TEXT("static"), TEXT("°Ôª∂”≠ π”√YUFFIE°Ô"),
+        hLabWecome = CreateWindow(
+            TEXT("static"), 
+            TEXT("‚òÖÊ¨¢Ëøé‰ΩøÁî®YUFFIE‚òÖ"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_WECOME_LAB,
-            hInst, NULL);
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");//¥¥Ω®◊÷ÃÂ
+            hInst,
+            NULL
+        );
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");//ÂàõÂª∫Â≠ó‰Ωì
 
         String presentUserInfo = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         presentUserInfo = strcat(strcat(strcat(strcpy(presentUserInfo, presentUser.userName), "("), getIdentity(presentUser.identity)), ")");
+        
         hLabName = CreateWindow(
             TEXT("static"),
             presentUserInfo,
@@ -50,7 +55,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         purchasePlanButton = createDefaultButton(
             TEXT("button"),
-            TEXT("≤…π∫º∆ªÆ"),
+            TEXT("ÈááË¥≠ËÆ°Âàí"),
             80, 100, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_PURCHASE_PLAN_BUTTON,
@@ -59,7 +64,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         reagentApplyButton = createDefaultButton(
             TEXT("button"),
-            TEXT("¡Ï”√…Í«Î"),
+            TEXT("È¢ÜÁî®Áî≥ËØ∑"),
             80, 160, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_REAGENT_APPLY_BUTTON,
@@ -69,7 +74,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         userManageButton = createDefaultButton(
             TEXT("button"),
-            TEXT("”√ªßπ‹¿Ì"),
+            TEXT("Áî®Êà∑ÁÆ°ÁêÜ"),
             80, 220, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_USER_MANAGE_BUTTON,
@@ -78,7 +83,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         repertoryManageButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ø‚¥Êπ‹¿Ì"),
+            TEXT("Â∫ìÂ≠òÁÆ°ÁêÜ"),
             80, 280, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_LAB_BUTTON,
@@ -87,7 +92,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         logOutButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÕÀ≥ˆµ«¬º"),
+            TEXT("ÈÄÄÂá∫ÁôªÂΩï"),
             80, 340, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_LOGOUT_BUTTON,
@@ -99,8 +104,8 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
     case WM_PAINT:
     {
-        avaImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\◊¿√Ê\\Course\\c”Ô—‘øŒ…Ë\\bitmaps\\admin1.bmp"), IMAGE_BITMAP, 162, 172, LR_LOADFROMFILE);
-        bgImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\◊¿√Ê\\Course\\c”Ô—‘øŒ…Ë\\bitmaps\\bg1.bmp"), IMAGE_BITMAP, 400, 500, LR_LOADFROMFILE);
+        avaImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\Ê°åÈù¢\\Course\\cËØ≠Ë®ÄËØæËÆæ\\bitmaps\\admin1.bmp"), IMAGE_BITMAP, 162, 172, LR_LOADFROMFILE);
+        bgImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\Ê°åÈù¢\\Course\\cËØ≠Ë®ÄËØæËÆæ\\bitmaps\\bg1.bmp"), IMAGE_BITMAP, 400, 500, LR_LOADFROMFILE);
 
         SendMessage(hLabWecome, WM_SETFONT, (WPARAM)hFont, TRUE);
         SendMessage(hLabName, WM_SETFONT, (WPARAM)hFont, TRUE);
@@ -132,7 +137,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
         {
         case ID_YUFFIE_ADMIN_LOGOUT_BUTTON:
         {
-            if (IDOK != MessageBox(hwnd, TEXT("ƒ„»∑∂®“™ÕÀ≥ˆµ«¬º¬?"),
+            if (IDOK != MessageBox(hwnd, TEXT("‰Ω†Á°ÆÂÆöË¶ÅÈÄÄÂá∫ÁôªÂΩïÂêó?"),
                 TEXT("Exit"),
                 MB_ICONQUESTION | MB_OKCANCEL))
                 break;
@@ -155,24 +160,24 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
             switch (purchasePlanStatus)
             {
-            case ANNOUNCEMENT:
-            {
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_NOTICE_DIALOG), hwnd, AnnoucementDlgProc);
-                break;
-            }
-            case REVIEWAPPLY:
-            {
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_REVIEW_APPLY_DIALOG), hwnd, ReviewApplyDlgProc);
-                break;
-            }
-            case REVIEWOFFER:
-            {
-                DialogBox(hInst, MAKEINTRESOURCE(IDD_REVIEW_OFFER_DIALOG), hwnd, ReviewOfferDlgProc);
-                break;
-            }
-            default:
-                break;
-            }
+                case ANNOUNCEMENT:
+                {
+                    DialogBox(hInst, MAKEINTRESOURCE(IDD_NOTICE_DIALOG), hwnd, AnnoucementDlgProc);
+                    break;
+                }
+                case REVIEWAPPLY:
+                {
+                    DialogBox(hInst, MAKEINTRESOURCE(IDD_REVIEW_APPLY_DIALOG), hwnd, ReviewApplyDlgProc);
+                    break;
+                }
+                case REVIEWOFFER:
+                {
+                    DialogBox(hInst, MAKEINTRESOURCE(IDD_REVIEW_OFFER_DIALOG), hwnd, ReviewOfferDlgProc);
+                    break;
+                }
+                default:
+                    break;
+                }
         }
         break;
         }

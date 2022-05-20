@@ -1,10 +1,10 @@
 #include"globalConst.h"
 
-#define ID_YUFFIE_NOTICE_TITLE_LAB 1101
-#define ID_YUFFIE_NOTICE_INPUTE_EDIT 1102
-#define ID_YUFFIE_NOTICE_CONFIRM_BUTTON 1103
+#define ID_YUFFIE_ADMIN_NOTICE_TITLE_LAB 1101
+#define ID_YUFFIE_ADMIN_NOTICE_INPUTE_EDIT 1102
+#define ID_YUFFIE_ADMIN_NOTICE_CONFIRM_BUTTON 1103
 
 /*
-    @function:"¥∞ø⁄π˝≥Ã°£"
+    @function:"Á™óÂè£ËøáÁ®ã„ÄÇ"
 */
 BOOL CALLBACK AnnoucementDlgProc(HWND, UINT, WPARAM, LPARAM);

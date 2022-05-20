@@ -22,62 +22,29 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.   //MIT证书声明，为固定部分。
 
-    @version:0.0.1
-    @date:2022/5/13
+    @version:0.0.2
+    @date:2022/5/15
     @author:haruluya
-    @model_function:"suppler身份的事物处理窗口".
-    @include:[globalConst.h]    
-    @work:[supplerTemplate.c,yuffie.h]       
-    @log:interfaces.log    
+    @model_function:"teacher视图中的添加采购申请选项dialog".
+    @include:globalConst.h   
+    @work:addPurchaseApplyDialog.c       
+    @log:addPurchaseApplyDialog.log    
 
 */
 
 #include"globalConst.h"
 
-
-/*
-    @value:supplierlist组件id。
-*/
-#define ID_YUFFIE_SUPPLIER_LIST 601
-
-/*
-    @value:supplierCountLabel组件id。
-*/
-#define ID_YUFFIE_SUPPLIPER_COUNT_LAB 602
-
-/*
-    @value:supplierOfferButton组件id。
-*/
-#define ID_YUFFIE_SUPPLIPER_OFFER_BUTTON 603
-
-/*
-    @value:supplierCommitButton组件id。
-*/
-#define ID_YUFFIE_SUPPLIPER_COMMIT_BUTTON 604
-
-/*
-    @value:supplierOfferPriceEdit组件id。
-*/
-#define ID_YUFFIE_SUPPLIPER_OFFER_PRICE_EDIT 605
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_LAB 2101
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RENAME_LAB 2102
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RENAME_EDIT 2103
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_REID_LAB 2104
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_REID_EDIT 2105
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RENUM_LAB 2106
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RENUM_EDIT 2107
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RECLASS_LAB 2108
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_GEN_RADIO_BUTTON 2109
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_SPE_RADIO_BUTTON 2110
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_FINISH_BUTTON 2111
 
 
-#define ID_YUFFIE_SUPPLIPER_NAME_LAB 606
-
-#define ID_YUFFIE_SUPPLIPER_OFFER_PRICE_LAB 607
-
-#define ID_YUFFIE_SUPPLIPER_BACK_BUTTON 608
-
-#define ID_YUFFIE_SUPPLIPER_PURCHASE_BUTTON 609
-
-#define ID_YUFFIE_SUPPLIPER_LOGOUT_BUTTON 610
-
-#define ID_YUFFIE_SUPPLIPER_WECOME_LAB 611
-
-#define CM_YUFFIE_SHOW_PURCHASE 612
-
-#define CM_YUFFIE_SUPPLIPER_SHOW_HALL 613
-
-/*
-    @function:窗口过程。
-*/
-LRESULT CALLBACK SupplierWndProc(HWND, UINT, WPARAM, LPARAM);
+BOOL CALLBACK PurchaseApplyAddDlgProc(HWND, UINT, WPARAM, LPARAM);

@@ -35,35 +35,63 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
 
     case WM_INITDIALOG:
     {
-        hLabTitle = CreateWindow(TEXT("static"), TEXT("°Ô¥¥Ω®”√ªß°Ô"),
+        hLabTitle = CreateWindow(
+            TEXT("static"), 
+            TEXT("‚òÖÂàõÂª∫Áî®Êà∑‚òÖ"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_ADD_USER_LAB,
-            hInst, NULL);
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");//¥¥Ω®◊÷ÃÂ
+            hInst, 
+            NULL
+        );
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");//ÂàõÂª∫Â≠ó‰Ωì
 
 
-        hLabUserName = CreateWindow(TEXT("static"), TEXT("’À∫≈£∫"),
+        hLabUserName = CreateWindow(
+            TEXT("static"), 
+            TEXT("Ë¥¶Âè∑Ôºö"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             40, 150, 70, 26,
             hDlg,
-            (HMENU)ID_YUFFIE_ADMIN_USERNAME_LAB,
-            hInst, NULL);
-        hEditUserName = CreateWindow(TEXT("edit"), TEXT(""),
+            (HMENU)ID_YUFFIE_ADMIN_ADD_USER_USERNAME_LAB,
+            hInst, 
+            NULL
+        );
+
+
+        hEditUserName = CreateWindow(
+            TEXT("edit"), 
+            TEXT(""),
             WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL,
             120, 150, 200, 25,
-            hDlg, (HMENU)ID_YUFFIE_ADMIN_USERNAME_EDIT, hInst, NULL);
-        hLabPassword = CreateWindow(TEXT("static"), TEXT("√‹¬Î£∫"),
+            hDlg, 
+            (HMENU)ID_YUFFIE_ADMIN_ADD_USER_USERNAME_EDIT,
+            hInst, 
+            NULL
+        );
+
+        hLabPassword = CreateWindow(
+            TEXT("static"), 
+            TEXT("ÂØÜÁ†ÅÔºö"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             40, 200, 70, 26,
             hDlg,
-            (HMENU)ID_YUFFIE_ADMIN_PASSWORD_LAB,
-            hInst, NULL);
-        hEditPassword = CreateWindow(TEXT("edit"), TEXT(""),
+            (HMENU)ID_YUFFIE_ADMIN_ADD_USER_PASSWORD_LAB,
+            hInst, 
+            NULL
+        );
+
+        hEditPassword = CreateWindow(
+            TEXT("edit"), 
+            TEXT(""),
             WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL,
             120, 200, 200, 25,
-            hDlg, (HMENU)ID_YUFFIE_ADMIN_PASSWORD_EDIT, hInst, NULL);
+            hDlg, 
+            (HMENU)ID_YUFFIE_ADMIN_ADD_USER_PASSWORD_EDIT,
+            hInst,
+            NULL
+        );
 
 
         adminRadioButton = CreateWindow(
@@ -72,33 +100,36 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
             WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON | WS_GROUP,
             70, 100, 80, 30,
             hDlg,
-            (HMENU)ID_YUFFIE_ADMIN_ADMIN_RADIO_BUTTON,
+            (HMENU)ID_YUFFIE_ADMIN_ADD_USER_ADMIN_RADIO_BUTTON,
             hInst,
             NULL
         );
+
         teacherRadioButton = CreateWindow(
             TEXT("Button"),
             TEXT("Teacher"),
             WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON,
             150, 100, 80, 30,
             hDlg,
-            (HMENU)ID_YUFFIE_ADMIN_TEACHER_RADIO_BUTTON,
+            (HMENU)ID_YUFFIE_ADMIN_ADD_USER_TEACHER_RADIO_BUTTON,
             hInst,
             NULL
         );
+
         supplierRadioButton = CreateWindow(
             TEXT("Button"),
             TEXT("Supplier"),
             WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON,
             230, 100, 80, 30,
             hDlg,
-            (HMENU)ID_YUFFIE_ADMIN_SUPPLIER_RADIO_BUTTON,
+            (HMENU)ID_YUFFIE_ADMIN_ADD_USER_SUPPLIER_RADIO_BUTTON,
             hInst,
             NULL
         );
+
         finishButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÕÍ≥…"),
+            TEXT("ÂÆåÊàê"),
             130, 250, 120, 40,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_ADD_USER_FINISH_BUTTON,
@@ -137,7 +168,7 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
                  GetWindowText(hEditUserName, userName, 80);
                  GetWindowText(hEditPassword, password, 80);
                  if (!strcmp(userName, "") || !strcmp(password, "")) {
-                     MessageBox(hDlg, TEXT(" ‰»Î≤ªŒ™ø’£¨«Î÷ÿ–¬ ‰»Î£°"), TEXT("ERROR"), MB_ICONINFORMATION);
+                     MessageBox(hDlg, TEXT("ËæìÂÖ•‰∏ç‰∏∫Á©∫ÔºåËØ∑ÈáçÊñ∞ËæìÂÖ•ÔºÅ"), TEXT("ERROR"), MB_ICONINFORMATION);
                      break;
                  }
                  if (SendMessage(adminRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
@@ -150,16 +181,15 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
                      identity = SUPPLIER;
                  }
                  else {
-                     MessageBox(hDlg, TEXT("«Î—°‘Ò”√ªß…Ì∑›£°"), TEXT("ERROR"), MB_ICONINFORMATION);
+                     MessageBox(hDlg, TEXT("ËØ∑ÈÄâÊã©Áî®Êà∑Ë∫´‰ªΩÔºÅ"), TEXT("ERROR"), MB_ICONINFORMATION);
                      break;
                  }
                  User user = { userName,password,identity,userListLen + 1 };
                  addUser(user);
-                 MessageBox(hDlg, TEXT("ÃÌº””√ªß≥…π¶£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
+                 MessageBox(hDlg, TEXT("Ê∑ªÂä†Áî®Êà∑ÊàêÂäüÔºÅ"), TEXT("SUCCESS"), MB_ICONINFORMATION);
                  SendMessage(GetParent(hDlg), WM_COMMAND, CM_SHOW_LIST, 0);
                  break;
-
-                 }
+             }
             break;
         }
         break;

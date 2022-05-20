@@ -20,41 +20,47 @@ BOOL CALLBACK UserManageDlgProc(HWND hDlg, UINT message,
 
     case WM_INITDIALOG:
     {
-        hLabTitle = CreateWindow(TEXT("static"), TEXT("°Ô”√ªßπ‹¿Ì°Ô"),
+        hLabTitle = CreateWindow(
+            TEXT("static"), 
+            TEXT("‚òÖÁî®Êà∑ÁÆ°ÁêÜ‚òÖ"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hDlg,
-            (HMENU)ID_YUFFIE_ADMIN_USER_TITLE_LAB,
-            hInst, NULL);
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");
+            (HMENU)ID_YUFFIE_ADMIN_USER_MANAGE_TITLE_LAB,
+            hInst, 
+            NULL
+        );
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");
 
 
 
-        hwndList = CreateWindow(TEXT("listbox"), NULL,
+        hwndList = CreateWindow(
+            TEXT("listbox"), 
+            NULL,
             WS_CHILD | WS_VISIBLE | LBS_STANDARD | LBS_SORT | WS_BORDER,
             10, 60,
             400,
             300,
-            hDlg, (HMENU)ID_YUFFIE_ADMIN_USER_LIST,
+            hDlg, (HMENU)ID_YUFFIE_ADMIN_USER_MANAGE_LIST,
             hInst,
             NULL
         );
 
         deleteButton = createDefaultButton(
             TEXT("button"),
-            TEXT("…æ≥˝À˘—°”√ªß"),
+            TEXT("Âà†Èô§ÊâÄÈÄâÁî®Êà∑"),
             450, 100, 150, 50,
             hDlg,
-            (HMENU)ID_YUFFIE_ADMIN_USER_DELETE_BUTTON,
+            (HMENU)ID_YUFFIE_ADMIN_USER_MANAGE_DELETE_BUTTON,
             hInst
         );
 
         manageButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÃÌº””√ªß"),
+            TEXT("Ê∑ªÂä†Áî®Êà∑"),
             450, 160, 150, 50,
             hDlg,
-            (HMENU)ID_YUFFIE_ADMIN_USER_ADD_BUTTON,
+            (HMENU)ID_YUFFIE_ADMIN_USER_MANAGE_ADD_BUTTON,
             hInst
         );
 
@@ -92,45 +98,45 @@ BOOL CALLBACK UserManageDlgProc(HWND hDlg, UINT message,
 
 
 
-        case CM_SHOW_LIST:
-        {
-            SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
-            SendMessage(hwndList, LB_INSERTSTRING, -1, "”√ªß√˚≥∆   ”√ªßid    ”√ªß…Ì∑›");
-            for (int i = 0; i < userListLen; i++) {
-                String userInfo = (String)malloc(sizeof(char) * 100);
-                userInfo = strcpy(userInfo, userList[i].userName);
-                String str = (String)malloc(sizeof(char) * 100);
-                sprintf(str, "%d", userList[i].id);
-                userInfo = strcat(userInfo, "    ");
-                userInfo = strcat(userInfo, str);
-                userInfo = strcat(userInfo, "    ");
-                userInfo = strcat(userInfo, getIdentity(userList[i].identity));
-                SendMessage(hwndList, LB_INSERTSTRING, -1, userInfo);
-            }
-            break;
-        }
-        case ID_YUFFIE_ADMIN_USER_DELETE_BUTTON:
-        {
-            if ((selectIndex = SendMessage(hwndList, LB_GETCURSEL, 0, 0)) != LB_ERR) {
-                if (IDOK != MessageBox(hDlg, TEXT("»∑»œ…æ≥˝¥À”√ªß£ø"),
-                    TEXT("Querry"),
-                    MB_ICONQUESTION | MB_OKCANCEL))
-                    break;
-                deleteUser(userList[selectIndex - 1].id);
-                SendMessage(hDlg, WM_COMMAND, CM_SHOW_LIST, 0);
+            case CM_SHOW_LIST:
+            {
+                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
+                SendMessage(hwndList, LB_INSERTSTRING, -1, "Áî®Êà∑ÂêçÁß∞   Áî®Êà∑id    Áî®Êà∑Ë∫´‰ªΩ");
+                for (int i = 0; i < userListLen; i++) {
+                    String userInfo = (String)malloc(sizeof(char) * 100);
+                    userInfo = strcpy(userInfo, userList[i].userName);
+                    String str = (String)malloc(sizeof(char) * 100);
+                    sprintf(str, "%d", userList[i].id);
+                    userInfo = strcat(userInfo, "    ");
+                    userInfo = strcat(userInfo, str);
+                    userInfo = strcat(userInfo, "    ");
+                    userInfo = strcat(userInfo, getIdentity(userList[i].identity));
+                    SendMessage(hwndList, LB_INSERTSTRING, -1, userInfo);
+                }
                 break;
             }
-            else {
-                MessageBox(hDlg, TEXT("«Î—°‘Ò“ª∏ˆ‘™Àÿ£°"), TEXT("ERROR"), MB_ICONINFORMATION);
-            }
-            break;
+            case ID_YUFFIE_ADMIN_USER_MANAGE_DELETE_BUTTON:
+            {
+                if ((selectIndex = SendMessage(hwndList, LB_GETCURSEL, 0, 0)) != LB_ERR) {
+                    if (IDOK != MessageBox(hDlg, TEXT("Á°ÆËÆ§Âà†Èô§Ê≠§Áî®Êà∑Ôºü"),
+                        TEXT("Querry"),
+                        MB_ICONQUESTION | MB_OKCANCEL))
+                        break;
+                    deleteUser(userList[selectIndex - 1].id);
+                    SendMessage(hDlg, WM_COMMAND, CM_SHOW_LIST, 0);
+                    break;
+                }
+                else {
+                    MessageBox(hDlg, TEXT("ËØ∑ÈÄâÊã©‰∏Ä‰∏™ÂÖÉÁ¥†ÔºÅ"), TEXT("ERROR"), MB_ICONINFORMATION);
+                }
+                break;
 
-        }
-        case ID_YUFFIE_ADMIN_USER_ADD_BUTTON:
-        {
-            DialogBox(hInst, MAKEINTRESOURCE(IDD_ADD_USER_DIALOG), hDlg, UserAddDlgProc);
-            break;
-        }
+            }
+            case ID_YUFFIE_ADMIN_USER_MANAGE_ADD_BUTTON:
+            {
+                DialogBox(hInst, MAKEINTRESOURCE(IDD_ADD_USER_DIALOG), hDlg, UserAddDlgProc);
+                break;
+            }
         }
         break;
     }

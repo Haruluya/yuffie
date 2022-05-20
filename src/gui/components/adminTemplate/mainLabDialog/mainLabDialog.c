@@ -21,17 +21,23 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
 
     case WM_INITDIALOG:
     {
-        hLabTitle = CreateWindow(TEXT("static"), TEXT("°Ôø‚¥Êπ‹¿Ì°Ô"),
+        hLabTitle = CreateWindow(
+            TEXT("static"), 
+            TEXT("‚òÖÂ∫ìÂ≠òÁÆ°ÁêÜ‚òÖ"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_LAB_TITLE_LAB,
-            hInst, NULL);
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");
+            hInst, 
+            NULL
+        );
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");
 
 
 
-        hwndList = CreateWindow(TEXT("listbox"), NULL,
+        hwndList = CreateWindow(
+            TEXT("listbox"), 
+            NULL,
             WS_CHILD | WS_VISIBLE | LBS_STANDARD | LBS_SORT | WS_BORDER,
             10, 60,
             400,
@@ -43,7 +49,7 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
 
         deleteButton = createDefaultButton(
             TEXT("button"),
-            TEXT("≤…π∫»Îø‚"),
+            TEXT("ÈááË¥≠ÂÖ•Â∫ì"),
             450, 100, 150, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_LAB_PURCHASE_BUTTON,
@@ -52,7 +58,7 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
 
         manageButton = createDefaultButton(
             TEXT("button"),
-            TEXT("≤Èø¥»Îø‚º«¬º"),
+            TEXT("Êü•ÁúãÂÖ•Â∫ìËÆ∞ÂΩï"),
             450, 160, 150, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_LAB_MANAGE_BUTTON,
@@ -62,7 +68,7 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
 
         printButton = createDefaultButton(
             TEXT("button"),
-            TEXT("¥Ú”°≤÷ø‚"),
+            TEXT("ÊâìÂç∞‰ªìÂ∫ì"),
             450, 220, 150, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_LAB_PRINT_BUTTON,
@@ -101,68 +107,68 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
 
        
 
-        case CM_SHOW_LIST:
-        {
-            SendMessage(hwndList, LB_INSERTSTRING, -1, " ‘º¡√˚≥∆     ‘º¡ID     ‘º¡ ˝¡ø");
-            for (int i = 0; i < inventoryListLen; i++) {
-                String mainLabInfo = (String)malloc(sizeof(char) * 100);
-                mainLabInfo = strcpy(mainLabInfo, inventoryList[i].reagentName);
-                String str = (String)malloc(sizeof(char) * 100);
-                sprintf(str, "%d", inventoryList[i].reagentId);
-                mainLabInfo = strcat(mainLabInfo, "    ");
-                mainLabInfo = strcat(mainLabInfo, str);
-                sprintf(str, "%d", inventoryList[i].reagentNum);
-                mainLabInfo = strcat(mainLabInfo, "    ");
-                mainLabInfo = strcat(mainLabInfo, str);
-                SendMessage(hwndList, LB_INSERTSTRING, -1, mainLabInfo);
+            case CM_SHOW_LIST:
+            {
+                SendMessage(hwndList, LB_INSERTSTRING, -1, "ËØïÂâÇÂêçÁß∞    ËØïÂâÇID    ËØïÂâÇÊï∞Èáè");
+                for (int i = 0; i < inventoryListLen; i++) {
+                    String mainLabInfo = (String)malloc(sizeof(char) * 100);
+                    mainLabInfo = strcpy(mainLabInfo, inventoryList[i].reagentName);
+                    String str = (String)malloc(sizeof(char) * 100);
+                    sprintf(str, "%d", inventoryList[i].reagentId);
+                    mainLabInfo = strcat(mainLabInfo, "    ");
+                    mainLabInfo = strcat(mainLabInfo, str);
+                    sprintf(str, "%d", inventoryList[i].reagentNum);
+                    mainLabInfo = strcat(mainLabInfo, "    ");
+                    mainLabInfo = strcat(mainLabInfo, str);
+                    SendMessage(hwndList, LB_INSERTSTRING, -1, mainLabInfo);
+                }
+                break;
             }
-            break;
-        }
-        case ID_YUFFIE_ADMIN_LAB_PURCHASE_BUTTON: {
-            if (IDOK != MessageBox(hDlg, TEXT("ÕÍ≥…≤…π∫±Ì»Áø‚≤Ÿ◊˜£ø"),
-                TEXT("Querry"),
-                MB_ICONQUESTION | MB_OKCANCEL))
+            case ID_YUFFIE_ADMIN_LAB_PURCHASE_BUTTON: {
+                if (IDOK != MessageBox(hDlg, TEXT("ÂÆåÊàêÈááË¥≠Ë°®Â¶ÇÂ∫ìÊìç‰ΩúÔºü"),
+                    TEXT("Querry"),
+                    MB_ICONQUESTION | MB_OKCANCEL))
+                    break;
+                addMainInventory();
+                createMainInventory();
+                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
+                SendMessage(hDlg, WM_COMMAND, CM_SHOW_LIST, 0);
                 break;
-            addMainInventory();
-            createMainInventory();
-            SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
-            SendMessage(hDlg, WM_COMMAND, CM_SHOW_LIST, 0);
-            break;
-        }
-        case ID_YUFFIE_ADMIN_LAB_PRINT_BUTTON:
-        {
-            if (IDOK != MessageBox(hDlg, TEXT("¥Ú”°≤÷ø‚ø‚¥Ê£ø"),
-                TEXT("Querry"),
-                MB_ICONQUESTION | MB_OKCANCEL))
-                break;
-            PrintMainLab();
-            MessageBox(hDlg, TEXT("“—¥Ú”°µΩprint.txt£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
-            break;
-        }
-        case ID_YUFFIE_ADMIN_LAB_MANAGE_BUTTON:
-        {
-            if (IDOK != MessageBox(hDlg, TEXT("≤Èø¥»Îø‚º«¬º£ø"),
-                TEXT("Querry"),
-                MB_ICONQUESTION | MB_OKCANCEL))
-                break;
-
-            SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
-            SendMessage(hwndList, LB_INSERTSTRING, -1, " ‘º¡√˚≥∆     ‘º¡ID     ‘º¡ ˝¡ø");
-
-            for (int i = 0; i < inventoryListLen; i++) {
-                String mainLabInfo = (String)malloc(sizeof(char) * 100);
-                mainLabInfo = strcpy(mainLabInfo, inventoryList[i].reagentName);
-                String str = (String)malloc(sizeof(char) * 100);
-                sprintf(str, "%d", inventoryList[i].reagentId);
-                mainLabInfo = strcat(mainLabInfo, "    ");
-                mainLabInfo = strcat(mainLabInfo, str);
-                sprintf(str, "%d", inventoryList[i].reagentNum);
-                mainLabInfo = strcat(mainLabInfo, "    ");
-                mainLabInfo = strcat(mainLabInfo, str);
-                SendMessage(hwndList, LB_INSERTSTRING, -1, mainLabInfo);
             }
-            break;
-        }
+            case ID_YUFFIE_ADMIN_LAB_PRINT_BUTTON:
+            {
+                if (IDOK != MessageBox(hDlg, TEXT("ÊâìÂç∞‰ªìÂ∫ìÂ∫ìÂ≠òÔºü"),
+                    TEXT("Querry"),
+                    MB_ICONQUESTION | MB_OKCANCEL))
+                    break;
+                PrintMainLab();
+                MessageBox(hDlg, TEXT("Â∑≤ÊâìÂç∞Âà∞print.txtÔºÅ"), TEXT("SUCCESS"), MB_ICONINFORMATION);
+                break;
+            }
+            case ID_YUFFIE_ADMIN_LAB_MANAGE_BUTTON:
+            {
+                if (IDOK != MessageBox(hDlg, TEXT("Êü•ÁúãÂÖ•Â∫ìËÆ∞ÂΩïÔºü"),
+                    TEXT("Querry"),
+                    MB_ICONQUESTION | MB_OKCANCEL))
+                    break;
+
+                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
+                SendMessage(hwndList, LB_INSERTSTRING, -1, "ËØïÂâÇÂêçÁß∞    ËØïÂâÇID    ËØïÂâÇÊï∞Èáè");
+
+                for (int i = 0; i < inventoryListLen; i++) {
+                    String mainLabInfo = (String)malloc(sizeof(char) * 100);
+                    mainLabInfo = strcpy(mainLabInfo, inventoryList[i].reagentName);
+                    String str = (String)malloc(sizeof(char) * 100);
+                    sprintf(str, "%d", inventoryList[i].reagentId);
+                    mainLabInfo = strcat(mainLabInfo, "    ");
+                    mainLabInfo = strcat(mainLabInfo, str);
+                    sprintf(str, "%d", inventoryList[i].reagentNum);
+                    mainLabInfo = strcat(mainLabInfo, "    ");
+                    mainLabInfo = strcat(mainLabInfo, str);
+                    SendMessage(hwndList, LB_INSERTSTRING, -1, mainLabInfo);
+                }
+                break;
+            }
         }
         break;
     }
