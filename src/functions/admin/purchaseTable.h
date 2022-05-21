@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITÖ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ì¶ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½
 
     @version:0.0.1
     @date:2022/5/9
     @author:haruluya
-    @model_function:"¶Ô¶©¹ºÏà¹Ø²Ù×÷º¯ÊýºÍÈ«¾Ö±äÁ¿¡£".
+    @model_function:"ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Ø²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È«ï¿½Ö±ï¿½ï¿½ï¿½ï¿½ï¿½".
     @include:[purchaseTableStruct.h,user.h]   
     @work:[purchaseTable.c,yuffie.h]       
     @log:purchaseTable.log     
@@ -38,23 +38,23 @@
 
 
 /*
-    @function:"µÇÂ¼ÑéÖ¤¡£"
+    @function:"ï¿½ï¿½Â¼ï¿½ï¿½Ö¤ï¿½ï¿½"
 */
 LoginMessage loginValidate(String userName);
 
 /*
-    @function:"Í¨¹ý¶©¹º±íid»ñÈ¡¶©¹ºÏî"
+    @function:"Í¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½idï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"
 */
 PurchaseItem getPurchaseItemById(int id);
 
 /*
-    @function:"ÔØÈë¶©¹º±íÊý¾Ý¡£"
+    @function:"ï¿½ï¿½ï¿½ë¶©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¡ï¿½"
 */
 Status initPurchaseList();
 
 
 /*
-    @function:"Íê³É³ö¼Û´´½¨³ö¼Ûµ¥¡£"
+    @function:"ï¿½ï¿½É³ï¿½ï¿½Û´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½"
 */
 Status createOfferApply();
 
