@@ -12,6 +12,6 @@
 #define ID_YUFFIE_ADMIN_SPE_RADIO_BUTTON 1009
 #define ID_YUFFIE_ADMIN_LAB_BUTTON 1010
 /*
-    @function:窗口过程。
+    @function:���ڹ��̡�
 */
 LRESULT CALLBACK AdminWndProc(HWND, UINT, WPARAM, LPARAM);

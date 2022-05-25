@@ -26,10 +26,28 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
     case WM_CREATE:
     {
  
-        initFinalPurchaseList();
+        initList();
+        initApply();
+        createPurchaseApply();
+        sortList();
+
+
+        if (purchasePlanStatus == REVIEWAPPLY) {
+            initPurchaseTable();
+            createGPurchaseTable();
+            createSPurchaseTable();
+        }
+
+
+
+        initAddInventory();
+        initInventory();
+        initReagentApplyFiles();
+        initReagentApplyList();
+
         hLabWecome = CreateWindow(
             TEXT("static"), 
-            TEXT("‚òÖÊ¨¢Ëøé‰ΩøÁî®YUFFIE‚òÖ"),
+            TEXT("°Ôª∂”≠ π”√YUFFIE°Ô"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hwnd,
@@ -37,7 +55,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
             hInst,
             NULL
         );
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");//ÂàõÂª∫Â≠ó‰Ωì
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");//¥¥Ω®◊÷ÃÂ
 
         String presentUserInfo = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         presentUserInfo = strcat(strcat(strcat(strcpy(presentUserInfo, presentUser.userName), "("), getIdentity(presentUser.identity)), ")");
@@ -55,7 +73,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         purchasePlanButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÈááË¥≠ËÆ°Âàí"),
+            TEXT("≤…π∫º∆ªÆ"),
             80, 100, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_PURCHASE_PLAN_BUTTON,
@@ -64,7 +82,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         reagentApplyButton = createDefaultButton(
             TEXT("button"),
-            TEXT("È¢ÜÁî®Áî≥ËØ∑"),
+            TEXT("¡Ï”√…Í«Î"),
             80, 160, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_REAGENT_APPLY_BUTTON,
@@ -74,7 +92,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         userManageButton = createDefaultButton(
             TEXT("button"),
-            TEXT("Áî®Êà∑ÁÆ°ÁêÜ"),
+            TEXT("”√ªßπ‹¿Ì"),
             80, 220, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_USER_MANAGE_BUTTON,
@@ -83,7 +101,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         repertoryManageButton = createDefaultButton(
             TEXT("button"),
-            TEXT("Â∫ìÂ≠òÁÆ°ÁêÜ"),
+            TEXT("ø‚¥Êπ‹¿Ì"),
             80, 280, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_LAB_BUTTON,
@@ -92,7 +110,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
         logOutButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÈÄÄÂá∫ÁôªÂΩï"),
+            TEXT("ÕÀ≥ˆµ«¬º"),
             80, 340, 150, 50,
             hwnd,
             (HMENU)ID_YUFFIE_ADMIN_LOGOUT_BUTTON,
@@ -104,8 +122,8 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
 
     case WM_PAINT:
     {
-        avaImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\Ê°åÈù¢\\Course\\cËØ≠Ë®ÄËØæËÆæ\\bitmaps\\admin1.bmp"), IMAGE_BITMAP, 162, 172, LR_LOADFROMFILE);
-        bgImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\Ê°åÈù¢\\Course\\cËØ≠Ë®ÄËØæËÆæ\\bitmaps\\bg1.bmp"), IMAGE_BITMAP, 400, 500, LR_LOADFROMFILE);
+        avaImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\◊¿√Ê\\Course\\c”Ô—‘øŒ…Ë\\bitmaps\\admin1.bmp"), IMAGE_BITMAP, 162, 172, LR_LOADFROMFILE);
+        bgImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\◊¿√Ê\\Course\\c”Ô—‘øŒ…Ë\\bitmaps\\bg1.bmp"), IMAGE_BITMAP, 400, 500, LR_LOADFROMFILE);
 
         SendMessage(hLabWecome, WM_SETFONT, (WPARAM)hFont, TRUE);
         SendMessage(hLabName, WM_SETFONT, (WPARAM)hFont, TRUE);
@@ -137,7 +155,7 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
         {
         case ID_YUFFIE_ADMIN_LOGOUT_BUTTON:
         {
-            if (IDOK != MessageBox(hwnd, TEXT("‰Ω†Á°ÆÂÆöË¶ÅÈÄÄÂá∫ÁôªÂΩïÂêó?"),
+            if (IDOK != MessageBox(hwnd, TEXT("ƒ„»∑∂®“™ÕÀ≥ˆµ«¬º¬?"),
                 TEXT("Exit"),
                 MB_ICONQUESTION | MB_OKCANCEL))
                 break;
@@ -155,6 +173,11 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
             DialogBox(hInst, MAKEINTRESOURCE(IDD_USER_MANAGE_DIALOG), hwnd, UserManageDlgProc);
             break;
         }
+        case ID_YUFFIE_ADMIN_REAGENT_APPLY_BUTTON:
+        {
+            DialogBox(hInst, MAKEINTRESOURCE(IDD_ADMIN_REVIEW_REAGENT_DIALOG), hwnd, ReviewReagentDlgProc);
+            break;
+        }
         case ID_YUFFIE_ADMIN_PURCHASE_PLAN_BUTTON:
         {
 
@@ -162,16 +185,27 @@ LRESULT CALLBACK AdminWndProc(HWND hwnd, UINT message,
             {
                 case ANNOUNCEMENT:
                 {
+                    MessageBox(hwnd, TEXT("µ±«∞≤ª¥Ê‘⁄’˝‘⁄Ω¯––µƒ≤…π∫º∆ªÆ£¨ø™ º–¬µƒ≤…π∫º∆ªÆ∞…£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
                     DialogBox(hInst, MAKEINTRESOURCE(IDD_NOTICE_DIALOG), hwnd, AnnoucementDlgProc);
                     break;
                 }
                 case REVIEWAPPLY:
                 {
+                    if (lengthList() == 0) {
+                        MessageBox(hwnd, TEXT("‘›Œ¥”–¿œ ¶Ã·Ωª…Í«Î£¨«ÎƒÕ–ƒµ»¥˝£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
+                        break;
+                    }
                     DialogBox(hInst, MAKEINTRESOURCE(IDD_REVIEW_APPLY_DIALOG), hwnd, ReviewApplyDlgProc);
                     break;
                 }
                 case REVIEWOFFER:
                 {
+                    initOfferApply();
+                    initPrice();
+                    if (finalPurchaseLen == 0) {
+                        MessageBox(hwnd, TEXT("‘›Œ¥”–π©”¶…ÃÃ·Ωª±®º€£¨«ÎƒÕ–ƒµ»¥˝£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
+                        break;
+                    }
                     DialogBox(hInst, MAKEINTRESOURCE(IDD_REVIEW_OFFER_DIALOG), hwnd, ReviewOfferDlgProc);
                     break;
                 }

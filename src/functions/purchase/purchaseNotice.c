@@ -23,17 +23,71 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/15
+    @date:2022/5/9
     @author:haruluya
-    @model_function:"[关于Yuffie]Dialog控件配置".
-    @include:globalConst.h  
-    @work:aboutDialog.c       
-    @log:aboutDialog.log    
+    @model_function:"对订购相关操作函数和全局变量。".
+    @include:[purchaseTableStruct.h,user.h]
+    @work:[purchaseTable.c,yuffie.h]
+    @log:purchaseTable.log
 
 */
 
-#include"globalConst.h"
+#include "purchaseNotice.h"
 
-#define ID_YUFFIE_ABOUT_ABOUT_LAB 277
+/*
+    @author:haruluya
+    @date:2022/5/13
+    @function:"生成采购通知"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[yuffie.WinMain]
+    @return:"执行状态"
+*/
+Status createPurchaseNotice(String notice)
+{
+    FILE* fp;
 
-BOOL CALLBACK aboutDlgProc(HWND, UINT, WPARAM, LPARAM);
+    /*
+        @check:"文件打开错误处理."
+    */
+    if (!(fp = fopen("purchaseNotice.txt", "w")))
+    {
+        return ERROR;
+    }
+
+    // 将采购通知写入文件
+    fputs(notice, fp);
+    fclose(fp);
+    return OK;
+}
+
+
+String getNoticeContent() {
+    FILE* fp;
+
+    /*
+        @check:"文件打开错误处理."
+    */
+    if (!(fp = fopen("purchaseNotice.txt", "r")))
+    {
+        return "ERROR";
+    }
+    String content = (String)malloc(sizeof(char) * INFO_MAXSIZE);
+    strcpy(content,"");
+    while (!feof(fp))
+    {
+        fgets(BUFF, sizeof(BUFF), fp);
+        if (!strcmp(BUFF, "\0")) {
+            break;
+        }
+        strcat(content, BUFF);
+        BUFF[0] = '\0';
+    }
+
+
+
+    fclose(fp);
+    return content;
+}

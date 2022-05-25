@@ -25,11 +25,11 @@
     @version:0.0.1
     @date:2022/5/15
     @author:haruluya
-    @model_function:"teacherËßÜÂõæ‰∏≠Ê∑ªÂä†ÈááË¥≠Áî≥ËØ∑ÁöÑdialogÈÖçÁΩÆ".
+    @model_function:"teacher ”Õº÷–ÃÌº”≤…π∫…Í«Îµƒdialog≈‰÷√".
     @include:addPurchaseApplyDialog.h    
     @log:addPurchaseApplyDialog.log     
     @functions:{
-        PurchaseApplyAddDlgProc:"Á™óÂè£ËøáÁ®ã.",
+        PurchaseApplyAddDlgProc:"¥∞ø⁄π˝≥Ã.",
     }
 */
 #include"addPurchaseApplyDialog.h"
@@ -72,7 +72,7 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
     {
         hLabTitle = CreateWindow(
             TEXT("static"), 
-            TEXT("‚òÖÊ∑ªÂä†ËØïÂâÇÈááË¥≠Áî≥ËØ∑È°π‚òÖ"),
+            TEXT("°ÔÃÌº” ‘º¡≤…π∫…Í«ÎœÓ°Ô"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 280, 50,
             hDlg,
@@ -80,12 +80,12 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
             hInst, 
             NULL
         );
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");//ÂàõÂª∫Â≠ó‰Ωì
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");//¥¥Ω®◊÷ÃÂ
 
 
         hLabReName = CreateWindow(
             TEXT("static"), 
-            TEXT("ÂêçÁß∞Ôºö"),
+            TEXT("√˚≥∆£∫"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             40, 100, 70, 26,
             hDlg,
@@ -106,7 +106,7 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
 
         hLabReId = CreateWindow(
             TEXT("static"), 
-            TEXT("IdÔºö"),
+            TEXT("Id£∫"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             40, 150, 70, 26,
             hDlg,
@@ -126,7 +126,7 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
         );
         hLabReNum = CreateWindow(
             TEXT("static"), 
-            TEXT("Êï∞ÈáèÔºö"),
+            TEXT(" ˝¡ø£∫"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             40, 200, 70, 26,
             hDlg,
@@ -147,7 +147,7 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
 
         hLabReClass = CreateWindow(
             TEXT("static"), 
-            TEXT("ÁßçÁ±ªÔºö"),
+            TEXT("÷÷¿‡£∫"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             40, 60, 70, 26,
             hDlg,
@@ -158,7 +158,7 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
 
         genRadioButton = CreateWindow(
             TEXT("Button"),
-            TEXT("Special"),
+            TEXT("General"),
             WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON | WS_GROUP,
             150, 60, 80, 30,
             hDlg,
@@ -168,7 +168,7 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
         );
         speRadioButton = CreateWindow(
             TEXT("Button"),
-            TEXT("General"),
+            TEXT("Special"),
             WS_CHILD | WS_VISIBLE | BS_AUTORADIOBUTTON,
             230, 60, 80, 30,
             hDlg,
@@ -179,7 +179,7 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
 
         finishButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÂÆåÊàê"),
+            TEXT("ÕÍ≥…"),
             130, 250, 120, 40,
             hDlg,
             (HMENU)ID_YUFFIE_TEACHER_PURCHASE_APPLY_FINISH_BUTTON,
@@ -219,21 +219,25 @@ BOOL CALLBACK PurchaseApplyAddDlgProc(HWND hDlg, UINT message,
                 GetWindowText(hEditReName, reName, 80);
                 GetWindowText(hEditReNum, reNum, 80);
                 if (!strcmp(reId, "") || !strcmp(reName, "") || !strcmp(reNum, "")) {
-                    MessageBox(hDlg, TEXT("ËæìÂÖ•‰∏ç‰∏∫Á©∫ÔºåËØ∑ÈáçÊñ∞ËæìÂÖ•ÔºÅ"), TEXT("ERROR"), MB_ICONINFORMATION);
+                    MessageBox(hDlg, TEXT(" ‰»Î≤ªŒ™ø’£¨«Î÷ÿ–¬ ‰»Î£°"), TEXT("ERROR"), MB_ICONINFORMATION);
                     break;
                 }
                 if (SendMessage(genRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
-                    reClass = 0;
+                    reClass = TGENERAL;
                 }
                 else if (SendMessage(speRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
-                    reClass = 1;
+                    reClass = TSPECIAL;
                 }
                 else {
-                    MessageBox(hDlg, TEXT("ËØ∑ÈÄâÊã©ËçØÂâÇÁßçÁ±ªÔºÅ"), TEXT("ERROR"), MB_ICONINFORMATION);
+                    MessageBox(hDlg, TEXT("«Î—°‘Ò ‘º¡÷÷¿‡£°"), TEXT("ERROR"), MB_ICONINFORMATION);
                     break;
                 }
-                MessageBox(hDlg, TEXT("Ê∑ªÂä†Áî®Êà∑ÊàêÂäüÔºÅ"), TEXT("SUCCESS"), MB_ICONINFORMATION);
+
+                purchaseTApplyItem item = { reName,reClass,atoi(reId),atoi(reNum) };
+                addPurchaseApplyItem(item);
+                MessageBox(hDlg, TEXT("ÃÌº” ‘º¡…Í«ÎœÓ≥…π¶£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
                 SendMessage(GetParent(hDlg), WM_COMMAND, CM_SHOW_LIST, 0);
+                EndDialog(hDlg,0);
                 break;
             }
         }

@@ -1,4 +1,11 @@
-﻿/*
+﻿#include"yuffie.h"
+
+#pragma comment(linker,"\"/manifestdependency:type='win32' "\
+						"name='Microsoft.Windows.Common-Controls' "\
+						"version='6.0.0.0' processorArchitecture='*' "\
+						"publicKeyToken='6595b64144ccf1df' language='*'\"")
+
+/*
 	@author:haruluya
 	@date:2022/5/9
 	@model_function:"程序主函数，主窗口构造函数。"
@@ -13,14 +20,6 @@
 	@execute:[yuffie.WinMain]
 	@return:"status code."
 */
-#include"yuffie.h"
-
-#pragma comment(linker,"\"/manifestdependency:type='win32' "\
-						"name='Microsoft.Windows.Common-Controls' "\
-						"version='6.0.0.0' processorArchitecture='*' "\
-						"publicKeyToken='6595b64144ccf1df' language='*'\"")
-
-
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
 	PSTR szCmdLine, int iCmdShow)
 {
@@ -278,30 +277,8 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 		if (!initUserList()) {
 			MessageBox(hwnd, TEXT("导入user表失败！"), TEXT("ERROR"), MB_ICONINFORMATION);
 		}
-		/*
-			@check:"导入purchaseTable表是否成功。"
-		*/
-		if (!initPurchaseList()) {
-			MessageBox(hwnd, TEXT("导入purchaseTable表失败！"), TEXT("ERROR"), MB_ICONINFORMATION);
-		}
 
-		initPurchasePlanStatus();
-		initList();
-		initApply();
-		createPurchaseApply();
-		sortList();
-		//deleteSameList();
-		initPurchaseTable();
-		createGPurchaseTable();
-		createSPurchaseTable();
-
-		initFinalPurchaseList();
-		initOfferApply();
-		initPrice();
-
-
-		initAddInventory();
-		initInventory();
+		initStatus();
 
 		clientcreate.hWindowMenu = hMenuInitWindow;
 		clientcreate.idFirstChild = IDM_FIRSTCHILD;
@@ -356,7 +333,7 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			PostMessage(hwndHall, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
 			return 0;
 		}
-
+		case IDM_FILE_NEWHELLO:
 		case CM_YUFFIE_CREATE_TEACHER:
 		{
 			//显示MID-hall窗口。
@@ -377,7 +354,6 @@ LRESULT CALLBACK FrameWndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lPa
 			PostMessage(hwndHall, WM_SYSCOMMAND, SC_MAXIMIZE, 0);
 			return 0;
 		}
-		case IDM_FILE_NEWHELLO:
 		case CM_YUFFIE_CREATE_ADMIN:
 		{
 			//显示MID-hall窗口。

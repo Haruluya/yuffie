@@ -21,12 +21,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ì¶ï¿½ï¿½ï¿½ï¿½Ö¡ï¿½
+    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
 
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"GUIï¿½ï¿½ï¿½ï¿½È«ï¿½ï¿½Ê¹ï¿½ÃµÄ¾ï¿½Ì¬Öµï¿½à¡£"
+    @model_function:"GUI½çÃæÈ«¾ÖÊ¹ÓÃµÄ¾²Ì¬ÖµÀà¡£"
     @include:[Windows.h,user.h,purchaseTable.h,resource.h]    
     @work:interface.c       
     @log:interfaces.log    
@@ -40,6 +40,12 @@
 #include"purchaseCheck.h"
 #include"finalPurchase.h"
 #include"addRepertory.h"
+#include"purchaseApplyTable.h"
+#include"reagentApply.h"
+#include"reagentCheck.h"
+#include"teacherLabRepertory.h"
+#include"teacherLabManage.h"
+#include"recycleManage.h"
 #include"flag.h"
 #include"loginDialog.h"
 #include"aboutDialog.h"
@@ -49,6 +55,15 @@
 #include"mainLabDialog.h"
 #include"userManageDialog.h"
 #include"addUserDialog.h"
+#include"teacherApplyDialog.h"
+#include"addPurchaseApplyDialog.h"
+#include"reagentApplyDialog.h"
+#include"addReagentApplyDialog.h"
+#include"reviewReagentApplyDialog.h"
+#include"reagentResultDialog.h"
+#include"labRepertoryDialog.h"
+#include"recycleManageDialog.h"
+#include"addRecycleItemDialog.h"
 #include"resource.h"
 #include"adminTemplate.h"
 #include"supplierTemplate.h"
@@ -57,13 +72,13 @@
 
 
 /*
-    @value:ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê¡¢ï¿½ï¿½ï¿½ß¡ï¿½
+    @value:´°¿Ú×ø±ê¡¢¿í¸ß¡£
 */
 #define YUFFIE_WINDOW_X 400
 #define YUFFIE_WINDOW_Y 100
 #define YUFFIE_WINDOW_NWIDTH 800
 #define YUFFIE_WINDOW_NHEIGHT 600
-#define YUFFIE_MAIN_TITLE TEXT("Yuffie:Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ÛºÏ¹ï¿½ï¿½ï¿½ÏµÍ³")
+#define YUFFIE_MAIN_TITLE TEXT("Yuffie:ÊµÑéÊÒÐÅÏ¢»¯×ÛºÏ¹ÜÀíÏµÍ³")
 
 
 
@@ -71,7 +86,7 @@
 
 
 /*
-    @value:ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½Ã¡ï¿½
+    @value:²Ëµ¥²¼¾ÖÎ»ÖÃ¡£
 */
 #define INIT_MENU_POS    0
 #define HELLO_MENU_POS   2

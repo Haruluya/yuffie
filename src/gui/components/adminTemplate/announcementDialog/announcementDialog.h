@@ -5,6 +5,6 @@
 #define ID_YUFFIE_ADMIN_NOTICE_CONFIRM_BUTTON 1103
 
 /*
-    @function:"窗口过程。"
+    @function:"���ڹ��̡�"
 */
 BOOL CALLBACK AnnoucementDlgProc(HWND, UINT, WPARAM, LPARAM);

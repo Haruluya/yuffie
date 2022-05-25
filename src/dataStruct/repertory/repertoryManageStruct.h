@@ -23,17 +23,78 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/15
-    @author:haruluya
-    @model_function:"[关于Yuffie]Dialog控件配置".
-    @include:globalConst.h  
-    @work:aboutDialog.c       
-    @log:aboutDialog.log    
-
+    @date:2022/5/14
+    @author:deng
+    @model_function:"实验室库存数据结构定义".
+    @include:[global.h]
+    @work:laborInventory.c
+    @log:NONE
 */
 
-#include"globalConst.h"
 
-#define ID_YUFFIE_ABOUT_ABOUT_LAB 277
 
-BOOL CALLBACK aboutDlgProc(HWND, UINT, WPARAM, LPARAM);
+#ifndef HEADER_REPERTOR_MANAGE_STRUCT
+
+#include "global.h"
+#define  HEADER_REPERTOR_MANAGE_STRUCT 114515
+/*
+    @function:"药品种类的抽象."
+    @value:{
+
+    }
+*/
+typedef enum mange
+{
+    ADD,
+    SUB,
+} mange;
+
+/*
+    @function:"总库存中药品的抽象."
+    @value:{
+        reagentName:"药剂名称",
+        reagentId:"药剂id",
+        reagentNum:"药剂数量",
+    }
+*/
+typedef struct manageItem
+{
+    String reagentName;
+    String time;
+    int reagentId;
+    int reagentChangeNum;
+    mange mange;
+} manageItem;
+
+/*
+    @value:总库存表最大元组数。
+*/
+#define INVENTORY_LIST_MAX_SIZE 199
+
+
+/*
+    @function:"总库存试剂表."
+    @range:[0,INVENTORY_LIST_MAX_SIZE]
+*/
+manageItem manageInventoryList[INVENTORY_LIST_MAX_SIZE];
+
+/*
+    @value:"总库存表长度"
+    @range:[0,INVENTORY_LIST_MAX_SIZE]
+*/
+int manageInventoryLen;
+
+
+
+//当前teacher的实验室库存记录。
+manageItem manageLabList[INVENTORY_LIST_MAX_SIZE];
+
+
+int manageLabListLen;
+
+
+manageItem manageRecyleList[INVENTORY_LIST_MAX_SIZE];
+
+int manageRecyleListLen;
+
+#endif // !HEADER_DEFINE

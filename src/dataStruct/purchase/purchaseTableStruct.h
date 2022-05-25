@@ -23,17 +23,46 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/15
+    @date:2022/5/13
     @author:haruluya
-    @model_function:"[关于Yuffie]Dialog控件配置".
-    @include:globalConst.h  
-    @work:aboutDialog.c       
-    @log:aboutDialog.log    
-
+    @model_function:"订购表数据结构定义".
+    @include:[global.h]   
+    @work:purchaseTableStruct.c      
+    @log:NONE    
 */
 
-#include"globalConst.h"
+#include"global.h"
 
-#define ID_YUFFIE_ABOUT_ABOUT_LAB 277
 
-BOOL CALLBACK aboutDlgProc(HWND, UINT, WPARAM, LPARAM);
+
+/*
+    @function:"订购项的抽象."
+    @value:{
+        inventoryName:"药剂名称",
+        inventoryId:"药剂id",
+        inventoryNum:"药剂数量",
+        inventoryPrice:"报价"
+    }
+*/
+
+
+
+/*
+    @value:订购表每列最大长度。
+*/
+#define INFO_MAXSIZE 50
+/*
+    @value:"订购表最大元组数。"
+*/
+#define PURCHASE_LIST_MAX_SIZE 199
+/*
+    @function:"订购表."
+    @range:[0,PURCHASE_LIST_MAX_SIZE]
+*/
+PurchaseItem purchaseList[PURCHASE_LIST_MAX_SIZE];
+
+/*
+    @function:"订购表长度"
+    @range:[0,PURCHASE_LIST_MAX_SIZE]
+*/
+int purchaseListLen;

@@ -23,17 +23,22 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/15
+    @date:2022/5/9
     @author:haruluya
-    @model_function:"[关于Yuffie]Dialog控件配置".
-    @include:globalConst.h  
-    @work:aboutDialog.c       
-    @log:aboutDialog.log    
+    @model_function:"对采购申请相关操作函数和全局变量。".
+    @include:[purchaseApplyTableStruct.h,user.h]
+    @work:[purchaseApplyTable.c,yuffie.c]
+    @log:purchaseApplyTable.log
 
 */
 
-#include"globalConst.h"
+#include "global.h"
+#include "user.h"
 
-#define ID_YUFFIE_ABOUT_ABOUT_LAB 277
+/*
+    @function:"创建采购通知"
+*/
+Status createPurchaseNotice(String);
 
-BOOL CALLBACK aboutDlgProc(HWND, UINT, WPARAM, LPARAM);
+
+String getNoticeContent();

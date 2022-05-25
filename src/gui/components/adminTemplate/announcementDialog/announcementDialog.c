@@ -23,7 +23,7 @@ BOOL CALLBACK AnnoucementDlgProc(HWND hDlg, UINT message,
     {
         hLabTitle = CreateWindow(
             TEXT("static"), 
-            TEXT("‚òÖÂèëÂ∏ÉÈááË¥≠ÂÖ¨Âëä‚òÖ"),
+            TEXT("°Ô∑¢≤º≤…π∫π´∏Ê°Ô"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hDlg,
@@ -31,7 +31,7 @@ BOOL CALLBACK AnnoucementDlgProc(HWND hDlg, UINT message,
             hInst, 
             NULL
         );
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");
 
 
 
@@ -48,7 +48,7 @@ BOOL CALLBACK AnnoucementDlgProc(HWND hDlg, UINT message,
 
         confirmButton = createDefaultButton(
             TEXT("button"),
-            TEXT("Á°ÆËÆ§ÂèëÂ∏É"),
+            TEXT("»∑»œ∑¢≤º"),
             135, 270, 140, 40,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_NOTICE_CONFIRM_BUTTON,
@@ -88,11 +88,11 @@ BOOL CALLBACK AnnoucementDlgProc(HWND hDlg, UINT message,
                 if (strcmp(noticeContent,"")) {
                     createPurchaseNotice(noticeContent);
                     setPurchasePlanStatus(REVIEWAPPLY);
-                    messageBoxPrintf(TEXT("SUCCESS"), TEXT("SUCCESS:  ÈááË¥≠ÂÖ¨ÂëäÂèëÂ∏ÉÊàêÂäü,ËØ∑Á≠âÂæÖËÄÅÂ∏àÊèê‰∫§Áî≥ËØ∑ÔºÅ "));
+                    messageBoxPrintf(TEXT("SUCCESS"), TEXT("SUCCESS:  ≤…π∫π´∏Ê∑¢≤º≥…π¶,«Îµ»¥˝¿œ ¶Ã·Ωª…Í«Î£° "));
                     EndDialog(hDlg, 0);
                 }
                 else {
-                    messageBoxPrintf(TEXT("SUCCESS"), TEXT("SUCCESS:  ËØ∑ËæìÂÖ•ÂÖ¨ÂëäÔºÅ "));
+                    messageBoxPrintf(TEXT("SUCCESS"), TEXT("SUCCESS:  «Î ‰»Îπ´∏Ê£° "));
                 }
             }
         }

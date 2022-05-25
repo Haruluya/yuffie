@@ -37,7 +37,7 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
     {
         hLabTitle = CreateWindow(
             TEXT("static"), 
-            TEXT("‚òÖÂàõÂª∫Áî®Êà∑‚òÖ"),
+            TEXT("°Ô¥¥Ω®”√ªß°Ô"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hDlg,
@@ -45,12 +45,12 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
             hInst, 
             NULL
         );
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");//ÂàõÂª∫Â≠ó‰Ωì
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");//¥¥Ω®◊÷ÃÂ
 
 
         hLabUserName = CreateWindow(
             TEXT("static"), 
-            TEXT("Ë¥¶Âè∑Ôºö"),
+            TEXT("’À∫≈£∫"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             40, 150, 70, 26,
             hDlg,
@@ -73,7 +73,7 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
 
         hLabPassword = CreateWindow(
             TEXT("static"), 
-            TEXT("ÂØÜÁ†ÅÔºö"),
+            TEXT("√‹¬Î£∫"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             40, 200, 70, 26,
             hDlg,
@@ -129,7 +129,7 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
 
         finishButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÂÆåÊàê"),
+            TEXT("ÕÍ≥…"),
             130, 250, 120, 40,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_ADD_USER_FINISH_BUTTON,
@@ -168,7 +168,7 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
                  GetWindowText(hEditUserName, userName, 80);
                  GetWindowText(hEditPassword, password, 80);
                  if (!strcmp(userName, "") || !strcmp(password, "")) {
-                     MessageBox(hDlg, TEXT("ËæìÂÖ•‰∏ç‰∏∫Á©∫ÔºåËØ∑ÈáçÊñ∞ËæìÂÖ•ÔºÅ"), TEXT("ERROR"), MB_ICONINFORMATION);
+                     MessageBox(hDlg, TEXT(" ‰»Î≤ªŒ™ø’£¨«Î÷ÿ–¬ ‰»Î£°"), TEXT("ERROR"), MB_ICONINFORMATION);
                      break;
                  }
                  if (SendMessage(adminRadioButton, BM_GETCHECK, 0, 0) == BST_CHECKED) {
@@ -181,12 +181,12 @@ BOOL CALLBACK UserAddDlgProc(HWND hDlg, UINT message,
                      identity = SUPPLIER;
                  }
                  else {
-                     MessageBox(hDlg, TEXT("ËØ∑ÈÄâÊã©Áî®Êà∑Ë∫´‰ªΩÔºÅ"), TEXT("ERROR"), MB_ICONINFORMATION);
+                     MessageBox(hDlg, TEXT("«Î—°‘Ò”√ªß…Ì∑›£°"), TEXT("ERROR"), MB_ICONINFORMATION);
                      break;
                  }
                  User user = { userName,password,identity,userListLen + 1 };
                  addUser(user);
-                 MessageBox(hDlg, TEXT("Ê∑ªÂä†Áî®Êà∑ÊàêÂäüÔºÅ"), TEXT("SUCCESS"), MB_ICONINFORMATION);
+                 MessageBox(hDlg, TEXT("ÃÌº””√ªß≥…π¶£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
                  SendMessage(GetParent(hDlg), WM_COMMAND, CM_SHOW_LIST, 0);
                  break;
              }

@@ -23,7 +23,7 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
     {
         hLabTitle = CreateWindow(
             TEXT("static"), 
-            TEXT("‚òÖÂ∫ìÂ≠òÁÆ°ÁêÜ‚òÖ"),
+            TEXT("°Ôø‚¥Êπ‹¿Ì°Ô"),
             WS_CHILD | WS_VISIBLE | SS_CENTERIMAGE | SS_RIGHT,
             30, 10, 220, 50,
             hDlg,
@@ -31,7 +31,7 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
             hInst, 
             NULL
         );
-        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "Ê•∑‰Ωì");
+        hFont = CreateFont(-24, -12, 0, 0, 100, FALSE, FALSE, 0, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, "ø¨ÃÂ");
 
 
 
@@ -49,7 +49,7 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
 
         deleteButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÈááË¥≠ÂÖ•Â∫ì"),
+            TEXT("≤…π∫»Îø‚"),
             450, 100, 150, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_LAB_PURCHASE_BUTTON,
@@ -58,7 +58,7 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
 
         manageButton = createDefaultButton(
             TEXT("button"),
-            TEXT("Êü•ÁúãÂÖ•Â∫ìËÆ∞ÂΩï"),
+            TEXT("≤Èø¥»Îø‚º«¬º"),
             450, 160, 150, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_LAB_MANAGE_BUTTON,
@@ -68,7 +68,7 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
 
         printButton = createDefaultButton(
             TEXT("button"),
-            TEXT("ÊâìÂç∞‰ªìÂ∫ì"),
+            TEXT("¥Ú”°≤÷ø‚"),
             450, 220, 150, 50,
             hDlg,
             (HMENU)ID_YUFFIE_ADMIN_LAB_PRINT_BUTTON,
@@ -106,10 +106,11 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
         switch (LOWORD(wParam)) {
 
        
-
+            
             case CM_SHOW_LIST:
             {
-                SendMessage(hwndList, LB_INSERTSTRING, -1, "ËØïÂâÇÂêçÁß∞    ËØïÂâÇID    ËØïÂâÇÊï∞Èáè");
+                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
+                SendMessage(hwndList, LB_INSERTSTRING, -1, " ‘º¡√˚≥∆     ‘º¡ID     ‘º¡ ˝¡ø");
                 for (int i = 0; i < inventoryListLen; i++) {
                     String mainLabInfo = (String)malloc(sizeof(char) * 100);
                     mainLabInfo = strcpy(mainLabInfo, inventoryList[i].reagentName);
@@ -124,8 +125,31 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
                 }
                 break;
             }
+            case CM_SHOW_MANAGE_LIST:
+            {
+                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
+                SendMessage(hwndList, LB_INSERTSTRING, -1, " ‘º¡√˚≥∆    ∏¸–¬ ±º‰     ‘º¡ID    ∏¸–¬ ˝¡ø    ∏¸–¬∑Ω Ω");
+                for (int i = 0; i < manageInventoryLen; i++) {
+                    String manageLabInfo = (String)malloc(sizeof(char) * 100);
+                    manageLabInfo = strcpy(manageLabInfo, manageInventoryList[i].reagentName);
+                    manageLabInfo = strcat(manageLabInfo, "    ");
+                    manageLabInfo = strcat(manageLabInfo, manageInventoryList[i].time);
+                    String str = (String)malloc(sizeof(char) * 100);
+                    sprintf(str, "%d", manageInventoryList[i].reagentId);
+                    manageLabInfo = strcat(manageLabInfo, "    ");
+                    manageLabInfo = strcat(manageLabInfo, str);
+                    sprintf(str, "%d", manageInventoryList[i].reagentChangeNum);
+                    manageLabInfo = strcat(manageLabInfo, "    ");
+                    manageLabInfo = strcat(manageLabInfo, str);
+                    sprintf(str, "%d", manageInventoryList[i].mange);
+                    manageLabInfo = strcat(manageLabInfo, "    ");
+                    manageLabInfo = strcat(manageLabInfo, str);
+                    SendMessage(hwndList, LB_INSERTSTRING, -1, manageLabInfo);
+                }
+                break;
+            }
             case ID_YUFFIE_ADMIN_LAB_PURCHASE_BUTTON: {
-                if (IDOK != MessageBox(hDlg, TEXT("ÂÆåÊàêÈááË¥≠Ë°®Â¶ÇÂ∫ìÊìç‰ΩúÔºü"),
+                if (IDOK != MessageBox(hDlg, TEXT("ÕÍ≥…≤…π∫±Ì»Îø‚≤Ÿ◊˜£ø"),
                     TEXT("Querry"),
                     MB_ICONQUESTION | MB_OKCANCEL))
                     break;
@@ -137,37 +161,38 @@ BOOL CALLBACK MainLabDlgProc(HWND hDlg, UINT message,
             }
             case ID_YUFFIE_ADMIN_LAB_PRINT_BUTTON:
             {
-                if (IDOK != MessageBox(hDlg, TEXT("ÊâìÂç∞‰ªìÂ∫ìÂ∫ìÂ≠òÔºü"),
+                if (IDOK != MessageBox(hDlg, TEXT("¥Ú”°≤÷ø‚ø‚¥Ê£ø"),
                     TEXT("Querry"),
                     MB_ICONQUESTION | MB_OKCANCEL))
                     break;
                 PrintMainLab();
-                MessageBox(hDlg, TEXT("Â∑≤ÊâìÂç∞Âà∞print.txtÔºÅ"), TEXT("SUCCESS"), MB_ICONINFORMATION);
+                MessageBox(hDlg, TEXT("“—¥Ú”°µΩprint.txt£°"), TEXT("SUCCESS"), MB_ICONINFORMATION);
                 break;
             }
+
             case ID_YUFFIE_ADMIN_LAB_MANAGE_BUTTON:
             {
-                if (IDOK != MessageBox(hDlg, TEXT("Êü•ÁúãÂÖ•Â∫ìËÆ∞ÂΩïÔºü"),
-                    TEXT("Querry"),
-                    MB_ICONQUESTION | MB_OKCANCEL))
-                    break;
-
-                SendMessage(hwndList, LB_RESETCONTENT, 0, 0);
-                SendMessage(hwndList, LB_INSERTSTRING, -1, "ËØïÂâÇÂêçÁß∞    ËØïÂâÇID    ËØïÂâÇÊï∞Èáè");
-
-                for (int i = 0; i < inventoryListLen; i++) {
-                    String mainLabInfo = (String)malloc(sizeof(char) * 100);
-                    mainLabInfo = strcpy(mainLabInfo, inventoryList[i].reagentName);
-                    String str = (String)malloc(sizeof(char) * 100);
-                    sprintf(str, "%d", inventoryList[i].reagentId);
-                    mainLabInfo = strcat(mainLabInfo, "    ");
-                    mainLabInfo = strcat(mainLabInfo, str);
-                    sprintf(str, "%d", inventoryList[i].reagentNum);
-                    mainLabInfo = strcat(mainLabInfo, "    ");
-                    mainLabInfo = strcat(mainLabInfo, str);
-                    SendMessage(hwndList, LB_INSERTSTRING, -1, mainLabInfo);
+                String text = (String)malloc(sizeof(char) * INFO_MAXSIZE);
+                GetWindowText(manageButton, text, INFO_MAXSIZE);
+                if (!strcmp(text, "≤Èø¥»Îø‚º«¬º")) {
+                    if (IDOK != MessageBox(hDlg, TEXT("≤Èø¥»Îø‚º«¬º£ø"),
+                        TEXT("Querry"),
+                        MB_ICONQUESTION | MB_OKCANCEL))
+                        break;
+                    initMainLabManage();
+                    SendMessage(hDlg, WM_COMMAND, CM_SHOW_MANAGE_LIST, 0);
+                    SetWindowText(manageButton, "≤Èø¥ø‚¥Ê");
+                }
+                else if (!strcmp(text, "≤Èø¥ø‚¥Ê")) {
+                    if (IDOK != MessageBox(hDlg, TEXT("≤Èø¥ø‚¥Ê£ø"),
+                        TEXT("Querry"),
+                        MB_ICONQUESTION | MB_OKCANCEL))
+                        break;
+                    SendMessage(hDlg, WM_COMMAND, CM_SHOW_LIST, 0);
+                    SetWindowText(manageButton, "≤Èø¥»Îø‚º«¬º");
                 }
                 break;
+              
             }
         }
         break;

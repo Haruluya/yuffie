@@ -25,11 +25,11 @@
     @version:0.0.2
     @date:2022/5/15
     @author:haruluya
-    @model_function:"[å…³äºYuffie]Dialogæ§ä»¶é…ç½®".
+    @model_function:"[¹ØÓÚYuffie]Dialog¿Ø¼şÅäÖÃ".
     @include:aboutDialog.h   
     @log:aboutDialog.log     
     @functions:{
-        aboutDlgProc:"çª—å£è¿‡ç¨‹.",
+        aboutDlgProc:"´°¿Ú¹ı³Ì.",
     }
 */
 #include"aboutDialog.h"
@@ -40,37 +40,37 @@ BOOL CALLBACK aboutDlgProc(HWND hDlg, UINT message,
     WPARAM wParam, LPARAM lParam)
 {
     /*
-        @value:"dialogå¥æŸ„"
+        @value:"dialog¾ä±ú"
    */
     HDC         hdc;
 
     /*
-        @value:"ç»˜åˆ¶çŠ¶æ€ä¿¡æ¯ã€‚"
+        @value:"»æÖÆ×´Ì¬ĞÅÏ¢¡£"
     */
     PAINTSTRUCT ps;
 
     /*
-        @value:"è®¾å¤‡å¥æŸ„ã€‚"
+        @value:"Éè±¸¾ä±ú¡£"
     */
     HDC             mdc;
 
     /*
-        @value:"imgé™æ€å¥æŸ„ã€‚"
+        @value:"img¾²Ì¬¾ä±ú¡£"
     */
     static HDC hdcStatic;
 
     /*
-        @value:"About Labelã€‚"
+        @value:"About Label¡£"
     */
     static HWND  hLabAbout;
 
     /*
-        @value:"èƒŒæ™¯ä½å›¾ã€‚"
+        @value:"±³¾°Î»Í¼¡£"
     */
     static HWND bgImg;
 
     /*
-        @check:"æ¶ˆæ¯é˜Ÿåˆ—å¤„ç†ã€‚"
+        @check:"ÏûÏ¢¶ÓÁĞ´¦Àí¡£"
     */
     switch (message)
     {
@@ -79,7 +79,7 @@ BOOL CALLBACK aboutDlgProc(HWND hDlg, UINT message,
     {
         hLabAbout = CreateWindow(
             TEXT("static"), 
-            TEXT("\tæœ¬é¡¹ç›®åŸºäºå­¦æœŸcè¯­è¨€è¯­æ³•å’ŒWin32 SDKçŸ¥è¯†ï¼ŒåŸºæœ¬å®ç°äº†å®éªŒå®¤ä¿¡æ¯åŒ–ç®¡ç†ç³»ç»ŸåŠŸèƒ½ã€‚\n\t\tVersion 1.0.0"),
+            TEXT("\t±¾ÏîÄ¿»ùÓÚÑ§ÆÚcÓïÑÔÓï·¨ºÍWin32 SDKÖªÊ¶£¬»ù±¾ÊµÏÖÁËÊµÑéÊÒĞÅÏ¢»¯¹ÜÀíÏµÍ³¹¦ÄÜ¡£\n\t\tVersion 1.0.0"),
             WS_CHILD | WS_VISIBLE | WS_BORDER | ES_AUTOHSCROLL,
             20, 40, 200, 100,
             hDlg,
@@ -99,7 +99,7 @@ BOOL CALLBACK aboutDlgProc(HWND hDlg, UINT message,
 
     case WM_PAINT:
     {
-        bgImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\æ¡Œé¢\\Course\\cè¯­è¨€è¯¾è®¾\\bitmaps\\bg3.bmp"), IMAGE_BITMAP, 400, 400, LR_LOADFROMFILE);
+        bgImg = (HBITMAP)LoadImage(NULL, TEXT("G:\\×ÀÃæ\\Course\\cÓïÑÔ¿ÎÉè\\bitmaps\\bg3.bmp"), IMAGE_BITMAP, 400, 400, LR_LOADFROMFILE);
         hdc = BeginPaint(hDlg, &ps);
         mdc = CreateCompatibleDC(hdc);
         SelectObject(mdc, bgImg);

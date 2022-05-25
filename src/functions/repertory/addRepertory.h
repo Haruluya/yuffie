@@ -23,17 +23,53 @@
     SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
-    @date:2022/5/15
-    @author:haruluya
-    @model_function:"[关于Yuffie]Dialog控件配置".
-    @include:globalConst.h  
-    @work:aboutDialog.c       
-    @log:aboutDialog.log    
+    @date:2022/5/16
+    @author:Estrella
+    @model_function:"对试剂入库相关操作函数和全局变量。".
+    @include:[repertoryStruct.h,repertoryManageStruct.h]
+    @log:purchaseTable.log
 
 */
 
-#include"globalConst.h"
+#include "repertoryStruct.h"
+#include "repertoryManageStruct.h"
+#include "user.h"
 
-#define ID_YUFFIE_ABOUT_ABOUT_LAB 277
+/*
+    @function:"要入库的试剂列表"
+*/
+ReagentItem addList[INVENTORY_LIST_MAX_SIZE];
 
-BOOL CALLBACK aboutDlgProc(HWND, UINT, WPARAM, LPARAM);
+/*
+    @function:"要入库的试剂列表"
+*/
+int addListLen;
+
+/*
+    @function:"初始化载入主仓库的试剂"
+*/
+Status initInventory();
+
+/*
+    @function:"初始化载入采购的试剂"
+*/
+Status initAddInventory();
+
+/*
+    @function:"入库操作。"
+*/
+Status addMainInventory();
+
+/*
+    @function:"入库记录。"
+*/
+Status addMainRepertoryManage();
+
+/*
+    @function:"更新主库存。"
+*/
+Status createMainInventory();
+
+
+Status initMainLabManage();
+

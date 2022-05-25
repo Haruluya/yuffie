@@ -22,18 +22,29 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.   //MIT证书声明，为固定部分。
 
-    @version:0.0.1
+    @version:0.0.2
     @date:2022/5/15
     @author:haruluya
-    @model_function:"[关于Yuffie]Dialog控件配置".
-    @include:globalConst.h  
-    @work:aboutDialog.c       
-    @log:aboutDialog.log    
+    @model_function:"teacher视图中的添加采购申请选项dialog".
+    @include:globalConst.h   
+    @work:addPurchaseApplyDialog.c       
+    @log:addPurchaseApplyDialog.log    
 
 */
 
 #include"globalConst.h"
 
-#define ID_YUFFIE_ABOUT_ABOUT_LAB 277
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_LAB 2101
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RENAME_LAB 2102
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RENAME_EDIT 2103
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_REID_LAB 2104
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_REID_EDIT 2105
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RENUM_LAB 2106
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RENUM_EDIT 2107
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_RECLASS_LAB 2108
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_GEN_RADIO_BUTTON 2109
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_SPE_RADIO_BUTTON 2110
+#define ID_YUFFIE_TEACHER_PURCHASE_APPLY_FINISH_BUTTON 2111
 
-BOOL CALLBACK aboutDlgProc(HWND, UINT, WPARAM, LPARAM);
+
+BOOL CALLBACK PurchaseApplyAddDlgProc(HWND, UINT, WPARAM, LPARAM);

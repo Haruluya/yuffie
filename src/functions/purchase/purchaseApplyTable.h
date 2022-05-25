@@ -24,16 +24,30 @@
 
     @version:0.0.1
     @date:2022/5/15
-    @author:haruluya
-    @model_function:"[关于Yuffie]Dialog控件配置".
-    @include:globalConst.h  
-    @work:aboutDialog.c       
-    @log:aboutDialog.log    
+    @author:Estrella
+    @model_function:"对药剂申请相关操作函数和全局变量。".
+    @include:[purchaseApplyTableStruct.h,user.h]
+    @work:[purchaseApplyTable.c,yuffie.c]
+    @log:purchaseApplyTable.log
 
 */
 
-#include"globalConst.h"
+#include "purchaseApplyTableStruct.h"
+#include "user.h"
 
-#define ID_YUFFIE_ABOUT_ABOUT_LAB 277
+/*
+    @function:"初始化采购申请List"
+*/
+Status initPurchaseApplyList();
 
-BOOL CALLBACK aboutDlgProc(HWND, UINT, WPARAM, LPARAM);
+/*
+    @function:"填写采购申请表，并提交给admin。"
+*/
+Status createTeacherPurchaseApply();
+
+
+Status addPurchaseApplyItem(purchaseTApplyItem);
+
+String getReClassName(purchaseTApplyItem);
+
+String deletePurchaseApplyItem(int);
