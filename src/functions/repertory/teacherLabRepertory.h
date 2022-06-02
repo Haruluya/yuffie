@@ -3,22 +3,22 @@
 
 
 
-//³õÊ¼»¯ÊµÑéÊÒ²Ö¿â¡£
+//åˆå§‹åŒ–å®éªŒå®¤ä»“åº“ã€‚
 Status initLabRepertoryList();
 
-//ÊÖ¶¯¸üĞÂ£¨Ê¹ÓÃÊÔ¼Á£©ÊµÑéÊÒ²Ö¿â¡£
+//æ‰‹åŠ¨æ›´æ–°ï¼ˆä½¿ç”¨è¯•å‰‚ï¼‰å®éªŒå®¤ä»“åº“ã€‚
 Status updateLabRepertory(int,int);
 
 
 
-//privaceº¯Êı£¬É¾³ıÊµÑéÊÒ²Ö¿âÄ³Ïî¡£
+//privaceå‡½æ•°ï¼Œåˆ é™¤å®éªŒå®¤ä»“åº“æŸé¡¹ã€‚
 Status deleteLabRepertoryItemById(int);
 
-//¸üĞÂÊµÑéÊÒ²Ö¿âÎÄ¼ş¡£
+//æ›´æ–°å®éªŒå®¤ä»“åº“æ–‡ä»¶ã€‚
 Status updateLabRepertoryFile();
 
 
-//Ìí¼ÓÉêÇë½á¹ûµ½ÊµÑéÊÒ²Ö¿â¡£
+//æ·»åŠ ç”³è¯·ç»“æœåˆ°å®éªŒå®¤ä»“åº“ã€‚
 Status addApplyResultItemToLab();
 
 

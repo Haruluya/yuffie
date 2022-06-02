@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜Žï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"¶©¹º±íÊý¾Ý½á¹¹¶¨Òå".
+    @model_function:"è®¢è´­è¡¨æ•°æ®ç»“æž„å®šä¹‰".
     @include:[global.h]   
     @work:purchaseTableStruct.c      
     @log:NONE    
@@ -36,33 +36,33 @@
 
 
 /*
-    @function:"¶©¹ºÏîµÄ³éÏó."
+    @function:"è®¢è´­é¡¹çš„æŠ½è±¡."
     @value:{
-        inventoryName:"Ò©¼ÁÃû³Æ",
-        inventoryId:"Ò©¼Áid",
-        inventoryNum:"Ò©¼ÁÊýÁ¿",
-        inventoryPrice:"±¨¼Û"
+        inventoryName:"è¯å‰‚åç§°",
+        inventoryId:"è¯å‰‚id",
+        inventoryNum:"è¯å‰‚æ•°é‡",
+        inventoryPrice:"æŠ¥ä»·"
     }
 */
 
 
 
 /*
-    @value:¶©¹º±íÃ¿ÁÐ×î´ó³¤¶È¡£
+    @value:è®¢è´­è¡¨æ¯åˆ—æœ€å¤§é•¿åº¦ã€‚
 */
 #define INFO_MAXSIZE 50
 /*
-    @value:"¶©¹º±í×î´óÔª×éÊý¡£"
+    @value:"è®¢è´­è¡¨æœ€å¤§å…ƒç»„æ•°ã€‚"
 */
 #define PURCHASE_LIST_MAX_SIZE 199
 /*
-    @function:"¶©¹º±í."
+    @function:"è®¢è´­è¡¨."
     @range:[0,PURCHASE_LIST_MAX_SIZE]
 */
 PurchaseItem purchaseList[PURCHASE_LIST_MAX_SIZE];
 
 /*
-    @function:"¶©¹º±í³¤¶È"
+    @function:"è®¢è´­è¡¨é•¿åº¦"
     @range:[0,PURCHASE_LIST_MAX_SIZE]
 */
 int purchaseListLen;

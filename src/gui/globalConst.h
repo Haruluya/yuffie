@@ -21,12 +21,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MIT֤��������Ϊ�̶����֡�
+    SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"GUI����ȫ��ʹ�õľ�ֵ̬�ࡣ"
+    @model_function:"GUI界面全局使用的静态值类。"
     @include:[Windows.h,user.h,purchaseTable.h,resource.h]    
     @work:interface.c       
     @log:interfaces.log    
@@ -72,13 +72,13 @@
 
 
 /*
-    @value:�������ꡢ���ߡ�
+    @value:窗口坐标、宽高。
 */
 #define YUFFIE_WINDOW_X 400
 #define YUFFIE_WINDOW_Y 100
 #define YUFFIE_WINDOW_NWIDTH 800
 #define YUFFIE_WINDOW_NHEIGHT 600
-#define YUFFIE_MAIN_TITLE TEXT("Yuffie:ʵ������Ϣ���ۺϹ���ϵͳ")
+#define YUFFIE_MAIN_TITLE TEXT("Yuffie:实验室信息化综合管理系统")
 
 
 
@@ -86,7 +86,7 @@
 
 
 /*
-    @value:�˵�����λ�á�
+    @value:菜单布局位置。
 */
 #define INIT_MENU_POS    0
 #define HELLO_MENU_POS   2

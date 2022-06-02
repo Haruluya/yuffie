@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/14
     @author:deng
-    @model_function:"ÊµÑéÊÒ¿â´æÊı¾İ½á¹¹¶¨Òå".
+    @model_function:"å®éªŒå®¤åº“å­˜æ•°æ®ç»“æ„å®šä¹‰".
     @include:[global.h]
     @work:laborInventory.c
     @log:NONE
@@ -38,7 +38,7 @@
 #include "global.h"
 #define  HEADER_REPERTOR_MANAGE_STRUCT 114515
 /*
-    @function:"Ò©Æ·ÖÖÀàµÄ³éÏó."
+    @function:"è¯å“ç§ç±»çš„æŠ½è±¡."
     @value:{
 
     }
@@ -50,11 +50,11 @@ typedef enum mange
 } mange;
 
 /*
-    @function:"×Ü¿â´æÖĞÒ©Æ·µÄ³éÏó."
+    @function:"æ€»åº“å­˜ä¸­è¯å“çš„æŠ½è±¡."
     @value:{
-        reagentName:"Ò©¼ÁÃû³Æ",
-        reagentId:"Ò©¼Áid",
-        reagentNum:"Ò©¼ÁÊıÁ¿",
+        reagentName:"è¯å‰‚åç§°",
+        reagentId:"è¯å‰‚id",
+        reagentNum:"è¯å‰‚æ•°é‡",
     }
 */
 typedef struct manageItem
@@ -67,26 +67,26 @@ typedef struct manageItem
 } manageItem;
 
 /*
-    @value:×Ü¿â´æ±í×î´óÔª×éÊı¡£
+    @value:æ€»åº“å­˜è¡¨æœ€å¤§å…ƒç»„æ•°ã€‚
 */
 #define INVENTORY_LIST_MAX_SIZE 199
 
 
 /*
-    @function:"×Ü¿â´æÊÔ¼Á±í."
+    @function:"æ€»åº“å­˜è¯•å‰‚è¡¨."
     @range:[0,INVENTORY_LIST_MAX_SIZE]
 */
 manageItem manageInventoryList[INVENTORY_LIST_MAX_SIZE];
 
 /*
-    @value:"×Ü¿â´æ±í³¤¶È"
+    @value:"æ€»åº“å­˜è¡¨é•¿åº¦"
     @range:[0,INVENTORY_LIST_MAX_SIZE]
 */
 int manageInventoryLen;
 
 
 
-//µ±Ç°teacherµÄÊµÑéÊÒ¿â´æ¼ÇÂ¼¡£
+//å½“å‰teacherçš„å®éªŒå®¤åº“å­˜è®°å½•ã€‚
 manageItem manageLabList[INVENTORY_LIST_MAX_SIZE];
 
 

@@ -21,12 +21,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"¶ÔÓÃ»§±íÏà¹Ø²Ù×÷º¯ÊıºÍÈ«¾Ö±äÁ¿¡£".
+    @model_function:"å¯¹ç”¨æˆ·è¡¨ç›¸å…³æ“ä½œå‡½æ•°å’Œå…¨å±€å˜é‡ã€‚".
     @include:global.h    
     @work:[user.c,yuffie.h]       
     @log:user.log     
@@ -37,22 +37,22 @@
 #include"global.h"
 
 /*
-    @value:user±íÃ¿ÁĞ×î´ó³¤¶È¡£
+    @value:userè¡¨æ¯åˆ—æœ€å¤§é•¿åº¦ã€‚
 */
 #define INFO_MAXSIZE 50
 
 /*
-    @value:"user±í×î´óÔª×éÊı¡£"
+    @value:"userè¡¨æœ€å¤§å…ƒç»„æ•°ã€‚"
 */
 #define USER_LIST_MAX_SIZE 199
 #pragma warning(disable : 4996)
 
 
 /*
-    @function:"µÇÂ¼×´Ì¬µÄ·â×°¡£"
+    @function:"ç™»å½•çŠ¶æ€çš„å°è£…ã€‚"
     @value:{
-        Status:"µÇÂ¼×´Ì¬.",
-        String:"µÇÂ¼ÏûÏ¢"
+        Status:"ç™»å½•çŠ¶æ€.",
+        String:"ç™»å½•æ¶ˆæ¯"
     }
 */
 typedef struct LoginMessage {
@@ -62,12 +62,12 @@ typedef struct LoginMessage {
 
 
 /*
-    @function:"ÓÃ»§Éí·İÃ¶¾Ù¡£"
+    @function:"ç”¨æˆ·èº«ä»½æšä¸¾ã€‚"
     @value:{
-        ADMIN:"¹ÜÀíÔ±"£¬
-        SUPPLIER:"¹©Ó¦ÉÌ",
-        TEACHER:"ÀÏÊ¦",
-        NONE:"Î´µÇÂ¼"
+        ADMIN:"ç®¡ç†å‘˜"ï¼Œ
+        SUPPLIER:"ä¾›åº”å•†",
+        TEACHER:"è€å¸ˆ",
+        NONE:"æœªç™»å½•"
     }
 */
 typedef enum IDENTITY
@@ -79,12 +79,12 @@ typedef enum IDENTITY
 }IDENTITY;
 
 /*
-    @function:"ÓÃ»§ÊµÌå¡£"
+    @function:"ç”¨æˆ·å®ä½“ã€‚"
     @value:{
-        userName:"ÓÃ»§Ãû³Æ",
-        password:"ÓÃ»§ÃÜÂë",
-        identity:"ÓÃ»§Éí·İ",
-        id:"µ±Ç°Éí·İid"
+        userName:"ç”¨æˆ·åç§°",
+        password:"ç”¨æˆ·å¯†ç ",
+        identity:"ç”¨æˆ·èº«ä»½",
+        id:"å½“å‰èº«ä»½id"
     }
 */
 typedef struct User {
@@ -97,58 +97,58 @@ typedef struct User {
 
 
 /*
-    @function:"È«¾Ö´¢´æµÄËùÓĞÓÃ»§Êı¾İ£¬±ÜÃâ¶à´Î¶ÁÈ¡ÎÄ¼ş¡£"
+    @function:"å…¨å±€å‚¨å­˜çš„æ‰€æœ‰ç”¨æˆ·æ•°æ®ï¼Œé¿å…å¤šæ¬¡è¯»å–æ–‡ä»¶ã€‚"
     @range:[0,USER_LIST_MAX_SIZE]
 */
 User userList[USER_LIST_MAX_SIZE];
 
 /*
-    @function:"ÓÃ»§Êı¾İ³¤¶È¡£"
+    @function:"ç”¨æˆ·æ•°æ®é•¿åº¦ã€‚"
     @range:[0,USER_LIST_MAX_SIZE]
 */
 int userListLen;
 
 /*
-    @function:"µ±Ç°ÓÃ»§¡£"
+    @function:"å½“å‰ç”¨æˆ·ã€‚"
     @range:[NULL|user]
 */
 User presentUser;
 
 /*
-    @function:"µÇÂ¼ÑéÖ¤¡£"
+    @function:"ç™»å½•éªŒè¯ã€‚"
 */
 LoginMessage loginValidate(String,String);
 
 /*
-    @function:"ÉèÖÃµ±Ç°ÓÃ»§¡£"
+    @function:"è®¾ç½®å½“å‰ç”¨æˆ·ã€‚"
 */
 Status setPresentUser(String userName);
 
 
 /*
-    @function:"ÔØÈëuserÊı¾İ¡£"
+    @function:"è½½å…¥useræ•°æ®ã€‚"
 */
 Status initUserList();
 
 
 /*
-    @function:"×Ô¶¨ÒåµÄsplitº¯Êı¡£"
+    @function:"è‡ªå®šä¹‰çš„splitå‡½æ•°ã€‚"
 */
 String* yuffieSplit(String);
 
 /*
-    @function:"»ñÈ¡Éí·İĞÅÏ¢¡£"
+    @function:"è·å–èº«ä»½ä¿¡æ¯ã€‚"
 */
 String getIdentity(IDENTITY);
 
 
 /*
-    @function:"Ìí¼ÓĞÂÓÃ»§¡£"
+    @function:"æ·»åŠ æ–°ç”¨æˆ·ã€‚"
 */
 Status addUser(User);
 
 /*
-    @function:"É¾³ıÖ¸¶¨ÓÃ»§¡£"
+    @function:"åˆ é™¤æŒ‡å®šç”¨æˆ·ã€‚"
 */
 Status deleteUser(int);
 

@@ -1,20 +1,62 @@
+/*
+    @license:
+    MIT License
+
+    Copyright (c) 2022 Haruluya
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+    @version:0.0.1
+    @date:2022/5/18
+    @author:deng
+    @model_function:"å®éªŒå®¤è¯•å‰‚ç®¡ç†ç›¸å…³å‡½æ•°".
+    @include:[reagentApplyStruct.h,repertoryManageStruct.h,repertoryStruct.h,user.h]
+    @work:teacherLabManage.c
+    @log:teacherLabManage.log
+
+*/
 #include"repertoryManageStruct.h"
 #include"reagentApplyStruct.h"
 #include"repertoryStruct.h"
 #include"user.h"
 
-
-//³õÊ¼»¯ÊµÑéÊÒ¿â´æ¼ÇÂ¼¡£
+/*
+ @function:"åˆå§‹åŒ–å®éªŒå®¤åº“å­˜è®°å½•"
+ */
 Status initManageLabList();
 
-//ÊµÊ±¸üĞÂÊµÑéÊÒ¿â´æ¼ÇÂ¼¡£
+/*
+ @function:"å®æ—¶æ›´æ–°å®éªŒå®¤åº“å­˜è®°å½•"
+ */
 Status updateManageLabList();
 
-
+/*
+ @function:"æ·»åŠ ç”³è¯·ç»“æœçš„å…¥åº“è®°å½•"
+ */
 Status addApplyResultToManageLabList();
 
-//¸ü¸ÄÊÔ¼ÁÊıÁ¿Ê±£¨ÏûºÄ£©Ìí¼ÓÏûºÄ¼ÇÂ¼¡£
+/*
+ @function:"æ›´æ”¹è¯•å‰‚æ•°é‡æ—¶ï¼ˆæ¶ˆè€—ï¼‰æ·»åŠ æ¶ˆè€—è®°å½•"
+ */
 Status createConsumMnanageItem(int,int);
 
-//Ã¶¾Ù×ª×Ö·û´®ÓÃÓÚÏÔÊ¾¡£
+/*
+ @function:"æšä¸¾è½¬å­—ç¬¦ä¸²ç”¨äºæ˜¾ç¤º"
+ */
 String getUpdateWayName(int);

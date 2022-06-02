@@ -1,20 +1,58 @@
+/*
+    @license:
+    MIT License
+
+    Copyright (c) 2022 Haruluya
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+    @version:0.0.1
+    @date:2022/5/18
+    @author:deng
+    @model_function:"å®éªŒå®¤è¯•å‰‚ç”³é¢†ç®¡ç†ç›¸å…³å‡½æ•°".
+    @include:[reagentApplyStruct.h]
+    @work:reagentApply.c
+    @log:mainReagent.log
+
+*/
 #include"reagentCheck.h"
 
-
-
-
-
-
-//»ñÈ¡ËùÓĞapplyÎÄ¼şÃû¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"è·å–æ‰€æœ‰applyæ–‡ä»¶å"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status initReagentApplyFiles() {
-    // ¶ÁÈ¡²É¹ºÉêÇëÄ¿Â¼ÏÂµÄËùÓĞÉêÇëÎÄ¼ş£¬²¢±£´æÖÁfileName.txt
+    // è¯»å–é‡‡è´­ç”³è¯·ç›®å½•ä¸‹çš„æ‰€æœ‰ç”³è¯·æ–‡ä»¶ï¼Œå¹¶ä¿å­˜è‡³fileName.txt
     system("dir reagentApply  /B > reagentApplyFileName.txt");
 
     FILE* fp;
     reagentApplyFileLen = 0;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("reagentApplyFileName.txt", "r")))
     {
@@ -32,7 +70,17 @@ Status initReagentApplyFiles() {
     return OK;
 }
 
-//³õÊ¼»¯ÉêÇëÏîÁĞ±í¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"åˆå§‹åŒ–ç”³è¯·é¡¹åˆ—è¡¨"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status initReagentApplyList() {
     int i;
     FILE* fp;
@@ -43,7 +91,7 @@ Status initReagentApplyList() {
         strcat(strcpy(str, "./reagentApply/"), reagentApplyFileName[i]);
 
         /*
-            @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+            @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
         */
         if (!(fp = fopen(str, "r")))
         {
@@ -58,7 +106,7 @@ Status initReagentApplyList() {
             if (!strcmp(BUFF, "\0")) {
                 break;
             }
-            //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+            //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
             String* reagentApplyInfo = yuffieSplit(BUFF);
             if (!strcmp(BUFF, "\r\n")) {
                 continue;
@@ -79,8 +127,17 @@ Status initReagentApplyList() {
 }
 
 
-
-//Ìí¼ÓÇëÇóÏî¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"æ·»åŠ è¯·æ±‚é¡¹"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status addReagentCheckItem(ReagentCheckItem item) {
     if (!item.reagentName) {
         return INFASIBLE;
@@ -89,7 +146,17 @@ Status addReagentCheckItem(ReagentCheckItem item) {
     return OK;
 }
 
-//É¾³ıÇëÇóÏî¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"åˆ é™¤è¯·æ±‚é¡¹"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status deleteReagentCheckItemById(int id) {
     if (id <= 0) {
         return INFASIBLE;
@@ -106,11 +173,21 @@ Status deleteReagentCheckItemById(int id) {
     return NOT_FOUND;
 }
 
-//Ìá½»ÇëÇó±í¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"æäº¤è¯·æ±‚è¡¨"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status commitReagentCheck() {
     FILE* fp;
     /*
-       @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+       @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("reagentAuditResult.txt", "w")))
     {
@@ -119,7 +196,7 @@ Status commitReagentCheck() {
     for (int i = 0; i < reagentCheckListLen; i++)
     {
 
-        //Êä³öÊÔ¼ÁÉêÇëÏîµ½admin´¦
+        //è¾“å‡ºè¯•å‰‚ç”³è¯·é¡¹åˆ°adminå¤„
         fprintf(fp,
             "%s %d %d %d\n",
             reagentCheckList[i].reagentName,

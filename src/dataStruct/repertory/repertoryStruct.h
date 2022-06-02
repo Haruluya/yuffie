@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITึคส้ษ๙ร๗ฃฌฮชนฬถจฒฟทึกฃ
+    SOFTWARE.   //MIT่ฏไนฆๅฃฐๆ๏ผไธบๅบๅฎ้จๅใ€
 
     @version:0.0.1
     @date:2022/5/14
     @author:deng
-    @model_function:"สตั้สาฟโดๆสýพÝฝแนนถจาๅ".
+    @model_function:"ๅฎ้ชๅฎคๅบ“ๅญๆ•ฐๆฎ็ป“ๆๅฎไน".
     @include:[global.h]
     @work:laborInventory.c
     @log:NONE
@@ -40,11 +40,11 @@
 #include"global.h"
 #include"user.h"
 /*
-    @function:"สตั้สาผฐืÜฟโดๆึะาฉฦทตฤณ้ฯ๓."
+    @function:"ๅฎ้ชๅฎคๅๆ€ปๅบ“ๅญไธญ่ฏๅ“็ๆฝ่ฑก."
     @value:{
-        reagentName:"าฉผมร๛ณฦ",
-        reagentId:"าฉผมid",
-        reagentNum:"าฉผมสýมฟ",
+        reagentName:"่ฏๅๅ็งฐ",
+        reagentId:"่ฏๅid",
+        reagentNum:"่ฏๅๆ•ฐ้",
     }
 */
 typedef struct ReagentItem {
@@ -59,46 +59,46 @@ typedef struct ReagentItem {
 
 
 /*
-    @value:ืÜฟโดๆฑํื๎ด๓ิชื้สýกฃ
+    @value:ๆ€ปๅบ“ๅญ่กจๆ€ๅคงๅ…็ปๆ•ฐใ€
 */
 #define INVENTORY_LIST_MAX_SIZE 199
 
 /*
-    @value:รฟาปสตั้สาฟโดๆฑํื๎ด๓ิชื้สýกฃ
+    @value:ๆฏไธ€ๅฎ้ชๅฎคๅบ“ๅญ่กจๆ€ๅคงๅ…็ปๆ•ฐใ€
 */
 #define LABOR_LIST_MAX_SIZE 49
 
 /*
-    @value:สตั้สาื๎ด๓สýกฃ
+    @value:ๅฎ้ชๅฎคๆ€ๅคงๆ•ฐใ€
 */
 #define LABOR_MAX 9
 
 /*
-    @function:"ืÜฟโดๆสิผมฑํ."
+    @function:"ๆ€ปๅบ“ๅญ่ฏ•ๅ่กจ."
     @range:[0,INVENTORY_LIST_MAX_SIZE]
 */
 ReagentItem inventoryList[INVENTORY_LIST_MAX_SIZE];
 
 /*
-    @function:"สตั้สาสิผมฑํ."
+    @function:"ๅฎ้ชๅฎค่ฏ•ๅ่กจ."
     @range:[0,REAGENT_LIST_MAX_SIZE]
 */
 ReagentItem laborReaList[LABOR_LIST_MAX_SIZE];
 
 /*
-    @function:"สตั้สาฑํ."
+    @function:"ๅฎ้ชๅฎค่กจ."
     @range:[0,INVENTORY_LIST_MAX_SIZE]
 */
 ReagentItem* laborList[LABOR_MAX];
 
 /*
-    @value:"ืÜฟโดๆฑํณคถศ"
+    @value:"ๆ€ปๅบ“ๅญ่กจ้•ฟๅบฆ"
     @range:[0,INVENTORY_LIST_MAX_SIZE]
 */
 int inventoryListLen;
 
 /*
-    @value:"สตั้สาฑํณคถศ"
+    @value:"ๅฎ้ชๅฎค่กจ้•ฟๅบฆ"
     @range:[0,INVENTORY_LIST_MAX_SIZE]
 */
 int laborListLen;

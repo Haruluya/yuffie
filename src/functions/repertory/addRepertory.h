@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/16
     @author:Estrella
-    @model_function:"¶ÔÊÔ¼ÁÈë¿âÏà¹Ø²Ù×÷º¯ÊıºÍÈ«¾Ö±äÁ¿¡£".
+    @model_function:"å¯¹è¯•å‰‚å…¥åº“ç›¸å…³æ“ä½œå‡½æ•°å’Œå…¨å±€å˜é‡ã€‚".
     @include:[repertoryStruct.h,repertoryManageStruct.h]
     @log:purchaseTable.log
 
@@ -36,37 +36,37 @@
 #include "user.h"
 
 /*
-    @function:"ÒªÈë¿âµÄÊÔ¼ÁÁĞ±í"
+    @function:"è¦å…¥åº“çš„è¯•å‰‚åˆ—è¡¨"
 */
 ReagentItem addList[INVENTORY_LIST_MAX_SIZE];
 
 /*
-    @function:"ÒªÈë¿âµÄÊÔ¼ÁÁĞ±í"
+    @function:"è¦å…¥åº“çš„è¯•å‰‚åˆ—è¡¨"
 */
 int addListLen;
 
 /*
-    @function:"³õÊ¼»¯ÔØÈëÖ÷²Ö¿âµÄÊÔ¼Á"
+    @function:"åˆå§‹åŒ–è½½å…¥ä¸»ä»“åº“çš„è¯•å‰‚"
 */
 Status initInventory();
 
 /*
-    @function:"³õÊ¼»¯ÔØÈë²É¹ºµÄÊÔ¼Á"
+    @function:"åˆå§‹åŒ–è½½å…¥é‡‡è´­çš„è¯•å‰‚"
 */
 Status initAddInventory();
 
 /*
-    @function:"Èë¿â²Ù×÷¡£"
+    @function:"å…¥åº“æ“ä½œã€‚"
 */
 Status addMainInventory();
 
 /*
-    @function:"Èë¿â¼ÇÂ¼¡£"
+    @function:"å…¥åº“è®°å½•ã€‚"
 */
 Status addMainRepertoryManage();
 
 /*
-    @function:"¸üĞÂÖ÷¿â´æ¡£"
+    @function:"æ›´æ–°ä¸»åº“å­˜ã€‚"
 */
 Status createMainInventory();
 

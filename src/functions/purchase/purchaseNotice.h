@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/9
     @author:haruluya
-    @model_function:"¶Ô²É¹ºÉêÇëÏà¹Ø²Ù×÷º¯ÊıºÍÈ«¾Ö±äÁ¿¡£".
+    @model_function:"å¯¹é‡‡è´­ç”³è¯·ç›¸å…³æ“ä½œå‡½æ•°å’Œå…¨å±€å˜é‡ã€‚".
     @include:[purchaseApplyTableStruct.h,user.h]
     @work:[purchaseApplyTable.c,yuffie.c]
     @log:purchaseApplyTable.log
@@ -36,7 +36,7 @@
 #include "user.h"
 
 /*
-    @function:"´´½¨²É¹ºÍ¨Öª"
+    @function:"åˆ›å»ºé‡‡è´­é€šçŸ¥"
 */
 Status createPurchaseNotice(String);
 

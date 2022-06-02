@@ -1,8 +1,49 @@
+/*
+    @license:
+    MIT License
+
+    Copyright (c) 2022 Haruluya
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+    @version:0.0.1
+    @date:2022/5/18
+    @author:deng
+    @model_function:"å®éªŒå®¤è¯•å‰‚ç®¡ç†ç›¸å…³å‡½æ•°".
+    @include:[teacherLabManage.h]
+    @work:teacherLabManage.c
+    @log:teacherLabManage.log
+
+*/
 #include"teacherLabManage.h"
 
-
-
-//³õÊ¼»¯ÊµÑéÊÒ¿â´æ¼ÇÂ¼¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"åˆå§‹åŒ–å®éªŒå®¤åº“å­˜è®°å½•"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status initManageLabList() {
     FILE* fp;
 
@@ -11,7 +52,7 @@ Status initManageLabList() {
     sprintf(str, "%d", presentUser.id);
     fileName = strcat(strcat(strcat(strcpy(fileName, "./teacher"), str), "/"), "labManageRepertory.txt");
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen(fileName, "r")))
     {
@@ -25,7 +66,7 @@ Status initManageLabList() {
         if (!strcmp(BUFF, "\0")) {
             break;
         }
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* labManangeItemInfo = yuffieSplit(BUFF);
 
         manageItem item;
@@ -44,10 +85,20 @@ Status initManageLabList() {
     fclose(fp);
 }
 
-//Ìí¼ÓÉêÇë½á¹ûµÄÈë¿â¼ÇÂ¼¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"æ·»åŠ ç”³è¯·ç»“æœçš„å…¥åº“è®°å½•"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status addApplyResultToManageLabList() {
 
-    // »ñÈ¡µ±Ç°Ê±¼ä
+    // è·å–å½“å‰æ—¶é—´
     char nowTime[20] = { 0 };
     time_t timep;
     time(&timep);
@@ -73,9 +124,17 @@ Status addApplyResultToManageLabList() {
     return OK;
 }
 
-
-
-//ÊµÊ±¸üĞÂÊµÑéÊÒ¿â´æ¼ÇÂ¼¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"å®æ—¶æ›´æ–°å®éªŒå®¤åº“å­˜è®°å½•"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status updateManageLabList() {
     FILE* fp;
     String fileName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
@@ -83,7 +142,7 @@ Status updateManageLabList() {
     sprintf(str, "%d", presentUser.id);
     fileName = strcat(strcat(strcat(strcpy(fileName, "./teacher"), str), "/"), "labManageRepertory.txt");
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen(fileName, "w")))
     {
@@ -106,10 +165,19 @@ Status updateManageLabList() {
     return OK;
 }
 
-
-
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"æ›´æ”¹è¯•å‰‚æ•°é‡æ—¶ï¼ˆæ¶ˆè€—ï¼‰æ·»åŠ æ¶ˆè€—è®°å½•"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status createConsumMnanageItem(int index, int changeNum) {
-    // »ñÈ¡µ±Ç°Ê±¼ä
+    // è·å–å½“å‰æ—¶é—´
     char nowTime[20] = { 0 };
     time_t timep;
     time(&timep);
@@ -132,8 +200,17 @@ Status createConsumMnanageItem(int index, int changeNum) {
     return OK;
 }
 
-
-
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"æšä¸¾è½¬å­—ç¬¦ä¸²ç”¨äºæ˜¾ç¤º"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 String getUpdateWayName(int way) {
     if (way == ADD) {
         return"ADD";

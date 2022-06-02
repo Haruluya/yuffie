@@ -26,9 +26,9 @@
     @date:2022/5/14
     @author:haruluya
     @model_function:"This is a file for test".
-    @include:[a.h,b.h,c.h]    //°üº¬µÄÍ·ÎÄ¼ş¡£
-    @work:interface.c       //°üº¬´ËÍ·ÎÄ¼şµÄÔ´³ÌĞò¡£
-    @log:interfaces.log     //¸üĞÂÈÕÖ¾¡£
+    @include:[a.h,b.h,c.h]    //åŒ…å«çš„å¤´æ–‡ä»¶ã€‚
+    @work:interface.c       //åŒ…å«æ­¤å¤´æ–‡ä»¶çš„æºç¨‹åºã€‚
+    @log:interfaces.log     //æ›´æ–°æ—¥å¿—ã€‚
 
 */
 
@@ -37,13 +37,13 @@
 /*
     @author:haruluya
     @date:2022/5/14
-    @function:"³õÊ¼»¯²É¹ºÉêÇëList"
+    @function:"åˆå§‹åŒ–é‡‡è´­ç”³è¯·List"
     @input:{
     }
     @output:{
     }
     @execute:[yuffie.WinMain]
-    @return:"Ö´ĞĞ×´Ì¬"
+    @return:"æ‰§è¡ŒçŠ¶æ€"
 */
 Status initPurchaseApplyList()
 {
@@ -63,13 +63,13 @@ Status addPurchaseApplyItem(purchaseTApplyItem item) {
 /*
     @author:haruluya
     @date:2022/5/14
-    @function:"´´½¨³ö¼Û±í(´´½¨¶ÔÓ¦³ö¼ÛÎÄ¼şµ½adminÏÂ²¢É¾³ı¶©¹º±í)"
+    @function:"åˆ›å»ºå‡ºä»·è¡¨(åˆ›å»ºå¯¹åº”å‡ºä»·æ–‡ä»¶åˆ°adminä¸‹å¹¶åˆ é™¤è®¢è´­è¡¨)"
     @input:{
     }
     @output:{
     }
     @execute:[yuffie.WinMain]
-    @return:"Ö´ĞĞ×´Ì¬"
+    @return:"æ‰§è¡ŒçŠ¶æ€"
 */
 Status createTeacherPurchaseApply()
 {
@@ -78,7 +78,7 @@ Status createTeacherPurchaseApply()
     String fileName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
     fileName = strcat(strcat(strcpy(fileName, "./purchaseApply/"), presentUser.userName),".txt");
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen(fileName, "w")))
     {
@@ -88,7 +88,7 @@ Status createTeacherPurchaseApply()
     for (int i = 0; i < purchaseApplyListLen; i++)
     {
 
-        //Êä³ö²É¹ºÉêÇëÏîµ½admin´¦
+        //è¾“å‡ºé‡‡è´­ç”³è¯·é¡¹åˆ°adminå¤„
         fprintf(fp,
             "%s %d %d %d\n",
             purchaseApplyList[i].inventoryName,

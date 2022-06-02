@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MIT֤��������Ϊ�̶����֡�
+    SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
     @date:2022/5/9
     @author:haruluya
-    @model_function:"�Զ�����ز���������ȫ�ֱ�����".
+    @model_function:"对订购相关操作函数和全局变量。".
     @include:[purchaseTableStruct.h,user.h]
     @work:[purchaseTable.c,yuffie.h]
     @log:purchaseTable.log
@@ -37,30 +37,30 @@
 
 
 /*
-    @function:"�������ն��������ݡ�"
+    @function:"载入最终订购表数据。"
 */
 Status initFinalPurchaseList(String,int);
 
 /*
-    @function:"��ȡ���еĹ�Ӧ�̱����ļ�"
+    @function:"获取所有的供应商报价文件"
 */
 Status initOfferApply();
 /*
-    @function:"����ÿ��ҩƷ��Ӧ�����й�Ӧ�̱������ݡ�"
+    @function:"载入每个药品对应的所有供应商报价数据。"
 */
 Status initPrice();
 
 /*
-    @function:"��ÿ��ҩƷ��Ӧ�����й�Ӧ�̱�������ѡ�񱨼����ٵġ�"
+    @function:"对每个药品对应的所有供应商报价数据选择报价最少的。"
 */
 Status selectPrice();
 
 /*
-    @function:"����ÿ��ҩƷ����ѡ��ı��ۺ͹�Ӧ�����ݡ�"
+    @function:"载入每个药品最终选择的报价和供应商数据。"
 */
 Status finalPrice();
 
 /*
-    @function:"��ɱȼ۲��������յĹ������"
+    @function:"完成比价并创建最终的购买表。"
 */
 Status createFinalPrice();

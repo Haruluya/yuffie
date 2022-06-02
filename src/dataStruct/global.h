@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MIT֤��������Ϊ�̶����֡�
+    SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"���ݽṹȫ�־�̬�ࡣ"
+    @model_function:"数据结构全局静态类。"
     @include:[a.h,b.h,c.h]
     @work:all in dataStruct file
     @log:NONE
@@ -39,7 +39,7 @@
 #include<time.h>
 
 /*
-    @function:"����ִ��״̬��װ�����з���void�ĺ���Ӧ�÷���Status�����ִ�������"
+    @function:"函数执行状态封装，所有返回void的函数应该返回Status并检查执行情况。"
 */
 typedef int Status;
 #define TRUE         1
@@ -50,13 +50,13 @@ typedef int Status;
 #define NOT_FOUND   -3
 
 /*
-    @function:"ȫ�ֻ�����."
+    @function:"全局缓存区."
     @range:[0,255]
 */
 char BUFF[255];
 
 /*
-    @function:"�߼���String���塣"
+    @function:"逻辑类String定义。"
 */
 typedef char* String;
 

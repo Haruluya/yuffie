@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/15
     @author:Estrella
-    @model_function:"²É¹ºÉêÇëÉóºËÓÃµ½µÄÊı¾İ½á¹¹¶¨Òå".
+    @model_function:"é‡‡è´­ç”³è¯·å®¡æ ¸ç”¨åˆ°çš„æ•°æ®ç»“æ„å®šä¹‰".
     @include:[global.h]
     @work:purchaseTable.c
     @log:NONE
@@ -35,10 +35,10 @@
 #include "user.h"
 
 /*
-    @function:"Ò©Æ·ÖÖÀàµÄ³éÏó."
+    @function:"è¯å“ç§ç±»çš„æŠ½è±¡."
     @value:{
-        GENERAL:Í¨ÓÃÊÔ¼Á;
-        SPECIAL:×¨ÓÃÊÔ¼Á;
+        GENERAL:é€šç”¨è¯•å‰‚;
+        SPECIAL:ä¸“ç”¨è¯•å‰‚;
     }
 */
 typedef enum inventoryClass
@@ -48,11 +48,11 @@ typedef enum inventoryClass
 } inventoryClass;
 
 /*
-    @function:"²É¹ºÉêÇëÏîµÄ³éÏó."
+    @function:"é‡‡è´­ç”³è¯·é¡¹çš„æŠ½è±¡."
     @value:{
-        inventoryName:"Ò©¼ÁÃû³Æ",
-        inventoryClass:"Ò©¼ÁÀà±ğ"£¬
-        inventoryId:"Ò©¼Áid",
+        inventoryName:"è¯å‰‚åç§°",
+        inventoryClass:"è¯å‰‚ç±»åˆ«"ï¼Œ
+        inventoryId:"è¯å‰‚id",
     }
 */
 typedef struct purchaseApplyItem
@@ -64,10 +64,10 @@ typedef struct purchaseApplyItem
 } purchaseApplyItem;
 
 /*
-    @function:"²É¹ºÉêÇëÁ´±í."
+    @function:"é‡‡è´­ç”³è¯·é“¾è¡¨."
     @value:{
-        data:²É¹ºÉêÇëÏî;
-        next:ÏÂÒ»²É¹ºÉêÇëÏî
+        data:é‡‡è´­ç”³è¯·é¡¹;
+        next:ä¸‹ä¸€é‡‡è´­ç”³è¯·é¡¹
     }
 */
 typedef struct Node
@@ -78,12 +78,12 @@ typedef struct Node
 typedef struct Node* LinkList;
 
 /*
-    @function:"¶©¹ºÏîµÄ³éÏó."
+    @function:"è®¢è´­é¡¹çš„æŠ½è±¡."
     @value:{
-        inventoryName:"Ò©¼ÁÃû³Æ",
-        inventoryId:"Ò©¼Áid",
-        inventoryNum:"Ò©¼ÁÊıÁ¿",
-        inventoryPrice:"±¨¼Û"
+        inventoryName:"è¯å‰‚åç§°",
+        inventoryId:"è¯å‰‚id",
+        inventoryNum:"è¯å‰‚æ•°é‡",
+        inventoryPrice:"æŠ¥ä»·"
     }
 */
 //typedef struct PurchaseItem
@@ -95,35 +95,35 @@ typedef struct Node* LinkList;
 //} PurchaseItem;
 
 /*
-    @function:"ÓÃÁ´±í´æ´¢ËùÓĞµÄ²É¹ºÉêÇë"
+    @function:"ç”¨é“¾è¡¨å­˜å‚¨æ‰€æœ‰çš„é‡‡è´­ç”³è¯·"
 */
 LinkList apply;
 
 /*
-    @value:²É¹ºÉêÇë±íÃ¿ÁĞ×î´ó³¤¶È¡£
+    @value:é‡‡è´­ç”³è¯·è¡¨æ¯åˆ—æœ€å¤§é•¿åº¦ã€‚
 */
 #define INFO_MAXSIZE 50
 
 /*
-    @value:"²É¹ºÉêÇë±í×î´óÔª×éÊı¡£"
+    @value:"é‡‡è´­ç”³è¯·è¡¨æœ€å¤§å…ƒç»„æ•°ã€‚"
 */
 #define PURCHASE_APPLY_LIST_MAX_SIZE 199
 
 /*
-    @function:"²É¹ºÉêÇë±í·ÖÀà¹ıºóµÄÍ¨ÓÃÊÔ¼ÁºÍ×¨ÓÃÊÔ¼Á²É¹ºÉêÇë±í(²É¹ºÉêÇëÉóºË¹ıºó)."
+    @function:"é‡‡è´­ç”³è¯·è¡¨åˆ†ç±»è¿‡åçš„é€šç”¨è¯•å‰‚å’Œä¸“ç”¨è¯•å‰‚é‡‡è´­ç”³è¯·è¡¨(é‡‡è´­ç”³è¯·å®¡æ ¸è¿‡å)."
     @range:[0,PURCHASE_LIST_MAX_SIZE]
 */
 purchaseApplyItem gPurchaseList[PURCHASE_APPLY_LIST_MAX_SIZE];
 purchaseApplyItem sPurchaseList[PURCHASE_APPLY_LIST_MAX_SIZE];
 
 /*
-    @function:"²É¹º¹«¸æ(²É¹ºÉêÇëÉóºË¹ıºó)."
+    @function:"é‡‡è´­å…¬å‘Š(é‡‡è´­ç”³è¯·å®¡æ ¸è¿‡å)."
     @range:[0,PURCHASE_LIST_MAX_SIZE]
 */
 PurchaseItem purchaseTable[PURCHASE_APPLY_LIST_MAX_SIZE];
 
 /*
-    @function:"Í¨ÓÃÊÔ¼Á¡¢×¨ÓÃÊÔ¼Á²É¹º±íºÍ²É¹º¹«¸æ±í³¤¶È"
+    @function:"é€šç”¨è¯•å‰‚ã€ä¸“ç”¨è¯•å‰‚é‡‡è´­è¡¨å’Œé‡‡è´­å…¬å‘Šè¡¨é•¿åº¦"
     @range:[0,PURCHASE_LIST_MAX_SIZE/2]
 */
 int gPurchaseListLen;

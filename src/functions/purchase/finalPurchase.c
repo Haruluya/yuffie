@@ -25,7 +25,7 @@
     @version:0.0.1
     @date:2022/5/15
     @author:Estrella
-    @model_function:"¶Ô¹©Ó¦ÉÌ±¨¼ÛÉóºË²Ù×÷º¯Êı".
+    @model_function:"å¯¹ä¾›åº”å•†æŠ¥ä»·å®¡æ ¸æ“ä½œå‡½æ•°".
     @include:user.h
     @log:user.log
 */
@@ -35,20 +35,20 @@
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"ÔØÈë×îÖÕ¶©¹º±íÊı¾İ"
+    @function:"è½½å…¥æœ€ç»ˆè®¢è´­è¡¨æ•°æ®"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status initFinalPurchaseList(String path,int userId)
 {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen(path, "r")))
     {
@@ -60,11 +60,11 @@ Status initFinalPurchaseList(String path,int userId)
         if (!strcmp(BUFF, "\0")) {
             break;
         }
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* purchaseTableInfo = yuffieSplit(BUFF);
 
         finalPurchaseItem finalPurchaseItem;
-        //¶©¹ºÏî³õÊ¼»¯.
+        //è®¢è´­é¡¹åˆå§‹åŒ–.
         finalPurchaseItem.inventoryName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         strcpy(finalPurchaseItem.inventoryName, purchaseTableInfo[0]);
         finalPurchaseItem.inventoryId = atoi(purchaseTableInfo[1]);
@@ -81,24 +81,24 @@ Status initFinalPurchaseList(String path,int userId)
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"»ñÈ¡ËùÓĞµÄ¹©Ó¦ÉÌ±¨¼ÛÎÄ¼ş"
+    @function:"è·å–æ‰€æœ‰çš„ä¾›åº”å•†æŠ¥ä»·æ–‡ä»¶"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status initOfferApply()
 {
-    // ¶ÁÈ¡²É¹ºÉêÇëÄ¿Â¼ÏÂµÄËùÓĞÉêÇëÎÄ¼ş£¬²¢±£´æÖÁfileName.txt
+    // è¯»å–é‡‡è´­ç”³è¯·ç›®å½•ä¸‹çš„æ‰€æœ‰ç”³è¯·æ–‡ä»¶ï¼Œå¹¶ä¿å­˜è‡³fileName.txt
     system("dir offerApply  /B > priceFileName.txt");
 
     FILE* fp;
     priceFileLen = 0;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("priceFileName.txt", "r")))
     {
@@ -122,13 +122,13 @@ Status initOfferApply()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"ÔØÈëÃ¿¸öÒ©Æ·¶ÔÓ¦µÄËùÓĞ¹©Ó¦ÉÌ±¨¼ÛÊı¾İ"
+    @function:"è½½å…¥æ¯ä¸ªè¯å“å¯¹åº”çš„æ‰€æœ‰ä¾›åº”å•†æŠ¥ä»·æ•°æ®"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status initPrice()
 {
@@ -143,7 +143,7 @@ Status initPrice()
         strcpy(path, BUFF);
         initFinalPurchaseList(path,userId);
         /*
-            @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+            @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
         */
         if (!(fp = fopen(path, "r")))
         {
@@ -157,12 +157,12 @@ Status initPrice()
             if (!strcmp(BUFF, "\0")) {
                 break;
             }
-            //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+            //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
             String* purchaseTableInfo = yuffieSplit(BUFF);
             if (!strcmp(BUFF, "\r\n")) {
                 continue;
             }
-            // ÕâÀï¼ÙÉè²»³¬¹ı10¸ö¹©Ó¦ÉÌ 
+            // è¿™é‡Œå‡è®¾ä¸è¶…è¿‡10ä¸ªä¾›åº”å•† 
             price[atoi(purchaseTableInfo[1])][priceFileName[i][0] - '0'] = atoi(purchaseTableInfo[3]);
 
             BUFF[0] = '\0';
@@ -174,13 +174,13 @@ Status initPrice()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"¶ÔÃ¿¸öÒ©Æ·¶ÔÓ¦µÄËùÓĞ¹©Ó¦ÉÌ±¨¼ÛÊı¾İÑ¡Ôñ±¨¼Û×îÉÙµÄ"
+    @function:"å¯¹æ¯ä¸ªè¯å“å¯¹åº”çš„æ‰€æœ‰ä¾›åº”å•†æŠ¥ä»·æ•°æ®é€‰æ‹©æŠ¥ä»·æœ€å°‘çš„"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status selectPrice()
 {
@@ -189,7 +189,7 @@ Status selectPrice()
         for (int j = 1; j < INFO_MAXSIZE; j++) {
             if (price[i][j] < min && price[i][j] != 0)
             {
-                // 0ºÅµ¥Ôª±£´æ¹©Ó¦ÉÌµÄid
+                // 0å·å•å…ƒä¿å­˜ä¾›åº”å•†çš„id
                 price[i][0] = j;
                 min = price[i][j];
             }
@@ -201,13 +201,13 @@ Status selectPrice()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"ÔØÈëÃ¿¸öÒ©Æ·×îÖÕÑ¡ÔñµÄ±¨¼ÛºÍ¹©Ó¦ÉÌÊı¾İ"
+    @function:"è½½å…¥æ¯ä¸ªè¯å“æœ€ç»ˆé€‰æ‹©çš„æŠ¥ä»·å’Œä¾›åº”å•†æ•°æ®"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status finalPrice()
 {
@@ -217,20 +217,20 @@ Status finalPrice()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"Íê³É±È¼Û²¢´´½¨×îÖÕµÄ¹ºÂò±í"
+    @function:"å®Œæˆæ¯”ä»·å¹¶åˆ›å»ºæœ€ç»ˆçš„è´­ä¹°è¡¨"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status createFinalPrice()
 {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("finalPurchaseInventory.txt", "w")))
     {
@@ -240,7 +240,7 @@ Status createFinalPrice()
     for (int i = 0; i < finalPurchaseLen - 1; i++)
     {
 
-        //Êä³ö³ö¼ÛÏîµ½supplier1.txt.
+        //è¾“å‡ºå‡ºä»·é¡¹åˆ°supplier1.txt.
         fprintf(fp,
             "%s %d %d %d %d\n",
             finalPurchaseTable[i].inventoryName,

@@ -26,9 +26,9 @@
     @date:2022/5/15
     @author:Estrella
     @model_function:"This is a file for test".
-    @include:[purchaseCheck.h]    //°üº¬µÄÍ·ÎÄ¼ş¡£
-    @work:purchaseCheckTest.c       //°üº¬´ËÍ·ÎÄ¼şµÄÔ´³ÌĞò¡£
-    @log:purchaseCheck.log     //¸üĞÂÈÕÖ¾¡£
+    @include:[purchaseCheck.h]    //åŒ…å«çš„å¤´æ–‡ä»¶ã€‚
+    @work:purchaseCheckTest.c       //åŒ…å«æ­¤å¤´æ–‡ä»¶çš„æºç¨‹åºã€‚
+    @log:purchaseCheck.log     //æ›´æ–°æ—¥å¿—ã€‚
 
 */
 
@@ -37,47 +37,47 @@
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"³õÊ¼»¯²É¹ºÉêÇëµ¥Á´±í"
+    @function:"åˆå§‹åŒ–é‡‡è´­ç”³è¯·å•é“¾è¡¨"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status initList()
 {
-    apply = (LinkList)malloc(sizeof(Node));				//¿ª±Ù¿Õ¼ä
+    apply = (LinkList)malloc(sizeof(Node));				//å¼€è¾Ÿç©ºé—´
     if (!apply)
     {
-        printf("·ÖÅäÄÚ´æÊ§°Ü£¡\n");
+        printf("åˆ†é…å†…å­˜å¤±è´¥ï¼\n");
         return ERROR;
     }
-    apply->next = NULL; //Ê¹Í·½ÚµãnextÎªNULL£¬¼´±íÊ¾¿ÕÁ´±í
+    apply->next = NULL; //ä½¿å¤´èŠ‚ç‚¹nextä¸ºNULLï¼Œå³è¡¨ç¤ºç©ºé“¾è¡¨
     return OK;
 }
 
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"»ñÈ¡ËùÓĞµÄ²É¹ºÉêÇëÎÄ¼ş"
+    @function:"è·å–æ‰€æœ‰çš„é‡‡è´­ç”³è¯·æ–‡ä»¶"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status initApply()
 {
-    // ¶ÁÈ¡²É¹ºÉêÇëÄ¿Â¼ÏÂµÄËùÓĞÉêÇëÎÄ¼ş£¬²¢±£´æÖÁfileName.txt
+    // è¯»å–é‡‡è´­ç”³è¯·ç›®å½•ä¸‹çš„æ‰€æœ‰ç”³è¯·æ–‡ä»¶ï¼Œå¹¶ä¿å­˜è‡³fileName.txt
     system("dir purchaseApply  /B > fileName.txt");
 
     FILE* fp;
     fileLen = 0;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("fileName.txt", "r")))
     {
@@ -98,18 +98,18 @@ Status initApply()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"±éÀúËùÓĞ²É¹ºÉêÇëÎÄ¼ş£¬¶ÁÈ¡²¢±£´æËùÓĞÀÏÊ¦Ìá½»µÄ²É¹ºÉêÇë"
+    @function:"éå†æ‰€æœ‰é‡‡è´­ç”³è¯·æ–‡ä»¶ï¼Œè¯»å–å¹¶ä¿å­˜æ‰€æœ‰è€å¸ˆæäº¤çš„é‡‡è´­ç”³è¯·"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status createPurchaseApply()
 {
     int i;
-    // rÎªÖ¸ÏòÎ²²¿µÄ½ÚµãµÄÖ¸Õë, pÊÇĞÂÉú³ÉµÄ½Úµã
+    // rä¸ºæŒ‡å‘å°¾éƒ¨çš„èŠ‚ç‚¹çš„æŒ‡é’ˆ, pæ˜¯æ–°ç”Ÿæˆçš„èŠ‚ç‚¹
     LinkList p, r;
     r = apply;
 
@@ -122,7 +122,7 @@ Status createPurchaseApply()
             continue;
         }
         /*
-            @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+            @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
         */
         if (!(fp = fopen(BUFF, "r")))
         {
@@ -136,34 +136,34 @@ Status createPurchaseApply()
             if (!strcmp(BUFF, "\0")) {
                 break;
             }
-            //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+            //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
             String* purchaseTableInfo = yuffieSplit(BUFF);
  
-            p = (LinkList)malloc(sizeof(Node)); //Éú³ÉĞÂ½Úµã
+            p = (LinkList)malloc(sizeof(Node)); //ç”Ÿæˆæ–°èŠ‚ç‚¹
             p->data.inventoryName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
             strcpy(p->data.inventoryName, purchaseTableInfo[0]);
             p->data.inventoryClass = atoi(purchaseTableInfo[1]);
             p->data.inventoryId = atoi(purchaseTableInfo[2]);
             p->data.inventoryNum = atoi(purchaseTableInfo[3]);
-            r->next = p; //½«±íÎ²ÖÕ¶Ë½ÚµãµÄÖ¸ÕëÖ¸ÏòĞÂ½Úµã
-            r = p;       //½«µ±Ç°µÄĞÂ½Úµã¶¨ÒåÎª±íÎ²ÖÕ¶Ë½Úµã
+            r->next = p; //å°†è¡¨å°¾ç»ˆç«¯èŠ‚ç‚¹çš„æŒ‡é’ˆæŒ‡å‘æ–°èŠ‚ç‚¹
+            r = p;       //å°†å½“å‰çš„æ–°èŠ‚ç‚¹å®šä¹‰ä¸ºè¡¨å°¾ç»ˆç«¯èŠ‚ç‚¹
             BUFF[0] = '\0';
         }
     }
-    r->next = NULL;									//±íÊ¾µ¥Á´±í½áÊø
+    r->next = NULL;									//è¡¨ç¤ºå•é“¾è¡¨ç»“æŸ
 
 }
 
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"¼ÆËã²É¹ºÉêÇëµ¥Á´±íµÄ³¤¶È"
+    @function:"è®¡ç®—é‡‡è´­ç”³è¯·å•é“¾è¡¨çš„é•¿åº¦"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"²É¹ºÉêÇëµ¥Á´±íµÄ³¤¶È"
+    @return:"é‡‡è´­ç”³è¯·å•é“¾è¡¨çš„é•¿åº¦"
 */
 int lengthList()
 {
@@ -182,13 +182,13 @@ int lengthList()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"½«ÉêÇëÔªËØµÄÁ´±í°´ÕÕÉêÇëÒ©Æ·µÄ±àºÅ½øĞĞÃ°ÅİÅÅĞò£¬ÎªºóĞøÉ¾³ıÖØ¸´ÔªËØ×ö×¼±¸"
+    @function:"å°†ç”³è¯·å…ƒç´ çš„é“¾è¡¨æŒ‰ç…§ç”³è¯·è¯å“çš„ç¼–å·è¿›è¡Œå†’æ³¡æ’åºï¼Œä¸ºåç»­åˆ é™¤é‡å¤å…ƒç´ åšå‡†å¤‡"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status sortList()
 {
@@ -209,7 +209,7 @@ Status sortList()
             }
             cur = cur->next;
         }
-        tail = cur; // ¼õÉÙ×îºóµÄÒÑÅÅºÃµÄÑ­»·
+        tail = cur; // å‡å°‘æœ€åçš„å·²æ’å¥½çš„å¾ªç¯
         cur = apply->next;
     }
 
@@ -219,13 +219,13 @@ Status sortList()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:""É¾³ıÉêÇëÁ´±íÖĞÖØ¸´ÉêÇëµÄÒ©¼ÁÔªËØ"
+    @function:""åˆ é™¤ç”³è¯·é“¾è¡¨ä¸­é‡å¤ç”³è¯·çš„è¯å‰‚å…ƒç´ "
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status deleteSameList()
 {
@@ -236,7 +236,7 @@ Status deleteSameList()
     {
         q = p->next;
         if (p->data.inventoryId == q->data.inventoryId) {
-            // É¾³ı
+            // åˆ é™¤
             p->next = q->next;
             free(q);
         }
@@ -251,13 +251,13 @@ Status deleteSameList()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"±£´æ×îÖÕµÄ²É¹ºÉêÇëÖÁÍ¨ÓÃÊÔ¼Á²É¹º±í¡¢×¨ÓÃÊµ¼Ê²É¹º±í¡¢²É¹º±¨¼Û±í"
+    @function:"ä¿å­˜æœ€ç»ˆçš„é‡‡è´­ç”³è¯·è‡³é€šç”¨è¯•å‰‚é‡‡è´­è¡¨ã€ä¸“ç”¨å®é™…é‡‡è´­è¡¨ã€é‡‡è´­æŠ¥ä»·è¡¨"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status initPurchaseTable()
 {
@@ -268,18 +268,18 @@ Status initPurchaseTable()
     {
         if (p->data.inventoryClass == 0)
         {
-            // ½«ÉêÇëÔªËØÌí¼Óµ½Í¨ÓÃÊÔ¼Á²É¹º±í
+            // å°†ç”³è¯·å…ƒç´ æ·»åŠ åˆ°é€šç”¨è¯•å‰‚é‡‡è´­è¡¨
             gPurchaseList[gPurchaseListLen++] = p->data;
         }
         else
         {
-            // ½«ÉêÇëÔªËØÌí¼Óµ½×¨ÓÃÊÔ¼Á²É¹º±í
+            // å°†ç”³è¯·å…ƒç´ æ·»åŠ åˆ°ä¸“ç”¨è¯•å‰‚é‡‡è´­è¡¨
             sPurchaseList[sPurchaseListLen++] = p->data;
 
-            // ½«×¨ÓÃÊÔ¼Á²É¹ºÔªËØÌí¼Óµ½²É¹º±¨¼Û±í
+            // å°†ä¸“ç”¨è¯•å‰‚é‡‡è´­å…ƒç´ æ·»åŠ åˆ°é‡‡è´­æŠ¥ä»·è¡¨
             PurchaseItem purchaseItem;
 
-            //¶©¹ºÏî³õÊ¼»¯.
+            //è®¢è´­é¡¹åˆå§‹åŒ–.
             purchaseItem.inventoryName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
             purchaseItem.inventoryName = strcpy(purchaseItem.inventoryName, p->data.inventoryName);
             purchaseItem.inventoryId = p->data.inventoryId;
@@ -297,20 +297,20 @@ Status initPurchaseTable()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"±£´æ×îÖÕµÄ²É¹ºÉêÇëÖÁÍ¨ÓÃÊÔ¼Á²É¹ºÎÄ¼ş"
+    @function:"ä¿å­˜æœ€ç»ˆçš„é‡‡è´­ç”³è¯·è‡³é€šç”¨è¯•å‰‚é‡‡è´­æ–‡ä»¶"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status createGPurchaseTable()
 {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("generalReagentInventory.txt", "w")))
     {
@@ -333,20 +333,20 @@ Status createGPurchaseTable()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"±£´æ×îÖÕµÄ²É¹ºÉêÇëÖÁ×¨ÓÃÊµ¼Ê²É¹ºÎÄ¼ş"
+    @function:"ä¿å­˜æœ€ç»ˆçš„é‡‡è´­ç”³è¯·è‡³ä¸“ç”¨å®é™…é‡‡è´­æ–‡ä»¶"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status createSPurchaseTable()
 {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("specialReagentInventory.txt", "w")))
     {
@@ -370,20 +370,20 @@ Status createSPurchaseTable()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"±£´æ×îÖÕµÄ²É¹ºÉêÇëÖÁ²É¹º±¨¼ÛÎÄ¼ş"
+    @function:"ä¿å­˜æœ€ç»ˆçš„é‡‡è´­ç”³è¯·è‡³é‡‡è´­æŠ¥ä»·æ–‡ä»¶"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status createPurchaseTable()
 {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("purchaseTable.txt", "w")))
     {
@@ -393,7 +393,7 @@ Status createPurchaseTable()
     for (int i = 0; i < sPurchaseListLen; i++)
     {
 
-        //Êä³ö³ö¼ÛÏîµ½.txt.
+        //è¾“å‡ºå‡ºä»·é¡¹åˆ°.txt.
         fprintf(fp,
             "%s %d %d %d\n",
             sPurchaseList[i].inventoryName,
@@ -408,13 +408,13 @@ Status createPurchaseTable()
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"É¾³ıÖ¸¶¨idµÄÍ¨ÓÃÊÔ¼Á"
+    @function:"åˆ é™¤æŒ‡å®šidçš„é€šç”¨è¯•å‰‚"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status deleteGPurchaseTable(int id)
 {
@@ -438,13 +438,13 @@ Status deleteGPurchaseTable(int id)
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"É¾³ıÖ¸¶¨idµÄ×¨ÓÃÊÔ¼Á"
+    @function:"åˆ é™¤æŒ‡å®šidçš„ä¸“ç”¨è¯•å‰‚"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status deleteSPurchaseTable(int id)
 {
@@ -468,13 +468,13 @@ Status deleteSPurchaseTable(int id)
 /*
     @author:Estrella
     @date:2022/5/15
-    @function:"É¾³ıÖ¸¶¨idµÄ²É¹ºÊÔ¼Á"
+    @function:"åˆ é™¤æŒ‡å®šidçš„é‡‡è´­è¯•å‰‚"
     @input:{
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc]
-    @return:"º¯ÊıÖ´ĞĞ×´Ì¬"
+    @return:"å‡½æ•°æ‰§è¡ŒçŠ¶æ€"
 */
 Status deletePurchaseTable(int id)
 {

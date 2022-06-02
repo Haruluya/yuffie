@@ -4,7 +4,7 @@
 Status initStatus() {
     FILE* fp;
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("flag.txt", "r"))) {
         return ERROR;
@@ -15,10 +15,10 @@ Status initStatus() {
             continue;
         }
 
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String*  statusInfo = yuffieSplit(BUFF);
 
-        //²É¹º¼Æ»®×´Ì¬¡£
+        //é‡‡è´­è®¡åˆ’çŠ¶æ€ã€‚
         if (!strcmp(statusInfo[0], "PurchasePlanStatus")) {
             purchasePlanStatus = atoi(statusInfo[1]);
         }
@@ -54,7 +54,7 @@ Status setReagentAuditStatus(TASK_STATUS status) {
 Status updateFlag() {
     FILE* fp;
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("flag.txt", "w"))) {
         return ERROR;

@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/9
     @author:haruluya
-    @model_function:"¶Ô¶©¹ºÏà¹Ø²Ù×÷º¯ÊıºÍÈ«¾Ö±äÁ¿¡£".
+    @model_function:"å¯¹è®¢è´­ç›¸å…³æ“ä½œå‡½æ•°å’Œå…¨å±€å˜é‡ã€‚".
     @include:[purchaseTableStruct.h,user.h]
     @work:[purchaseTable.c,yuffie.h]
     @log:purchaseTable.log
@@ -37,27 +37,27 @@
 /*
     @author:haruluya
     @date:2022/5/13
-    @function:"Éú³É²É¹ºÍ¨Öª"
+    @function:"ç”Ÿæˆé‡‡è´­é€šçŸ¥"
     @input:{
     }
     @output:{
     }
     @execute:[yuffie.WinMain]
-    @return:"Ö´ĞĞ×´Ì¬"
+    @return:"æ‰§è¡ŒçŠ¶æ€"
 */
 Status createPurchaseNotice(String notice)
 {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("purchaseNotice.txt", "w")))
     {
         return ERROR;
     }
 
-    // ½«²É¹ºÍ¨ÖªĞ´ÈëÎÄ¼ş
+    // å°†é‡‡è´­é€šçŸ¥å†™å…¥æ–‡ä»¶
     fputs(notice, fp);
     fclose(fp);
     return OK;
@@ -68,7 +68,7 @@ String getNoticeContent() {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("purchaseNotice.txt", "r")))
     {

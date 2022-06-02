@@ -1,7 +1,49 @@
+/*
+    @license:
+    MIT License
+
+    Copyright (c) 2022 Haruluya
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+
+    @version:0.0.1
+    @date:2022/5/18
+    @author:deng
+    @model_function:"å®éªŒå®¤è¯•å‰‚å›æ”¶ç›¸å…³å‡½æ•°".
+    @include:[recycleManage.h]
+    @work:recycleManage.c
+    @log:recycleManage.log
+
+*/
 #include"recycleManage.h"
 
-
-//³õÊ¼»¯»ØÊÕ·ÏÒº¼ÇÂ¼¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"åˆå§‹åŒ–å›æ”¶åºŸæ¶²è®°å½•"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status initManageRecycleList() {
     FILE* fp;
     String fileName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
@@ -9,7 +51,7 @@ Status initManageRecycleList() {
     sprintf(str, "%d", presentUser.id);
     fileName = strcat(strcat(strcat(strcpy(fileName, "./teacher"), str), "/"), "recycleManage.txt");
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen(fileName, "r")))
     {
@@ -22,7 +64,7 @@ Status initManageRecycleList() {
         if (!strcmp(BUFF, "\0")) {
             break;
         }
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* recycleManageInfo = yuffieSplit(BUFF);
 
         manageItem item;
@@ -41,7 +83,17 @@ Status initManageRecycleList() {
     return OK;
 }
 
-//ÊµÊ±¸üĞÂ»ØÊÕ·ÏÒº¼ÇÂ¼¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"å®æ—¶æ›´æ–°å›æ”¶åºŸæ¶²è®°å½•"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status updateManageRecycleList() {
     FILE* fp;
     String fileName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
@@ -49,7 +101,7 @@ Status updateManageRecycleList() {
     sprintf(str, "%d", presentUser.id);
     fileName = strcat(strcat(strcat(strcpy(fileName, "./teacher"), str), "/"), "recycleManage.txt");
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen(fileName, "w")))
     {
@@ -72,13 +124,23 @@ Status updateManageRecycleList() {
     return OK;
 }
 
-//¼ÇÂ¼·ÏÒº»ØÊÕ¡£
+/*
+    @author:deng
+    @date:2022/5/31
+    @function:"è®°å½•åºŸæ¶²å›æ”¶"
+    @input:{
+    }
+    @output:{
+    }
+    @execute:[deng.WinMain]
+    @return:"æ‰§è¡ŒçŠ¶æ€"
+*/
 Status addManageRecycleItem(manageItem item) {
     if (!item.reagentName) {
         return INFASIBLE;
     }
 
-    // »ñÈ¡µ±Ç°Ê±¼ä
+    // è·å–å½“å‰æ—¶é—´
     char nowTime[20] = { 0 };
     time_t timep;
     time(&timep);

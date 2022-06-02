@@ -20,13 +20,13 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MIT֤��������Ϊ�̶����֡�
+    SOFTWARE.   //MIT证书声明，为固定部分。
 
     @version:0.0.1
     @date:2022/5/15
     @author:Estrella
-    @model_function:"�Թ�Ӧ�̱�������õ������ݽṹ����".
-    @include:[global.h��user.h]
+    @model_function:"对供应商报价审核用到的数据结构定义".
+    @include:[global.h，user.h]
     @work:purchaseTable.c
     @log:NONE
 */
@@ -34,13 +34,13 @@
 #include "global.h"
 
 /*
-    @function:"������ĳ���."
+    @function:"订购项的抽象."
     @value:{
-        inventoryName:"ҩ������",
-        inventoryId:"ҩ��id",
-        inventoryNum:"ҩ������",
-        inventoryPrice:"����",
-        userID:"��Ӧ��",
+        inventoryName:"药剂名称",
+        inventoryId:"药剂id",
+        inventoryNum:"药剂数量",
+        inventoryPrice:"报价",
+        userID:"供应商",
     }
 */
 typedef struct finalPurchaseItem
@@ -53,38 +53,38 @@ typedef struct finalPurchaseItem
 } finalPurchaseItem;
 
 /*
-    @function:"�������еı����ļ���"
+    @function:"保存所有的报价文件名"
 */
 String priceFileName[50];
 
 /*
-    @function:"�������еı����ļ�����"
+    @function:"保存所有的报价文件个数"
 */
 int priceFileLen;
 
 /*
-    @value:�ɹ������ÿ����󳤶ȡ�
+    @value:采购申请表每列最大长度。
 */
 #define INFO_MAXSIZE 50
 
 /*
-    @value:"�ɹ���������Ԫ������"
+    @value:"采购申请表最大元组数。"
 */
 #define PURCHASE_APPLY_LIST_MAX_SIZE 199
 
 /*
-    @function:"�ɹ�����(�ɹ�������˹���)."
+    @function:"采购公告(采购申请审核过后)."
     @range:[0,PURCHASE_LIST_MAX_SIZE]
 */
 finalPurchaseItem finalPurchaseTable[PURCHASE_APPLY_LIST_MAX_SIZE];
 
 /*
-    @function:"�ɹ�������"
+    @function:"采购表长度"
     @range:[0,PURCHASE_LIST_MAX_SIZE/2]
 */
 int finalPurchaseLen;
 
 /*
-    @value:"ÿ��ҩƷ��Ӧ�����й�Ӧ�̱��۵Ķ�ά����ṹ��"
+    @value:"每个药品对应的所有供应商报价的二维数组结构。"
 */
 int price[INFO_MAXSIZE][INFO_MAXSIZE];

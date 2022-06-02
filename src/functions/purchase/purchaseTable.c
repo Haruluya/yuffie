@@ -26,9 +26,9 @@
     @date:2022/5/13
     @author:haruluya
     @model_function:"This is a file for test".
-    @include:[a.h,b.h,c.h]    //°üº¬µÄÍ·ÎÄ¼ş¡£
-    @work:interface.c       //°üº¬´ËÍ·ÎÄ¼şµÄÔ´³ÌĞò¡£
-    @log:interfaces.log     //¸üĞÂÈÕÖ¾¡£
+    @include:[a.h,b.h,c.h]    //åŒ…å«çš„å¤´æ–‡ä»¶ã€‚
+    @work:interface.c       //åŒ…å«æ­¤å¤´æ–‡ä»¶çš„æºç¨‹åºã€‚
+    @log:interfaces.log     //æ›´æ–°æ—¥å¿—ã€‚
 
 */
 
@@ -38,27 +38,27 @@
 /*
     @author:haruluya
     @date:2022/5/13
-    @function:"Í¨¹ıid»ñÈ¡¶©¹ºÏî"
+    @function:"é€šè¿‡idè·å–è®¢è´­é¡¹"
     @input:{
-        id:"¶©¹ºÏîid"
+        id:"è®¢è´­é¡¹id"
     }
     @output:{
     }
     @execute:[supplierTemplate.HelloWndProc] 
-    @return:"¶ÔÓ¦idµÄ¶©¹ºÏî"
+    @return:"å¯¹åº”idçš„è®¢è´­é¡¹"
 */
 PurchaseItem getPurchaseItemById(int id) {
 
     for (int i = 0; i < purchaseListLen; i++) {
 
         /*
-            @check:"idÏàÍ¬Ôò·µ»Ø."
+            @check:"idç›¸åŒåˆ™è¿”å›."
         */
         if (purchaseList[i].inventoryId == id) {
             return purchaseList[i];
         }
     }
-    //´íÎó´¦Àí.
+    //é”™è¯¯å¤„ç†.
     PurchaseItem notFound = { "NULL", -1, 0, 0 };
     return notFound;
 }
@@ -67,19 +67,19 @@ PurchaseItem getPurchaseItemById(int id) {
 /*
     @author:haruluya
     @date:2022/5/13
-    @function:"ÔØÈë¶©¹º±íÊı¾İÖÁÈ«¾Ö±äÁ¿purchaseList.(È«¾ÖÖ»¶ÁÈ¡Ò»´ÎÎÄ¼ş)"
+    @function:"è½½å…¥è®¢è´­è¡¨æ•°æ®è‡³å…¨å±€å˜é‡purchaseList.(å…¨å±€åªè¯»å–ä¸€æ¬¡æ–‡ä»¶)"
     @input:{
     }
     @output:{
     }
     @execute:[yuffie.WinMain]
-    @return:"Ö´ĞĞ×´Ì¬"
+    @return:"æ‰§è¡ŒçŠ¶æ€"
 */
 Status initPurchaseList() {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("purchaseTable.txt", "r"))) {
         return ERROR;
@@ -92,19 +92,19 @@ Status initPurchaseList() {
             break;
         }
 
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* purchaseTableInfo = yuffieSplit(BUFF);
 
 
         PurchaseItem purchaseItem;
-        //¶©¹ºÏî³õÊ¼»¯.
+        //è®¢è´­é¡¹åˆå§‹åŒ–.
         purchaseItem.inventoryName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         purchaseItem.inventoryName = strcpy(purchaseItem.inventoryName, purchaseTableInfo[0]);
         purchaseItem.inventoryId = atoi(purchaseTableInfo[1]);
         purchaseItem.inventoryNum = atoi(purchaseTableInfo[2]);
 
 
-        //³ö¼Û³õÊ¼Îª0.
+        //å‡ºä»·åˆå§‹ä¸º0.
         purchaseItem.inventoryPrice = 0;
 
         purchaseList[purchaseListLen++] = purchaseItem;
@@ -118,13 +118,13 @@ Status initPurchaseList() {
 /*
     @author:haruluya
     @date:2022/5/13
-    @function:"´´½¨³ö¼Û±í(´´½¨¶ÔÓ¦³ö¼ÛÎÄ¼şµ½adminÏÂ²¢É¾³ı¶©¹º±í)"
+    @function:"åˆ›å»ºå‡ºä»·è¡¨(åˆ›å»ºå¯¹åº”å‡ºä»·æ–‡ä»¶åˆ°adminä¸‹å¹¶åˆ é™¤è®¢è´­è¡¨)"
     @input:{
     }
     @output:{
     }
     @execute:[yuffie.WinMain]
-    @return:"Ö´ĞĞ×´Ì¬"
+    @return:"æ‰§è¡ŒçŠ¶æ€"
 */
 Status createOfferApply() {
     FILE* fp;
@@ -132,7 +132,7 @@ Status createOfferApply() {
 
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     String fileName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
     String str = (String)malloc(sizeof(char) * INFO_MAXSIZE);
@@ -143,7 +143,7 @@ Status createOfferApply() {
     }
     for (int i = 0; i < purchaseListLen; i++) {
 
-        //Êä³ö³ö¼ÛÏîµ½supplier1.txt.
+        //è¾“å‡ºå‡ºä»·é¡¹åˆ°supplier1.txt.
         fprintf(fp,
             "%s %d %d %d\n",
             purchaseList[i].inventoryName,
@@ -175,7 +175,7 @@ Status createOfferApply() {
     //}
     //for (int i = 0; i < purchaseListLen; i++) {
 
-    //    //Êä³ö³ö¼ÛÏîµ½supplier1.txt.
+    //    //è¾“å‡ºå‡ºä»·é¡¹åˆ°supplier1.txt.
     //    fprintf(fp,
     //        "%s %d %d %d\n",
     //        purchaseList[i].inventoryName,

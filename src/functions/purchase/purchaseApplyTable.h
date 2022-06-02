@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/15
     @author:Estrella
-    @model_function:"¶ÔÒ©¼ÁÉêÇëÏà¹Ø²Ù×÷º¯ÊıºÍÈ«¾Ö±äÁ¿¡£".
+    @model_function:"å¯¹è¯å‰‚ç”³è¯·ç›¸å…³æ“ä½œå‡½æ•°å’Œå…¨å±€å˜é‡ã€‚".
     @include:[purchaseApplyTableStruct.h,user.h]
     @work:[purchaseApplyTable.c,yuffie.c]
     @log:purchaseApplyTable.log
@@ -36,12 +36,12 @@
 #include "user.h"
 
 /*
-    @function:"³õÊ¼»¯²É¹ºÉêÇëList"
+    @function:"åˆå§‹åŒ–é‡‡è´­ç”³è¯·List"
 */
 Status initPurchaseApplyList();
 
 /*
-    @function:"ÌîĞ´²É¹ºÉêÇë±í£¬²¢Ìá½»¸øadmin¡£"
+    @function:"å¡«å†™é‡‡è´­ç”³è¯·è¡¨ï¼Œå¹¶æäº¤ç»™adminã€‚"
 */
 Status createTeacherPurchaseApply();
 

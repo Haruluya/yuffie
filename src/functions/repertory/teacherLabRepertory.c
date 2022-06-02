@@ -1,14 +1,14 @@
 #include"teacherLabRepertory.h"
 
 
-//³õÊ¼»¯ÊµÑéÊÒ²Ö¿â¡£
+//åˆå§‹åŒ–å®éªŒå®¤ä»“åº“ã€‚
 Status initLabRepertoryList() {
 
     FILE* fp;
     laborReaListLen = 0;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     String fileName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
     String str = (String)malloc(sizeof(char) * INFO_MAXSIZE);
@@ -27,7 +27,7 @@ Status initLabRepertoryList() {
         if (!strcmp(BUFF, "\0")) {
             break;
         }
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* reagentItemInfo= yuffieSplit(BUFF);
 
         ReagentItem reagentItem;
@@ -46,7 +46,7 @@ Status initLabRepertoryList() {
     return OK;
 }
 
-//ÊÖ¶¯¸üĞÂ£¨Ê¹ÓÃÊÔ¼Á£©ÊµÑéÊÒ²Ö¿â¡£
+//æ‰‹åŠ¨æ›´æ–°ï¼ˆä½¿ç”¨è¯•å‰‚ï¼‰å®éªŒå®¤ä»“åº“ã€‚
 Status updateLabRepertory(int id, int num) {
     for (int i = 0; i < laborReaListLen; i++) {
         if (id == laborReaList[i].reagentId) {
@@ -63,7 +63,7 @@ Status updateLabRepertory(int id, int num) {
     return NOT_FOUND;
 }
 
-//Èë¿âÉêÇë½á¹û¡£
+//å…¥åº“ç”³è¯·ç»“æœã€‚
 Status appendApplyResultRepertory() {
 
     for (int i = 0; i < reagentResultListLen; i++) {
@@ -123,7 +123,7 @@ Status updateLabRepertoryFile() {
     return OK;
 }
 
-//´òÓ¡ÊµÑéÊÒ¿â´æ¡£
+//æ‰“å°å®éªŒå®¤åº“å­˜ã€‚
 Status printLabRepertory() {
     FILE* fp;
 

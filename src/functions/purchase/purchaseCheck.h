@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/9
     @author:haruluya
-    @model_function:"¶Ô²É¹ºÉêÇëÉóºËÏà¹Ø²Ù×÷º¯ÊıºÍÈ«¾Ö±äÁ¿¡£".
+    @model_function:"å¯¹é‡‡è´­ç”³è¯·å®¡æ ¸ç›¸å…³æ“ä½œå‡½æ•°å’Œå…¨å±€å˜é‡ã€‚".
     @include:[purchaseApplyTableStruct.h,user.h]
     @work:[purchaseApplyTable.c,yuffie.c]
     @log:purchaseApplyTable.log
@@ -34,77 +34,77 @@
 #include "purchaseCheckStruct.h"
 
 /*
-    @function:"³õÊ¼»¯²É¹ºÉêÇëµ¥Á´±í"
+    @function:"åˆå§‹åŒ–é‡‡è´­ç”³è¯·å•é“¾è¡¨"
 */
 Status initList();
 
 /*
-    @function:"±£´æËùÓĞµÄ²É¹ºÉêÇëÎÄ¼şÃû"
+    @function:"ä¿å­˜æ‰€æœ‰çš„é‡‡è´­ç”³è¯·æ–‡ä»¶å"
 */
 String fileName[50];
 
 /*
-    @function:"±£´æËùÓĞµÄ²É¹ºÉêÇëÎÄ¼ş¸öÊı"
+    @function:"ä¿å­˜æ‰€æœ‰çš„é‡‡è´­ç”³è¯·æ–‡ä»¶ä¸ªæ•°"
 */
 int fileLen;
 
 /*
-    @function:"»ñÈ¡ËùÓĞµÄ²É¹ºÉêÇëÎÄ¼ş"
+    @function:"è·å–æ‰€æœ‰çš„é‡‡è´­ç”³è¯·æ–‡ä»¶"
 */
 Status initApply();
 
 /*
-    @function:"±éÀúËùÓĞ²É¹ºÉêÇëÎÄ¼ş£¬¶ÁÈ¡²¢±£´æËùÓĞÀÏÊ¦Ìá½»µÄ²É¹ºÉêÇë"
+    @function:"éå†æ‰€æœ‰é‡‡è´­ç”³è¯·æ–‡ä»¶ï¼Œè¯»å–å¹¶ä¿å­˜æ‰€æœ‰è€å¸ˆæäº¤çš„é‡‡è´­ç”³è¯·"
 */
 Status createPurchaseApply();
 
 /*
-    @function:"¼ÆËã²É¹ºÉêÇëµ¥Á´±íµÄ³¤¶È"
+    @function:"è®¡ç®—é‡‡è´­ç”³è¯·å•é“¾è¡¨çš„é•¿åº¦"
 */
 int lengthList();
 
 /*
-    @function:"É¾³ıÖ¸¶¨idµÄÍ¨ÓÃÊÔ¼Á"
+    @function:"åˆ é™¤æŒ‡å®šidçš„é€šç”¨è¯•å‰‚"
 */
 Status deleteGPurchaseTable(int id);
 
 /*
-    @function:"É¾³ıÖ¸¶¨idµÄ×¨ÓÃÊÔ¼Á"
+    @function:"åˆ é™¤æŒ‡å®šidçš„ä¸“ç”¨è¯•å‰‚"
 */
 Status deleteSPurchaseTable(int id);
 
 /*
-    @function:"É¾³ıÖ¸¶¨µÄÊÔ¼Á"
+    @function:"åˆ é™¤æŒ‡å®šçš„è¯•å‰‚"
 */
 Status deletePurchaseTable(int id);
 
 /*
-    @function:"½«ÉêÇëÔªËØµÄÁ´±í°´ÕÕÉêÇëÒ©Æ·µÄ±àºÅ½øĞĞÃ°ÅİÅÅĞò£¬ÎªºóĞøÉ¾³ıÖØ¸´ÔªËØ×ö×¼±¸"
+    @function:"å°†ç”³è¯·å…ƒç´ çš„é“¾è¡¨æŒ‰ç…§ç”³è¯·è¯å“çš„ç¼–å·è¿›è¡Œå†’æ³¡æ’åºï¼Œä¸ºåç»­åˆ é™¤é‡å¤å…ƒç´ åšå‡†å¤‡"
 */
 Status sortList();
 
 /*
-    @function:"É¾³ıÉêÇëÁ´±íÖĞÖØ¸´ÉêÇëµÄÒ©¼ÁÔªËØ"
+    @function:"åˆ é™¤ç”³è¯·é“¾è¡¨ä¸­é‡å¤ç”³è¯·çš„è¯å‰‚å…ƒç´ "
 */
 Status deleteSameList();
 
 /*
-    @function:"±£´æ×îÖÕµÄ²É¹ºÉêÇëÖÁÍ¨ÓÃÊÔ¼Á²É¹º±í¡¢×¨ÓÃÊµ¼Ê²É¹º±í¡¢²É¹º±¨¼Û±í"
+    @function:"ä¿å­˜æœ€ç»ˆçš„é‡‡è´­ç”³è¯·è‡³é€šç”¨è¯•å‰‚é‡‡è´­è¡¨ã€ä¸“ç”¨å®é™…é‡‡è´­è¡¨ã€é‡‡è´­æŠ¥ä»·è¡¨"
 */
 Status initPurchaseTable();
 
 /*
-    @function:"±£´æ×îÖÕµÄ²É¹ºÉêÇëÖÁÍ¨ÓÃÊÔ¼Á²É¹ºÎÄ¼ş"
+    @function:"ä¿å­˜æœ€ç»ˆçš„é‡‡è´­ç”³è¯·è‡³é€šç”¨è¯•å‰‚é‡‡è´­æ–‡ä»¶"
 */
 Status createGPurchaseTable();
 
 /*
-    @function:"±£´æ×îÖÕµÄ²É¹ºÉêÇëÖÁ×¨ÓÃÊµ¼Ê²É¹ºÎÄ¼ş"
+    @function:"ä¿å­˜æœ€ç»ˆçš„é‡‡è´­ç”³è¯·è‡³ä¸“ç”¨å®é™…é‡‡è´­æ–‡ä»¶"
 */
 Status createSPurchaseTable();
 
 /*
-    @function:"±£´æ×îÖÕµÄ²É¹ºÉêÇëÖÁ²É¹º±¨¼ÛÎÄ¼ş"
+    @function:"ä¿å­˜æœ€ç»ˆçš„é‡‡è´­ç”³è¯·è‡³é‡‡è´­æŠ¥ä»·æ–‡ä»¶"
 */
 Status createPurchaseTable();
 

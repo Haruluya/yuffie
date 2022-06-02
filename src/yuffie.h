@@ -1,5 +1,5 @@
 /*
-¢Ú.hÍ·ÎÄ¼ş½Ó¿Ú¹æ·¶¡£
+â‘¡.hå¤´æ–‡ä»¶æ¥å£è§„èŒƒã€‚
 */
 // #include"a.h";
 // #include"b.h";
@@ -27,12 +27,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/13
     @author:haruluya
-    @model_function:"win32Ö÷´°¿ÚÍ·ÎÄ¼ş".
+    @model_function:"win32ä¸»çª—å£å¤´æ–‡ä»¶".
     @include:[Windows.h,guiTools.h,id.h,resource.h,loginDialog.h,supplierTemplate.h,user.h]    
     @work:[yuffie.c,all clas with gui]       
     @log:yuffie.log     
@@ -52,33 +52,35 @@
 
 
 /*
-    @function:"Ö÷´°¿ÚÀàÃû."
+    @function:"ä¸»çª—å£ç±»å."
     @range:Const
 */
 TCHAR     szFrameClass[] = TEXT("MdiFrame");
 
 /*
-    @function:"Supplier´°¿ÚÀàÃû."
+    @function:"Supplierçª—å£ç±»å."
     @range:Const
 */
 TCHAR     szSupplierClass[] = TEXT("MdiSupplierChild");
 
 /*
-    @function:"FrameWinow´°¿ÚÀàÃû."
+    @function:"FrameWinowçª—å£ç±»å."
     @range:Const
 */
 TCHAR   szHallClass[] = TEXT("MdiFrameWinow");
-
+/*
+    @function:"MD"
+*/
 TCHAR   szAdminClass[] = TEXT("MdiAdminChild");
 TCHAR   szTeacherClass[] = TEXT("MdiTeacherChild");
 
 /*
-    @functionL"³ÌĞòÖ÷º¯Êı¡£"
+    @functionL"ç¨‹åºä¸»å‡½æ•°ã€‚"
 */
 int WINAPI WinMain(HINSTANCE, HINSTANCE,PSTR, int);
 
 
 /*
-	@function:"Ö÷´°¿ÚÊÂ¼ş´¦Àíº¯Êı¡£"
+	@function:"ä¸»çª—å£äº‹ä»¶å¤„ç†å‡½æ•°ã€‚"
 */
 LRESULT CALLBACK FrameWndProc(HWND, UINT, WPARAM, LPARAM);

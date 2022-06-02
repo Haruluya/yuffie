@@ -20,12 +20,12 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
 @version:0.0.1
 @date:2022/5/15
 @author:Estrella
-@model_function:"²É¹ºÉêÇë±íÊı¾İ½á¹¹¶¨Òå".
+@model_function:"é‡‡è´­ç”³è¯·è¡¨æ•°æ®ç»“æ„å®šä¹‰".
 @include:[global.h]
 @work:purchaseTable.c
 @log:NONE
@@ -34,7 +34,7 @@ SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
 #include "global.h"
 
 /*
-    @function:"Ò©Æ·ÖÖÀàµÄ³éÏó."
+    @function:"è¯å“ç§ç±»çš„æŠ½è±¡."
     @value:{
 
     }
@@ -46,19 +46,19 @@ typedef enum inventoryTClass
 } inventoryTClass;
 
 /*
-    @function:"²É¹ºÉêÇëÏîµÄ³éÏó."
+    @function:"é‡‡è´­ç”³è¯·é¡¹çš„æŠ½è±¡."
     @value:{
-        inventoryName:"Ò©¼ÁÃû³Æ",
-        inventoryId:"Ò©¼Áid",
-        inventoryClass:"Ò©¼ÁÀà±ğ"£¬
+        inventoryName:"è¯å‰‚åç§°",
+        inventoryId:"è¯å‰‚id",
+        inventoryClass:"è¯å‰‚ç±»åˆ«"ï¼Œ
     }
 */
 /*
-    @function:"²É¹ºÉêÇëÏîµÄ³éÏó."
+    @function:"é‡‡è´­ç”³è¯·é¡¹çš„æŠ½è±¡."
     @value:{
-        inventoryName:"Ò©¼ÁÃû³Æ",
-        inventoryClass:"Ò©¼ÁÀà±ğ"£¬
-        inventoryId:"Ò©¼Áid",
+        inventoryName:"è¯å‰‚åç§°",
+        inventoryClass:"è¯å‰‚ç±»åˆ«"ï¼Œ
+        inventoryId:"è¯å‰‚id",
     }
 */
 typedef struct purchaseTApplyItem
@@ -71,22 +71,22 @@ typedef struct purchaseTApplyItem
 
 
 /*
-    @value:²É¹ºÉêÇë±íÃ¿ÁĞ×î´ó³¤¶È¡£
+    @value:é‡‡è´­ç”³è¯·è¡¨æ¯åˆ—æœ€å¤§é•¿åº¦ã€‚
 */
 
 #define INFO_MAXSIZE 50
 /*
-    @value:"²É¹ºÉêÇë±í×î´óÔª×éÊı¡£"
+    @value:"é‡‡è´­ç”³è¯·è¡¨æœ€å¤§å…ƒç»„æ•°ã€‚"
 */
 #define PURCHASE_APPLY_LIST_MAX_SIZE 199
 /*
-    @function:"²É¹ºÉêÇë±í."
+    @function:"é‡‡è´­ç”³è¯·è¡¨."
     @range:[0,PURCHASE_LIST_MAX_SIZE]
 */
 purchaseTApplyItem purchaseApplyList[PURCHASE_APPLY_LIST_MAX_SIZE];
 
 /*
-    @function:"¶©¹º±í³¤¶È"
+    @function:"è®¢è´­è¡¨é•¿åº¦"
     @range:[0,PURCHASE_LIST_MAX_SIZE]
 */
 int purchaseApplyListLen;

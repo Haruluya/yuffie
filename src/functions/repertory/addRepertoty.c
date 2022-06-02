@@ -20,12 +20,12 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.   //MITÖ¤ÊéÉùÃ÷£¬Îª¹Ì¶¨²¿·Ö¡£
+    SOFTWARE.   //MITè¯ä¹¦å£°æ˜ï¼Œä¸ºå›ºå®šéƒ¨åˆ†ã€‚
 
     @version:0.0.1
     @date:2022/5/15
     @author:Estrella
-    @model_function:"¶ÔÊÔ¼ÁÈë¿âÏà¹Ø²Ù×÷º¯ÊıºÍÈ«¾Ö±äÁ¿¡£".
+    @model_function:"å¯¹è¯•å‰‚å…¥åº“ç›¸å…³æ“ä½œå‡½æ•°å’Œå…¨å±€å˜é‡ã€‚".
     @include:[purchaseTableStruct.h,user.h]
     @work:[purchaseTable.c,yuffie.h]
     @log:purchaseTable.log
@@ -35,7 +35,7 @@
 #include "addRepertory.h"
 
 /*
-    @function:"³õÊ¼»¯ÔØÈë²É¹ºµÄÊÔ¼Á"
+    @function:"åˆå§‹åŒ–è½½å…¥é‡‡è´­çš„è¯•å‰‚"
 */
 Status initAddInventory()
 {
@@ -43,7 +43,7 @@ Status initAddInventory()
     addListLen = 0;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("specialReagentInventory.txt", "r")))
     {
@@ -56,12 +56,12 @@ Status initAddInventory()
             break;
         }
 
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* purchaseTableInfo = yuffieSplit(BUFF);
 
         ReagentItem ReagentItem;
 
-        //¶©¹ºÏî³õÊ¼»¯.
+        //è®¢è´­é¡¹åˆå§‹åŒ–.
         ReagentItem.reagentName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         ReagentItem.reagentName = strcpy(ReagentItem.reagentName, purchaseTableInfo[0]);
         ReagentItem.reagentId = atoi(purchaseTableInfo[1]);
@@ -83,11 +83,11 @@ Status initAddInventory()
         if (!strcmp(BUFF, "\0")) {
             break;
         }
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* purchaseTableInfo = yuffieSplit(BUFF);
         ReagentItem ReagentItem;
 
-        //¶©¹ºÏî³õÊ¼»¯.
+        //è®¢è´­é¡¹åˆå§‹åŒ–.
         ReagentItem.reagentName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         ReagentItem.reagentName = strcpy(ReagentItem.reagentName, purchaseTableInfo[0]);
         ReagentItem.reagentId = atoi(purchaseTableInfo[1]);
@@ -102,7 +102,7 @@ Status initAddInventory()
 }
 
 /*
-    @function:"³õÊ¼»¯ÔØÈëÖ÷²Ö¿âµÄÊÔ¼Á"
+    @function:"åˆå§‹åŒ–è½½å…¥ä¸»ä»“åº“çš„è¯•å‰‚"
 */
 Status initInventory()
 {
@@ -111,7 +111,7 @@ Status initInventory()
     inventoryListLen = 0;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("mainRepertory.txt", "r")))
     {
@@ -125,12 +125,12 @@ Status initInventory()
         if (!strcmp(BUFF, "\0")) {
             break;
         }
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* inventory = yuffieSplit(BUFF);
 
         ReagentItem ReagentItem;
 
-        //¶©¹ºÏî³õÊ¼»¯.
+        //è®¢è´­é¡¹åˆå§‹åŒ–.
         ReagentItem.reagentName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         ReagentItem.reagentName = strcpy(ReagentItem.reagentName, inventory[0]);
         ReagentItem.reagentId = atoi(inventory[1]);
@@ -144,13 +144,13 @@ Status initInventory()
 }
 
 /*
-    @function:"Èë¿â¼ÇÂ¼¡£"
+    @function:"å…¥åº“è®°å½•ã€‚"
 */
 Status addMainRepertoryManage()
 {
     FILE* fp;
 
-    // »ñÈ¡µ±Ç°Ê±¼ä
+    // è·å–å½“å‰æ—¶é—´
     char nowTime[20] = { 0 };
     time_t timep;
     time(&timep);
@@ -159,7 +159,7 @@ Status addMainRepertoryManage()
     snprintf(nowTime, 20, "%d-%d-%d %d:%d:%d", 1900 + p->tm_year, 1 + p->tm_mon, p->tm_mday, 8 + p->tm_hour, p->tm_min, p->tm_sec);
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("mainRepertoryManage.txt", "a")))
     {
@@ -182,7 +182,7 @@ Status addMainRepertoryManage()
 
 
 /*
-    @function:"Èë¿â²Ù×÷¡£"
+    @function:"å…¥åº“æ“ä½œã€‚"
 */
 Status addMainInventory()
 {
@@ -211,14 +211,14 @@ Status addMainInventory()
 }
 
 /*
-    @function:"¸üĞÂÖ÷¿â´æ¡£"
+    @function:"æ›´æ–°ä¸»åº“å­˜ã€‚"
 */
 Status createMainInventory()
 {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("mainRepertory.txt", "a")))
     {
@@ -236,7 +236,7 @@ Status createMainInventory()
     }
     fclose(fp);
 
-    // Ğ´ÈëÈë¿â¹ÜÀí±í
+    // å†™å…¥å…¥åº“ç®¡ç†è¡¨
     addMainRepertoryManage();
 
     return OK;
@@ -248,7 +248,7 @@ Status PrintMainLab() {
     FILE* fp;
 
     /*
-        @check:"ÎÄ¼ş´ò¿ª´íÎó´¦Àí."
+        @check:"æ–‡ä»¶æ‰“å¼€é”™è¯¯å¤„ç†."
     */
     if (!(fp = fopen("print.txt", "w")))
     {
@@ -282,11 +282,11 @@ Status initMainLabManage() {
         if (!strcmp(BUFF, "\0")) {
             break;
         }
-        //»ñÈ¡ÒÔ¿Õ¸ñÇĞ·ÖµÄÊôĞÔÊı×é.
+        //è·å–ä»¥ç©ºæ ¼åˆ‡åˆ†çš„å±æ€§æ•°ç»„.
         String* labManangeItemInfo = yuffieSplit(BUFF);
         manageItem manageItem;
 
-        //¶©¹ºÏî³õÊ¼»¯.
+        //è®¢è´­é¡¹åˆå§‹åŒ–.
         manageItem.reagentName = (String)malloc(sizeof(char) * INFO_MAXSIZE);
         manageItem.reagentName = strcpy(manageItem.reagentName, labManangeItemInfo[0]);
         manageItem.time = (String)malloc(sizeof(char) * INFO_MAXSIZE);
